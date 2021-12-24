@@ -27,3 +27,18 @@ For Creating an optimized production build run following command:
 
 this command will create a build directory with a production build of the app.
 Inside the build/static directory will be your JavaScript and CSS files. Each filename inside of build/static will contain a unique hash of the file contents. This hash in the file name enables long term caching techniques.
+
+
+### Git
+
+<code>
+  git clone https://github.com/maheshauti96/vidyartha-app
+</code>
+
+<code>
+  git pull origin main
+</code>
+
+<code>
+  git push origin main
+</code>
