@@ -28,3 +28,8 @@ For Creating an optimized production build run following command:
 this command will create a build directory with a production build of the app.
 Inside the build/static directory will be your JavaScript and CSS files. Each filename inside of build/static will contain a unique hash of the file contents. This hash in the file name enables long term caching techniques.
 
+### Developer Notes
+1. create a seperate branch from dev
+<code>
+  git branch whatever
+</code>
