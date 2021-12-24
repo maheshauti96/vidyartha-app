@@ -1,5 +1,36 @@
+@import 'common.scss';
+
 body {
     padding: 20px 20px 60px;
     // max-width: 680px;
     margin: 0 auto;
+}
+
+.home-wrap {
+    .banner-wrap {
+        h1 {
+            font: normal normal bold 71px/124px PT Sans Pro;
+            letter-spacing: 0px;
+            // color: #FFFFFF;
+        }
+
+        .MuiTextField-root {
+            background: #7B7B7B 0% 0% no-repeat padding-box;
+            border-radius: 17px;
+            opacity: 0.75;
+        }
+        .MuiOutlinedInput-root {
+            color: #FFFFFF;
+            border-radius: 17px;
+            .Mui-focused {
+            }
+        }
+    }
+    .contact-us {
+        .MuiTextField-root {
+            background: #7B7B7B 0% 0% no-repeat padding-box;
+            border-radius: 17px;
+            opacity: 0.75;
+        }
+    }
 }
