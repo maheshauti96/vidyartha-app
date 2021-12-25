@@ -1,36 +1,149 @@
 @import 'common.scss';
 
+@font-face {
+    font-family: 'PT Sans Pro'; // 400
+    src: url('/font/PTSansProXBd.OTF') format('opentype');
+    font-weight: 700;
+}
+
+// @font-face {
+//     font-family: 'Roboto'; // 500
+//     src: url('/font/Roboto-Medium.ttf') format('truetype');
+//     font-weight: 500;
+// }
+@font-face {
+    font-family: 'PT Sans Pro'; // 700
+    src: url('/font/PTSansProRegular.OTF') format('opentype');
+    font-weight: 400;
+}
+
 body {
-    padding: 20px 20px 60px;
-    // max-width: 680px;
     margin: 0 auto;
 }
 
 .home-wrap {
+
     .banner-wrap {
+
+        background: url('/banner-bg-original.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 1059px;
+
+        main {
+            margin-left: 80px;
+            margin-right: 80px;
+
+            @media (min-width: 768px) {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+
         h1 {
             font: normal normal bold 71px/124px PT Sans Pro;
             letter-spacing: 0px;
-            // color: #FFFFFF;
+            margin: auto;
+            padding-top: 120px;
+            width: 712px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
         }
 
-        .MuiTextField-root {
+        .logo-image {
+            left: 80px;
+            top: 50px;
+        }
+
+        .search-box-wrap {
+            margin: auto;
+            width: 470px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 43px;
+            opacity: 0.8;
+            padding: 78px 50px 50px;
+        }
+
+        .MuiTextField-root,
+        input {
             background: #7B7B7B 0% 0% no-repeat padding-box;
             border-radius: 17px;
             opacity: 0.75;
+            font: normal normal normal 28px/32px PT Sans Pro;
+            width: 100%;
+
+            .MuiInputLabel-outlined {
+                font: normal normal normal 28px/32px PT Sans Pro;
+                letter-spacing: 0px;
+                color: #FFFFFF;
+
+                &.Mui-focused,
+                &.MuiFormLabel-filled {
+                    font-size: 1.25rem;
+                    top: 4px;
+                    // top: 6px;
+                }
+            }
         }
+
         .MuiOutlinedInput-root {
             color: #FFFFFF;
             border-radius: 17px;
-            .Mui-focused {
+            height: 74px;
+            font: normal normal normal 28px/32px PT Sans Pro;
+            letter-spacing: 0px;
+
+            .MuiOutlinedInput-notchedOutline {
+                border-color: white !important;
+            }
+
+            .PrivateNotchedOutline-root-1 {
+                top: -6px;
             }
         }
+
+        .MuiAutocomplete-root {
+
+            margin: 10px auto;
+            width: 100%;
+
+        }
     }
+
     .contact-us {
         .MuiTextField-root {
             background: #7B7B7B 0% 0% no-repeat padding-box;
             border-radius: 17px;
             opacity: 0.75;
         }
+    }
+}
+
+.primary-button {
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    background: #144B5E 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+    opacity: 0.75;
+    width: 300px;
+    height: 68px;
+
+    &.MuiButtonBase-root {
+        margin: 14px 0px;
+        background-color: #144B5E !important;
+    }
+
+    .MuiButton-label {
+        font: normal normal bold 28px/32px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        text-transform: capitalize;
+    }
+
+    &.MuiButton-contained {
+        border-radius: 7px;
+        box-shadow: none !important;
     }
 }
