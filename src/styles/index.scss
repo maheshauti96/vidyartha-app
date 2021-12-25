@@ -89,9 +89,10 @@ body {
 
         .MuiTextField-root,
         input {
-            background: #7B7B7B 0% 0% no-repeat padding-box;
+            // background: #7B7B7B 0% 0% no-repeat padding-box;
+            background: rgba(123, 123, 123, 0.75) no-repeat padding-box;
             border-radius: 17px;
-            opacity: 0.75;
+            // opacity: 0.75;
             font: normal normal normal 28px/32px PT Sans Pro;
             width: 100%;
 
@@ -129,15 +130,18 @@ body {
 
             margin: 10px auto;
             width: 100%;
+            input {
+                background: unset;
+            }
 
         }
     }
 
     .contact-us {
         .MuiTextField-root {
-            background: #7B7B7B 0% 0% no-repeat padding-box;
+            background: rgba(123, 123, 123, 0.75) no-repeat padding-box;
             border-radius: 17px;
-            opacity: 0.75;
+            // opacity: 0.75;
         }
     }
 }
