@@ -85,6 +85,10 @@ body {
             border-radius: 43px;
             opacity: 0.8;
             padding: 78px 50px 50px;
+            @media (max-width: 768px) {
+                padding: 58px 20px 30px;
+                border-radius: 23px;
+            }
         }
 
         .MuiTextField-root,
@@ -107,6 +111,11 @@ body {
                     top: 4px;
                     // top: 6px;
                 }
+
+            @media (max-width: 768px) {
+                font: normal normal normal 28px/32px PT Sans Pro;
+            
+            }
             }
         }
 
@@ -152,7 +161,8 @@ body {
     background: #144B5E 0% 0% no-repeat padding-box;
     border-radius: 15px;
     opacity: 0.75;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 68px;
 
     &.MuiButtonBase-root {
