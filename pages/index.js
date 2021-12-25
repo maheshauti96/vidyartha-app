@@ -11,7 +11,7 @@ export default function Home() {
         <title>Vidyartha</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="main">
+      <main className="main-banner">
         <div className="banner-wrap center-align position-relative">
           <img className="position-absolute logo-image" height="120px" width="200px" src="/logo.png" />
           <h1>Help Us To Donate Books For Your School!</h1>
