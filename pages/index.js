@@ -136,7 +136,7 @@ export default function Home() {
           <img className="position-absolute logo-image" height="120px" width="200px" src="/logo.png" />
           <h1>Help Us To Donate Books For Your School!</h1>
           <div className="search-box-wrap">
-            <TextField label="Find your city" type="search" inputRef={autoCompleteRef} variant="outlined" />
+            <TextField label="Find your city" inputRef={autoCompleteRef} variant="outlined" />
             <Autocomplete
               disablePortal
               noOptionsText={'No Options'}
@@ -145,19 +145,22 @@ export default function Home() {
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.name.toString()}
               sx={{ width: 346 }}
-              renderInput={(params) => <TextField {...params} label="Find your school"
+              renderInput={(params) => {
+                console.log('params...',params)
+               return <TextField {...params} label="Find your school"
                 onChange={handleInput} variant="outlined"
-              />}
+              />
+              } }
             />
             <Button
               className="primary-button"
-              // onClick={() => {
-              //   if (finalPlace) {
-              //     navigate(`/fundraiser/${finalPlace.place_id}`);
-              //   } else {
-              //     alert('Please Select the school')
-              //   }
-              // }}
+              onClick={() => {
+                if (finalPlace) {
+                  navigate(`/fundraiser/${finalPlace.place_id}`);
+                } else {
+                  alert('Please Select the school')
+                }
+              }}
               variant="contained"
               endIcon={<ArrowForwardIos />}
             >Donate Now</Button>
