@@ -167,6 +167,10 @@ body {
     width: 100%;
     max-width: 300px;
     height: 68px;
+    &.dark {
+        background: #144B5E 0% 0% no-repeat padding-box;
+        max-width: none;
+    }
 
     &.MuiButtonBase-root {
         margin: 14px 0px;

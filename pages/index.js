@@ -5,11 +5,12 @@ import { useState, useRef, useEffect } from 'react';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { get, debounce } from 'lodash';
 import { ArrowForwardIos } from '@material-ui/icons';
+import { useRouter } from 'next/router'
 
 export default function Home() {
 
   let autoCompleteRef = useRef(null);
-
+  const router = useRouter()
 
   const [text, setText] = useState("");
   const [schools, setSchools] = useState([]);
@@ -156,7 +157,7 @@ export default function Home() {
               className="primary-button"
               onClick={() => {
                 if (finalPlace) {
-                  navigate(`/fundraiser/${finalPlace.place_id}`);
+                  router.push(`/fundraiser/${finalPlace.place_id}`);
                 } else {
                   alert('Please Select the school')
                 }

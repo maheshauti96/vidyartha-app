@@ -3,10 +3,13 @@ import Head from 'next/head';
 import _ from 'lodash';
 import { useRouter } from 'next/router'
 import { useFetch } from "use-http";
-import { getSchoolInfo } from "../../src/services/service";
+import ShareIcon from '@material-ui/icons/Share';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import { copyUrlToClipboard, getSchoolInfo } from "../../src/services/service";
 import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
-import { Grid } from "@material-ui/core";
+import { Button, Grid, LinearProgress } from "@material-ui/core";
 
 
 
@@ -29,6 +32,8 @@ export default function FundraiserPlace() {
     const [requiredAmount, setRequiredAmount] = useState(0);
     const [progress, setProgress] = useState(0);
     const [placeInfo, setPlaceInfo] = useState(null);
+    const [href, setHref] = useState(null);
+
 
 
     function fetchSchoolDetails(placeid) {
@@ -86,7 +91,8 @@ export default function FundraiserPlace() {
     }
 
     useEffect(() => {
-    }, [placeInfo, placeid])
+        setHref(window.location.href);
+    }, [])
 
     useEffect(() => {
 
@@ -95,10 +101,10 @@ export default function FundraiserPlace() {
         //     router.push('/');
         // }
         console.log('placeInfo**', placeInfo);
-        if (!placeInfo) {
+        if (placeid && !placeInfo) {
             fetchSchoolDetails(placeid);
         }
-        if (placeInfo) {
+        if (placeid && placeInfo) {
             console.log('got the placeinfo');
             getPlaceInfo(placeInfo)
         }
@@ -130,16 +136,55 @@ export default function FundraiserPlace() {
                         </Grid>
                     </Grid>
                     : <Grid container spacing={4}>
-                        <Grid item xs={7}>
-                            <h2>Delhi Public School, Vidyartha Campaign</h2>
+                        <Grid item xs={7} className="school-info-wrap">
+                            <h2>{schoolInfo.schoolInfo.name}</h2>
                             <img
                                 src={schoolInfo.placeImage}
+                                // src="https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAap_uEASRoEMZI9AimR0SHJsNyn8z08ox9ahWwly9NsFCuK4wKMsG0an-_O2q-AC7gjkvKJuUv1VtBoEFqbqTKzvfoOHY--FG1u2Nnk2OncxMvL-_1__CWLvYGyRcdfMP49EsOlAWwfTmOD_xXHwooLeK4HYpuMC8f3EJCKv5UlYiAgOK95r&3u800&5m1&2e1&callback=none&key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&token=109081"
                                 alt="Place Image unavailable"
                                 width="100%"
                             // height="500"
                             ></img>
                         </Grid>
-                        <Grid item xs={5}>bol</Grid>
+                        <Grid item xs={5} className="collection-info-wrap">
+                            <h2>placeholder</h2>
+                            <div class="amount">
+                                &#8377;<span class="green">10000</span>
+                            </div>
+                            <p className="raised-asof">10000 of 20000 raised</p>
+                            <div className="progress-bar-wrap position-relative">
+                                <LinearProgress className="progress-bar" variant="determinate" value={50}></LinearProgress>
+                                <p className="tobe-raised position-absolute">&#8377; 2000</p>
+                            </div>
+                            <Button
+                                className="primary-button dark m-tb-25"
+                                onClick={() => {
+                                    // if (finalPlace) {
+                                    //     navigate(`/fundraiser/${finalPlace.place_id}`);
+                                    // } else {
+                                    //     alert('Please Select the school')
+                                    // }
+                                }}
+                                variant="contained"
+                            >Donate Now</Button>
+                            <h4 className="sub-text">Share and Support this campaign</h4>
+                            <div className="social-share-icons">
+                                <ShareIcon
+                                    onClick={() => {
+                                        copyUrlToClipboard(href)
+                                        alert('link is copied!');
+                                    }}
+                                />
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
+                                    <FacebookIcon />
+                                </a>
+
+                                <a href={`whatsapp://send?text=Help me to Support this campaign ${href}`} data-action="share/whatsapp/share">
+                                    <WhatsAppIcon className="whatsapp-icon" />
+                                </a>
+                            </div>
+
+                        </Grid>
                     </Grid>
                 }
             </div>
