@@ -25,7 +25,7 @@ body {
 .home-wrap {
 
     .main-banner {
-        background: url('/banner-bg-original.png');
+        background: url('/banner-bg.webp'), url('/banner-bg-original.png');
         background-size: contain;
         background-repeat: no-repeat;
         width: 100%;
@@ -64,7 +64,7 @@ body {
         }
 
         .logo-image {
-            left: 80px;
+            left: 20px;
             top: 50px;
             @media (max-width: 768px) {
                 width: 125px;
@@ -170,6 +170,7 @@ body {
     &.dark {
         background: #144B5E 0% 0% no-repeat padding-box;
         max-width: none;
+        opacity: 1;
     }
 
     &.MuiButtonBase-root {

@@ -120,7 +120,7 @@ export default function FundraiserPlace() {
         <main>
             <div className="center-align position-relative">
                 <header></header>
-                <img className="position-absolute logo-image" height="120px" width="200px" src="/logo.png" />
+                <img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" />
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?

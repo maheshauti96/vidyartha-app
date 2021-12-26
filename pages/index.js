@@ -134,7 +134,7 @@ export default function Home() {
       </Head>
       <main className="main-banner">
         <div className="banner-wrap center-align position-relative">
-          <img className="position-absolute logo-image" height="120px" width="200px" src="/logo.png" />
+          <img className="position-absolute logo-image" height="134px" width="248px" src="/white-logo.webp" />
           <h1>Help Us To Donate Books For Your School!</h1>
           <div className="search-box-wrap">
             <TextField label="Find your city" inputRef={autoCompleteRef} variant="outlined" />
