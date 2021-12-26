@@ -4,18 +4,21 @@ import _ from 'lodash';
 import { useRouter } from 'next/router'
 import { useFetch } from "use-http";
 import ShareIcon from '@material-ui/icons/Share';
+import { useForm } from 'react-hook-form';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { copyUrlToClipboard, getSchoolInfo } from "../../src/services/service";
+import { copyUrlToClipboard, getSchoolInfo, isValidEmail } from "../../src/services/service";
 import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
-import { Button, Grid, LinearProgress } from "@material-ui/core";
+import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
+import RazorpayPayment from "../../src/components/RazorpayPayment";
 
 
 
 export default function FundraiserPlace() {
     const httpClient = useFetch(BASE_API_URL);
-
+    const { register, handleSubmit, getValues, formState: { errors } } = useForm();
+    console.log('getValues', getValues());
     const { get, post, response, loading, error } = httpClient;
     const router = useRouter()
     const [schoolInfo, setSchoolInfo] = useState({
@@ -26,6 +29,7 @@ export default function FundraiserPlace() {
     });
     const { placeid } = router.query;
     console.log('placeid', placeid);
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [amount, setAmount] = useState();
     const [raisedAmount, setRaisedAmount] = useState(0);
@@ -33,6 +37,8 @@ export default function FundraiserPlace() {
     const [progress, setProgress] = useState(0);
     const [placeInfo, setPlaceInfo] = useState(null);
     const [href, setHref] = useState(null);
+    const [openDialog, setOpenDialog] = React.useState(false);
+
 
 
 
@@ -116,6 +122,8 @@ export default function FundraiserPlace() {
             <title>Vidyartha</title>
             <link rel="icon" href="/favicon.ico" />
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
+            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
         </Head>
         <main>
             <div className="center-align position-relative">
@@ -136,7 +144,7 @@ export default function FundraiserPlace() {
                         </Grid>
                     </Grid>
                     : <Grid container spacing={4}>
-                        <Grid item xs={7} className="school-info-wrap">
+                        <Grid item xs={12} sm={7} className="school-info-wrap">
                             <h2>{schoolInfo.schoolInfo.name}</h2>
                             <img
                                 src={schoolInfo.placeImage}
@@ -146,24 +154,20 @@ export default function FundraiserPlace() {
                             // height="500"
                             ></img>
                         </Grid>
-                        <Grid item xs={5} className="collection-info-wrap">
+                        <Grid item xs={12} sm={5} className="collection-info-wrap">
                             <h2>placeholder</h2>
                             <div class="amount">
-                                &#8377;<span class="green">10000</span>
+                                &#8377;<span class="green">{raisedAmount}</span>
                             </div>
-                            <p className="raised-asof">10000 of 20000 raised</p>
+                            <p className="raised-asof">{raisedAmount} of {requiredAmount} raised</p>
                             <div className="progress-bar-wrap position-relative">
-                                <LinearProgress className="progress-bar" variant="determinate" value={50}></LinearProgress>
-                                <p className="tobe-raised position-absolute">&#8377; 2000</p>
+                                <LinearProgress className="progress-bar" variant="determinate" value={progress}></LinearProgress>
+                                <p className="tobe-raised position-absolute">&#8377; {requiredAmount}</p>
                             </div>
                             <Button
                                 className="primary-button dark m-tb-25"
                                 onClick={() => {
-                                    // if (finalPlace) {
-                                    //     navigate(`/fundraiser/${finalPlace.place_id}`);
-                                    // } else {
-                                    //     alert('Please Select the school')
-                                    // }
+                                    setOpenDialog(true);
                                 }}
                                 variant="contained"
                             >Donate Now</Button>
@@ -183,6 +187,46 @@ export default function FundraiserPlace() {
                                     <WhatsAppIcon className="whatsapp-icon" />
                                 </a>
                             </div>
+                            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+                                <DialogTitle className="center-align"><h2 className="m-0">Enter your details</h2></DialogTitle>
+                                <DialogContent className="center-align donor-info-form">
+                                    <div className="form-input-wrap">
+                                        <TextField
+                                            id="name"
+                                            label="Name"
+                                            fullWidth
+                                            onChange={({ target }) => setName(target.value)}
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                    <div className="form-input-wrap">
+                                        <TextField
+                                            id="name"
+                                            label="Email Address"
+                                            fullWidth
+                                            error={email && !isValidEmail(email)}
+                                            onChange={({ target }) => setEmail(target.value)}
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                    <div className="form-input-wrap">
+                                        <TextField
+                                            id="amount"
+                                            label="Amount"
+                                            onChange={({ target }) => setAmount(target.value)}
+                                            fullWidth
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                    <RazorpayPayment
+                                        name={name}
+                                        email={email}
+                                        amount={amount}
+                                        httpClient={httpClient}
+                                        placeId={schoolInfo.schoolInfo.id}
+                                    ></RazorpayPayment>
+                                </DialogContent>
+                            </Dialog>
 
                         </Grid>
                     </Grid>

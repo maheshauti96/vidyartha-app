@@ -190,3 +190,34 @@ body {
         box-shadow: none !important;
     }
 }
+.form-input-wrap {
+    input {
+        color: #144B5E;
+    }
+
+    background-color: #fff;
+    margin: 0px;
+}
+
+.donor-info-form {
+    .form-input-wrap {
+        padding: 10px;
+    }
+    
+
+    .MuiFormControl-root {
+
+        min-width: 380px;
+
+        @media (max-width: 600px) {
+            width: 100%;
+        }
+    }
+
+    .sub-text {
+        font: normal normal normal 24 Segoe UI;
+        letter-spacing: 0px;
+        color: #707070;
+
+    }
+}
