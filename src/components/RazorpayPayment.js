@@ -1,15 +1,14 @@
 import React from 'react';
-import './RazorpayPayment.css';
+// import './RazorpayPayment.css';
 import { useState } from "react";
-// import ShareIcon from '@mui/icons-material/Share';
-import { copyUrlToClipboard, createRazorpayOrder } from './service';
-// import ContentCopyIcon from '@material-ui/icons/ContentCopy';
 import ShareIcon from '@material-ui/icons/Share';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { RAZORPAY_PAYMENT_KEY_ID } from '../constants';
+// import { RAZORPAY_PAYMENT_KEY_ID } from '../constants';
 import { Box, Button, CircularProgress, LinearProgress, Slide, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { copyUrlToClipboard, createRazorpayOrder } from '../services/service';
+import { RAZORPAY_PAYMENT_KEY_ID } from '../constants/api';
 
 
 
@@ -26,7 +25,10 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
     async function displayRazorPay(e) {
         try {
             e.preventDefault();
-
+            if (!name || !email || !amount) {
+                alert('Please fill out all Details');
+                return;
+            }
             setSucess(false);
             setFailure(false);
             setButtonLoader(true);
@@ -123,22 +125,6 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
                     </div> : <div></div>
                 }
                 <div style={{ display: 'block', paddingTop: '10px', alignSelf: 'center' }}>
-                    <p className="sub-text">Share and Support this campaign</p>
-                    <div className="social-share-icons">
-                        <ShareIcon
-                            onClick={() => {
-                                copyUrlToClipboard(window.location.href)
-                                alert('link is copied!');
-                            }}
-                        />
-                        <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} rel="noopener noreferrer" target="_blank">
-                            <FacebookIcon />
-                        </a>
-
-                        <a href={`whatsapp://send?text=Help me to Support this campaign ${window.location.href}`} data-action="share/whatsapp/share">
-                            <WhatsAppIcon />
-                        </a>
-                    </div>
                     {/* <img height="30px" width="30px"  src="/shareIcon.png" onClick={() => { 
                         copyUrlToClipboard(window.location.href)
                         alert('link is copied!');

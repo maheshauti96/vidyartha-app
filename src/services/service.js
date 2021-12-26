@@ -33,3 +33,16 @@ export async function getSchoolInfo({ post, response }, placeid, placeName, addr
     navigator.clipboard.writeText(urlToCopy); // temp and unique solution without creating the element
     document.body.removeChild(dummy);
   }
+
+
+export const isValidEmail = (e = '') => {
+  const str = e.toLowerCase();
+  if (
+    !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      str
+    )
+  ) {
+    return false;
+  }
+  return true;
+};
