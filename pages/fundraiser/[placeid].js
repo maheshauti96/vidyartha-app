@@ -6,7 +6,7 @@ import { useFetch } from "use-http";
 import ShareIcon from '@material-ui/icons/Share';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { copyUrlToClipboard, getSchoolInfo } from "../../src/services/service";
+import { copyUrlToClipboard, getSchoolInfo, getTopDonorsBySchool, getTopDonors } from "../../src/services/service";
 import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Grid, LinearProgress } from "@material-ui/core";
@@ -90,8 +90,25 @@ export default function FundraiserPlace() {
         }
     }
 
+    // fetches top donor from the particular school (by place id)
+    async function fetchTopDonorsBySchool() {  
+        const data = await getTopDonorsBySchool({get, response}, placeid)
+        let topdonors = data.content;
+        console.log("TOP Donors by school", topdonors)    
+    }
+
+    // fetches top donors from all schools
+    async function fetchTopDonors() {
+        const data = await getTopDonors({get, response}, placeid)
+        let topdonors = data.content;
+        console.log("TOP Donors globally: ", topdonors)    
+    }
+
+    
     useEffect(() => {
         setHref(window.location.href);
+        fetchTopDonorsBySchool();
+        fetchTopDonors()
     }, [])
 
     useEffect(() => {

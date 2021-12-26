@@ -22,6 +22,20 @@ export async function getSchoolInfo({ post, response }, placeid, placeName, addr
     }
   }
 
+  export async function getTopDonors({get, response}) {
+    const topDonors = await get("/donors/")
+    if(response.ok) {
+      return topDonors
+    }
+  }
+
+  export async function getTopDonorsBySchool({get, response}, placeId) {
+    const topDonorsBySchool = await get(`/donors/${placeId}`)
+    if(response.ok) {
+      return topDonorsBySchool
+    }
+  }
+
   export const copyUrlToClipboard = (urlToCopy) => {
     var dummy = document.createElement('input'),
       text = urlToCopy;
