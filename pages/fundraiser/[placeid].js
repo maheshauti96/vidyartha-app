@@ -22,7 +22,7 @@ export default function FundraiserPlace() {
         }
     });
     const { placeid } = router.query;
-
+    console.log('placeid', placeid);
     const [email, setEmail] = useState("");
     const [amount, setAmount] = useState();
     const [raisedAmount, setRaisedAmount] = useState(0);
@@ -86,9 +86,14 @@ export default function FundraiserPlace() {
     }
 
     useEffect(() => {
-        if (!placeInfo && !placeid) {
-            router.push('/');
-        }
+    }, [placeInfo, placeid])
+
+    useEffect(() => {
+
+        // if (!placeInfo && !placeid) {
+        //     console.log('bye bye');
+        //     router.push('/');
+        // }
         console.log('placeInfo**', placeInfo);
         if (!placeInfo) {
             fetchSchoolDetails(placeid);
@@ -97,11 +102,8 @@ export default function FundraiserPlace() {
             console.log('got the placeinfo');
             getPlaceInfo(placeInfo)
         }
-    }, [placeInfo, placeid])
-
-    useEffect(() => {
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
-    }, [])
+    }, [placeid, placeInfo])
 
     return (<div className="fundraiser-wrap">
         <Head>
