@@ -12,6 +12,13 @@ import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../../src/components/RazorpayPayment";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 
 
@@ -127,7 +134,12 @@ export default function FundraiserPlace() {
         </Head>
         <main>
             <div className="center-align position-relative">
-                <header></header>
+                <header>
+                    <div className="inp-wrap">                        
+                        <TextField className="inp" label="Location" variant="outlined" />
+                        <TextField className="inp" label="School" variant="outlined" />
+                    </div>
+                </header>
                 <img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" />
             </div>
             <div className="fundraiser-section center-align">
@@ -231,9 +243,62 @@ export default function FundraiserPlace() {
                         </Grid>
                     </Grid>
                 }
+
+                <Grid container spacing={4}>
+                    <Grid item xs={12} sm={7} className="about-wrap">
+                        <p>About Fundraiser campaign</p>
+                    </Grid>
+                </Grid>
+                <Grid container spacing={4}>
+                    <Grid item xs={12} sm={7} className="about-wrap">
+                        <div className="about">
+                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={5}>
+                        <TableContainer component={Paper}>
+                            <Table className="table-wrap" aria-label="simple table">
+                                <TableHead className="thead">
+                                    <TableRow className="tr">
+                                        <TableCell className="th" align="center">Top Donors</TableCell>
+                                        <TableCell className="th" align="center">Amount</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody className="tbody">
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>
 
         </main>
+
+        <footer>
+          <div className="foot-wrap center-align">
+            <p><span>Terms & Conditions</span><span>Privacy Policy</span><span>Return Policy</span></p>
+          </div>
+        </footer>
     </div>)
 }

@@ -169,6 +169,12 @@ export default function Home() {
         </div>
         <div id="map"></div>
       </main>
+
+      <footer>
+        <div className="foot-wrap center-align">
+          <p><span>Terms & Conditions</span><span>Privacy Policy</span><span>Return Policy</span></p>
+        </div>
+      </footer>
     </div>
   )
 }

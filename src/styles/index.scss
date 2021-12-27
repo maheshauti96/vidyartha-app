@@ -221,3 +221,19 @@ body {
 
     }
 }
+
+.foot-wrap {
+    padding: 1% 0;
+    background: #C8D5DA 0% 0% no-repeat padding-box;
+    opacity: 0.75;
+
+    p {
+        span {
+            padding: 0 5%;
+            font: normal normal normal 32px/42px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #144B5E;
+            opacity: 1;
+        }
+    }
+}
