@@ -1,5 +1,173 @@
-body {
-    padding: 20px 20px 60px;
-    // max-width: 680px;
-    margin: 0 auto;
+.home-wrap {
+    background: transparent url('../img/Mask\ Group\ 2.png') 0% 0% no-repeat padding-box;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: normal;
+    opacity: 0.72;
+
+    .banner-wrap {
+        margin-left: 25%;
+        width: 50%;
+        padding: 5% 0;
+
+        h1 {
+            margin-right: 0px;
+            margin-top: 0px;
+            text-align: center;
+            font: normal normal bold 71px/124px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            opacity: 1;
+        }
+        
+        .form-wrap {
+            text-align: center;
+            margin-left: 10%;
+            padding: 5% 0;
+            width: 80%;
+            height: 100%;
+            background: #FFFFFF no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 43px;
+            opacity: 0.8;
+
+            .id {
+                margin-top: 5%;
+                width: 80%;
+                height: 5%;
+                background: #7B7B7B 0% 0% no-repeat padding-box;
+                border-radius: 20px;
+                opacity: 0.75;
+            }
+
+            .MuiInputBase-root {
+                height: 5%;
+                text-align: left;
+                font: normal normal normal 28px/32px PT Sans Pro;
+                letter-spacing: 0px;
+                border-radius: 20px;
+                color: #FFFFFF;
+                opacity: 1;
+            }
+
+            .btn {
+                margin-top: 5%;
+                padding: 0 0;
+                width: 50%;
+                height: 5%;
+                background: #144B5E 0% 0% no-repeat padding-box;
+                border-radius: 15px;
+                opacity: 0.75;
+
+                p {
+                    margin: 5% 0;
+                    text-align: center;
+                    width: 100%;
+                    font: normal normal bold 28px/32px PT Sans Pro;
+                    letter-spacing: 0px;
+                    color: #FFFFFF;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.item {
+    background: #144B5E3B no-repeat padding-box;
+    opacity: 1;
+}
+
+.step-wrap {
+    p {
+        text-align: center;
+        font: normal normal bold 71px/92px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+}
+
+.video-wrap {
+    p {
+        text-align: center;
+        font: normal normal bold 50px/65px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+}
+
+.tm-wrap {
+    p {
+        text-align: left;
+        font: normal normal bold 50px/65px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+}
+
+.ques-wrap {
+    p {
+        text-align: left;
+        font: normal normal bold 50px/65px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+}
+
+.cont-wrap {
+    p {
+        text-align: center;
+        font: normal normal bold 50px/65px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+
+    .form1-wrap {
+        background: #144B5E3B no-repeat padding-box;
+        opacity: 1;
+        text-align: center;
+        padding: 5% 0;
+
+        .id1 {
+            width: 60%;
+            margin-bottom: 2%;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 2px solid #144B5E;
+            border-radius: 15px;
+            opacity: 1;
+        }
+
+        .id2 {
+            width: 60%;
+            padding: 2% 0;
+            margin-bottom: 4%;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 2px solid #144B5E;
+            border-radius: 15px;
+            opacity: 1;
+        }
+
+        .btn1 {
+            width: 20%;
+            padding: 0 0;
+            background: #144B5E 0% 0% no-repeat padding-box;
+            border-radius: 11px;
+            opacity: 1;
+
+            p {
+                margin: 5% 0;
+                text-align: center;
+                font: normal normal bold 32px/36px PT Sans Pro;
+                letter-spacing: 0px;
+                color: #FFFFFF;
+                opacity: 1;
+            }
+        }
+    }
 }
