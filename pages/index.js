@@ -146,6 +146,9 @@ export default function Home() {
               options={schools}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.name.toString()}
+              renderOption={(option) => {
+                return <div style={{textAlign:"left", fontSize:"1.1rem"}}><p>{option.name}</p><p style={{color:"grey", fontSize:"0.9rem"}}> {option.formatted_address}</p></div>;
+              }}
               sx={{ width: 346 }}
               renderInput={(params) => {
                 console.log('params...',params)
