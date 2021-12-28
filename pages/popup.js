@@ -2,7 +2,7 @@ import { Button, TextField } from "@material-ui/core";
 import { ArrowForwardIos } from '@material-ui/icons';
 export default function Popup() {
     return (<div className="main">
-<div><img className="logo" src="white-logo.png" height={200} width={300}></img></div>
+<div><img className="logo" src="white-logo.png" height={100} width={150}></img></div>
         <h1 className="heading">HELP IN CREATING A</h1>
 
         <h1 className="heading1">BRIGHTER FUTURE</h1>
