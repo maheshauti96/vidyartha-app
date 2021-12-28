@@ -73,14 +73,13 @@ export default function Home() {
   }, 500);
 
   function selectedValue(event, value) {
-    schools.map((school) => {
 
-
-      setFinalPlace(school)
-      setText(school.name);
-      localStorage.setItem('placeInfo', JSON.stringify(school));
+    if(value){
+      console.log(value)
+      setFinalPlace(value)
+      setText(value.name)
+      localStorage.setItem('placeInfo', JSON.stringify(value));
     }
-    );
   }
 
   function handleInput(e) {
@@ -130,6 +129,8 @@ export default function Home() {
       <Head>
         <title>Vidyartha</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png"/>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
       </Head>
       <main className="main-banner">

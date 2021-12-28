@@ -46,3 +46,19 @@ export const isValidEmail = (e = '') => {
   }
   return true;
 };
+
+// get top donors overall
+export async function getTopDonors({get, response}) {
+  const topDonors = await get("/donors/")
+  if(response.ok) {
+    return topDonors
+  }
+}
+
+// get top donors by school
+export async function getTopDonorsBySchool({get, response}, placeId) {
+  const topDonorsBySchool = await get(`/donors/${placeId}`)
+  if(response.ok) {
+    return topDonorsBySchool
+  }
+}
