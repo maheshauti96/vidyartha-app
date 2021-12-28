@@ -84,6 +84,10 @@ export default function FundraiserPlace() {
         const placeAddress = _.get(placeInfo, 'formatted_address') || '';
         const placeName = _.get(placeInfo, 'name');
         const placeImage = _.get(placeInfo, 'photos[0]') && _.get(placeInfo, 'photos[0]').getUrl && _.get(placeInfo, 'photos[0]').getUrl();
+        console.log("PLACEEEEEEEEE IMAGEEEEEEEEE", placeImage)
+        if(!placeImage){
+            placeImage = "/defaultschool.jpeg"
+        }
         try {
             if (placeName && schoolId) {
                 const schoolInfo = await getSchoolInfo(
