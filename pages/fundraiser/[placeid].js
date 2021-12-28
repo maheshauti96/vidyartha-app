@@ -45,7 +45,7 @@ export default function FundraiserPlace() {
     const [placeInfo, setPlaceInfo] = useState(null);
     const [href, setHref] = useState(null);
     const [openDialog, setOpenDialog] = React.useState(false);
-
+    const [topDonors, setTopDonors] = useState([]);
 
 
 
@@ -105,8 +105,7 @@ export default function FundraiserPlace() {
 
     const fetchTopDonors = async (placeid) =>{
         const data = await getTopDonorsBySchool({get, response}, placeid)
-        let topdonors = data.content;
-        console.log("TOP Donors by school", topdonors) 
+        setTopDonors(data.content)
     }
 
     useEffect(() => {
@@ -263,40 +262,31 @@ export default function FundraiserPlace() {
                             <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
                         </div>
                     </Grid>
-                    <Grid item xs={12} sm={5}>
-                        <TableContainer component={Paper}>
-                            <Table className="table-wrap" aria-label="simple table">
-                                <TableHead className="thead">
-                                    <TableRow className="tr">
-                                        <TableCell className="th" align="center">Top Donors</TableCell>
-                                        <TableCell className="th" align="center">Amount</TableCell>
-                                    </TableRow>
-                                </TableHead>
+                    
+                        {
+                            (topDonors.length > 0) && (<Grid item xs={12} sm={5}> 
+                            <TableContainer component={Paper}>
+                                <Table className="table-wrap" aria-label="simple table">
+                                    <TableHead className="thead">
+                                        <TableRow className="tr">
+                                            <TableCell className="th" align="center">Top Donors</TableCell>
+                                            <TableCell className="th" align="center">Amount</TableCell>
+                                        </TableRow>
+                                    </TableHead>
                                 <TableBody className="tbody">
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
+                                    {
+                                        topDonors.map(donor => 
+                                        <TableRow className="tr" key={donor.name}>
+                                            <TableCell className="td" align="left">{donor.name}</TableCell>
+                                            <TableCell className="td" align="left">{donor.amount}</TableCell>
+                                        </TableRow>
+                                        )
+                                    }
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    </Grid>
+                        </Grid>)
+                        }
                 </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>
