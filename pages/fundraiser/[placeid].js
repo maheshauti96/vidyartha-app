@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from 'next/head';
+import Link from "next/link";
 import _ from 'lodash';
 import { useRouter } from 'next/router'
 import { useFetch } from "use-http";
@@ -19,6 +20,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import PlaceSearch from "../../src/components/PlaceSearch";
 
 
 
@@ -45,9 +47,9 @@ export default function FundraiserPlace() {
     const [placeInfo, setPlaceInfo] = useState(null);
     const [href, setHref] = useState(null);
     const [openDialog, setOpenDialog] = React.useState(false);
-
-
-
+    const [topDonors, setTopDonors] = useState([]);
+    const [schoolName, setSchoolName] = useState("")
+    const [schoolId, setSchoolId] = useState(placeid);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
@@ -55,7 +57,7 @@ export default function FundraiserPlace() {
 
         try {
             const request = {
-                placeId: placeid,
+                placeId: schoolId,
             };
 
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -69,6 +71,7 @@ export default function FundraiserPlace() {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     setPlaceInfo(place);
                     console.log('place-->', place);
+                    setSchoolName(place.name);
                 }
 
             });
@@ -81,11 +84,15 @@ export default function FundraiserPlace() {
         const placeAddress = _.get(placeInfo, 'formatted_address') || '';
         const placeName = _.get(placeInfo, 'name');
         const placeImage = _.get(placeInfo, 'photos[0]') && _.get(placeInfo, 'photos[0]').getUrl && _.get(placeInfo, 'photos[0]').getUrl();
+        console.log("PLACEEEEEEEEE IMAGEEEEEEEEE", placeImage)
+        if(!placeImage){
+            placeImage = "/defaultschool.jpeg"
+        }
         try {
-            if (placeName && placeid) {
+            if (placeName && schoolId) {
                 const schoolInfo = await getSchoolInfo(
                     { post, response },
-                    placeid,
+                    schoolId,
                     placeName,
                     placeAddress
                 );
@@ -95,7 +102,7 @@ export default function FundraiserPlace() {
                 setRequiredAmount(parseInt(Number(schoolInfo.required) / 100));
                 return true;
             } else {
-                console.log('sry bro', { placeAddress, placeName, placeid });
+                console.log('sry bro', { placeAddress, placeName, schoolId });
             }
         } catch (error) {
             console.log('getPlaceInfo Error', error);
@@ -103,10 +110,13 @@ export default function FundraiserPlace() {
         }
     }
 
-    const fetchTopDonors = async (placeid) =>{
-        const data = await getTopDonorsBySchool({get, response}, placeid)
-        let topdonors = data.content;
-        console.log("TOP Donors by school", topdonors) 
+    const fetchTopDonors = async (schoolId) =>{
+        const data = await getTopDonorsBySchool({get, response}, schoolId)
+        console.log("TOP DONORS", data)
+        if(data){
+            
+            setTopDonors(data.content)
+        }
     }
 
     useEffect(() => {
@@ -120,17 +130,26 @@ export default function FundraiserPlace() {
         //     router.push('/');
         // }
         console.log('placeInfo**', placeInfo);
-        if (placeid && !placeInfo) {
-            fetchSchoolDetails(placeid);
-            fetchTopDonors(placeid);
+        if (schoolId && !placeInfo) {
+            fetchSchoolDetails(schoolId);
+            fetchTopDonors(schoolId);
         }
-        if (placeid && placeInfo) {
+        if (schoolId && placeInfo) {
             console.log('got the placeinfo');
-            fetchTopDonors(placeid);
+            fetchTopDonors(schoolId);
             getPlaceInfo(placeInfo)
         }
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
-    }, [placeid, placeInfo])
+        
+
+    }, [placeid, placeInfo, schoolId])
+
+    useEffect(()=>{
+        console.log("NEW",placeid, schoolId);
+        if(placeid !== schoolId){
+            placeid = schoolId;
+        }
+    }, [schoolId])
 
     return (<div className="fundraiser-wrap">
         <Head>
@@ -138,17 +157,17 @@ export default function FundraiserPlace() {
             <link rel="icon" href="/favicon.ico" />
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
         </Head>
         <main>
             <div className="center-align position-relative">
                 <header>
                     <div className="inp-wrap">                        
-                        <TextField className="inp" label="Location" variant="outlined" />
-                        <TextField className="inp" label="School" variant="outlined" />
+                        {/* <TextField className="inp" label="Location" variant="outlined" />
+                        <TextField className="inp" label="School" variant="outlined" /> */}
+                        <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
                     </div>
                 </header>
-                <img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" />
+                <Link href="/"><img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" style={{cursor: "pointer"}}/></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
@@ -165,7 +184,7 @@ export default function FundraiserPlace() {
                     </Grid>
                     : <Grid container spacing={4}>
                         <Grid item xs={12} sm={7} className="school-info-wrap">
-                            <h2>{schoolInfo.schoolInfo.name}</h2>
+                            <h2>{schoolName}</h2>
                             <img
                                 src={schoolInfo.placeImage}
                                 // src="https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAap_uEASRoEMZI9AimR0SHJsNyn8z08ox9ahWwly9NsFCuK4wKMsG0an-_O2q-AC7gjkvKJuUv1VtBoEFqbqTKzvfoOHY--FG1u2Nnk2OncxMvL-_1__CWLvYGyRcdfMP49EsOlAWwfTmOD_xXHwooLeK4HYpuMC8f3EJCKv5UlYiAgOK95r&3u800&5m1&2e1&callback=none&key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&token=109081"
@@ -263,40 +282,31 @@ export default function FundraiserPlace() {
                             <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
                         </div>
                     </Grid>
-                    <Grid item xs={12} sm={5}>
-                        <TableContainer component={Paper}>
-                            <Table className="table-wrap" aria-label="simple table">
-                                <TableHead className="thead">
-                                    <TableRow className="tr">
-                                        <TableCell className="th" align="center">Top Donors</TableCell>
-                                        <TableCell className="th" align="center">Amount</TableCell>
-                                    </TableRow>
-                                </TableHead>
+                    
+                        {
+                            (topDonors.length > 0) && (<Grid item xs={12} sm={5}> 
+                            <TableContainer component={Paper}>
+                                <Table className="table-wrap" aria-label="simple table">
+                                    <TableHead className="thead">
+                                        <TableRow className="tr">
+                                            <TableCell className="th" align="center">Top Donors</TableCell>
+                                            <TableCell className="th" align="center">Amount</TableCell>
+                                        </TableRow>
+                                    </TableHead>
                                 <TableBody className="tbody">
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
+                                    {
+                                        topDonors.map(donor => 
+                                        <TableRow className="tr" key={donor.name}>
+                                            <TableCell className="td" align="left">{donor.name}</TableCell>
+                                            <TableCell className="td" align="left">{donor.amount}</TableCell>
+                                        </TableRow>
+                                        )
+                                    }
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    </Grid>
+                        </Grid>)
+                        }
                 </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>
@@ -305,7 +315,11 @@ export default function FundraiserPlace() {
 
         <footer>
           <div className="foot-wrap center-align">
-            <p><span>Terms & Conditions</span><span>Privacy Policy</span><span>Return Policy</span></p>
+            <p>
+                <Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link>
+                <Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link>
+                <Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link>
+            </p>
           </div>
         </footer>
     </div>)

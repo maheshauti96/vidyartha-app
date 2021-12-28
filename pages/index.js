@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Button, TextField } from "@material-ui/core";
 import Image from 'next/image';
+import Link from "next/link";
 import { useState, useRef, useEffect } from 'react';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { get, debounce } from 'lodash';
@@ -146,6 +147,9 @@ export default function Home() {
               options={schools}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.name.toString()}
+              renderOption={(option) => {
+                return <div style={{textAlign:"left", fontSize:"1.1rem"}}><p>{option.name}</p><p style={{color:"grey", fontSize:"0.9rem"}}> {option.formatted_address}</p></div>;
+              }}
               sx={{ width: 346 }}
               renderInput={(params) => {
                 console.log('params...',params)
@@ -173,7 +177,11 @@ export default function Home() {
 
       <footer>
         <div className="foot-wrap center-align">
-          <p><span>Terms & Conditions</span><span>Privacy Policy</span><span>Return Policy</span></p>
+          <p>
+            <Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link>
+            <Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link>
+            <Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link>
+          </p>
         </div>
       </footer>
     </div>
