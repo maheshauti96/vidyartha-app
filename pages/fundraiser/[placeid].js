@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from 'next/head';
+import Link from "next/link";
 import _ from 'lodash';
 import { useRouter } from 'next/router'
 import { useFetch } from "use-http";
@@ -46,7 +47,6 @@ export default function FundraiserPlace() {
     const [href, setHref] = useState(null);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [topDonors, setTopDonors] = useState([]);
-
 
 
     function fetchSchoolDetails(placeid) {
@@ -147,7 +147,7 @@ export default function FundraiserPlace() {
                         <TextField className="inp" label="School" variant="outlined" />
                     </div>
                 </header>
-                <img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" />
+                <Link href="/"><img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" style={{cursor: "pointer"}}/></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
@@ -295,7 +295,11 @@ export default function FundraiserPlace() {
 
         <footer>
           <div className="foot-wrap center-align">
-            <p><span>Terms & Conditions</span><span>Privacy Policy</span><span>Return Policy</span></p>
+            <p>
+                <Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link>
+                <Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link>
+                <Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link>
+            </p>
           </div>
         </footer>
     </div>)
