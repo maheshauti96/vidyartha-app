@@ -20,6 +20,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import PlaceSearch from "../../src/components/PlaceSearch";
 
 
 
@@ -47,7 +48,8 @@ export default function FundraiserPlace() {
     const [href, setHref] = useState(null);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [topDonors, setTopDonors] = useState([]);
-
+    const [schoolName, setSchoolName] = useState("")
+    const [schoolId, setSchoolId] = useState(placeid);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
@@ -55,7 +57,7 @@ export default function FundraiserPlace() {
 
         try {
             const request = {
-                placeId: placeid,
+                placeId: schoolId,
             };
 
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -69,6 +71,7 @@ export default function FundraiserPlace() {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     setPlaceInfo(place);
                     console.log('place-->', place);
+                    setSchoolName(place.name);
                 }
 
             });
@@ -82,10 +85,10 @@ export default function FundraiserPlace() {
         const placeName = _.get(placeInfo, 'name');
         const placeImage = _.get(placeInfo, 'photos[0]') && _.get(placeInfo, 'photos[0]').getUrl && _.get(placeInfo, 'photos[0]').getUrl();
         try {
-            if (placeName && placeid) {
+            if (placeName && schoolId) {
                 const schoolInfo = await getSchoolInfo(
                     { post, response },
-                    placeid,
+                    schoolId,
                     placeName,
                     placeAddress
                 );
@@ -95,7 +98,7 @@ export default function FundraiserPlace() {
                 setRequiredAmount(parseInt(Number(schoolInfo.required) / 100));
                 return true;
             } else {
-                console.log('sry bro', { placeAddress, placeName, placeid });
+                console.log('sry bro', { placeAddress, placeName, schoolId });
             }
         } catch (error) {
             console.log('getPlaceInfo Error', error);
@@ -103,9 +106,13 @@ export default function FundraiserPlace() {
         }
     }
 
-    const fetchTopDonors = async (placeid) =>{
-        const data = await getTopDonorsBySchool({get, response}, placeid)
-        setTopDonors(data.content)
+    const fetchTopDonors = async (schoolId) =>{
+        const data = await getTopDonorsBySchool({get, response}, schoolId)
+        console.log("TOP DONORS", data)
+        if(data){
+            
+            setTopDonors(data.content)
+        }
     }
 
     useEffect(() => {
@@ -119,17 +126,26 @@ export default function FundraiserPlace() {
         //     router.push('/');
         // }
         console.log('placeInfo**', placeInfo);
-        if (placeid && !placeInfo) {
-            fetchSchoolDetails(placeid);
-            fetchTopDonors(placeid);
+        if (schoolId && !placeInfo) {
+            fetchSchoolDetails(schoolId);
+            fetchTopDonors(schoolId);
         }
-        if (placeid && placeInfo) {
+        if (schoolId && placeInfo) {
             console.log('got the placeinfo');
-            fetchTopDonors(placeid);
+            fetchTopDonors(schoolId);
             getPlaceInfo(placeInfo)
         }
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
-    }, [placeid, placeInfo])
+        
+
+    }, [placeid, placeInfo, schoolId])
+
+    useEffect(()=>{
+        console.log("NEW",placeid, schoolId);
+        if(placeid !== schoolId){
+            placeid = schoolId;
+        }
+    }, [schoolId])
 
     return (<div className="fundraiser-wrap">
         <Head>
@@ -137,14 +153,14 @@ export default function FundraiserPlace() {
             <link rel="icon" href="/favicon.ico" />
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
         </Head>
         <main>
             <div className="center-align position-relative">
                 <header>
                     <div className="inp-wrap">                        
-                        <TextField className="inp" label="Location" variant="outlined" />
-                        <TextField className="inp" label="School" variant="outlined" />
+                        {/* <TextField className="inp" label="Location" variant="outlined" />
+                        <TextField className="inp" label="School" variant="outlined" /> */}
+                        <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
                     </div>
                 </header>
                 <Link href="/"><img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" style={{cursor: "pointer"}}/></Link>
@@ -164,7 +180,7 @@ export default function FundraiserPlace() {
                     </Grid>
                     : <Grid container spacing={4}>
                         <Grid item xs={12} sm={7} className="school-info-wrap">
-                            <h2>{schoolInfo.schoolInfo.name}</h2>
+                            <h2>{schoolName}</h2>
                             <img
                                 src={schoolInfo.placeImage}
                                 // src="https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAap_uEASRoEMZI9AimR0SHJsNyn8z08ox9ahWwly9NsFCuK4wKMsG0an-_O2q-AC7gjkvKJuUv1VtBoEFqbqTKzvfoOHY--FG1u2Nnk2OncxMvL-_1__CWLvYGyRcdfMP49EsOlAWwfTmOD_xXHwooLeK4HYpuMC8f3EJCKv5UlYiAgOK95r&3u800&5m1&2e1&callback=none&key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&token=109081"
