@@ -73,14 +73,13 @@ export default function Home() {
   }, 500);
 
   function selectedValue(event, value) {
-    schools.map((school) => {
 
-
-      setFinalPlace(school)
-      setText(school.name);
-      localStorage.setItem('placeInfo', JSON.stringify(school));
+    if(value){
+      console.log(value)
+      setFinalPlace(value)
+      setText(value.name)
+      localStorage.setItem('placeInfo', JSON.stringify(value));
     }
-    );
   }
 
   function handleInput(e) {
