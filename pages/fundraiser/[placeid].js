@@ -7,7 +7,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import { useForm } from 'react-hook-form';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { copyUrlToClipboard, getSchoolInfo, isValidEmail } from "../../src/services/service";
+import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
 import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
@@ -96,6 +96,12 @@ export default function FundraiserPlace() {
         }
     }
 
+    const fetchTopDonors = async (placeid) =>{
+        const data = await getTopDonorsBySchool({get, response}, placeid)
+        let topdonors = data.content;
+        console.log("TOP Donors by school", topdonors) 
+    }
+
     useEffect(() => {
         setHref(window.location.href);
     }, [])
@@ -109,9 +115,11 @@ export default function FundraiserPlace() {
         console.log('placeInfo**', placeInfo);
         if (placeid && !placeInfo) {
             fetchSchoolDetails(placeid);
+            fetchTopDonors(placeid);
         }
         if (placeid && placeInfo) {
             console.log('got the placeinfo');
+            fetchTopDonors(placeid);
             getPlaceInfo(placeInfo)
         }
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
