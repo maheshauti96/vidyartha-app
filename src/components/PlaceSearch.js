@@ -125,21 +125,20 @@ export default function PlaceSearch({setSchoolId, setPlaceInfo}) {
       setCardVisibility("none");
     }, [])
 
-    return (<div className="inp-wrap" style={{display:"flex", alignItems:"flex-end",justifyContent: "space-evenly"}}>
-            <div style={{width:"45%"}}>
+    return (<div>
+            <div>
             <TextField label="Find your city" inputRef={autoCompleteRef} variant="outlined" />
-            </div>
-            <div style={{width:"45%"}}>
             <Autocomplete 
               disablePortal
               noOptionsText={'No Options'}
-              width={'346px'}
+              // width={'346px'}
               options={schools}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.name.toString()}
               renderOption={(option) => {
                 return <Link href={`/fundraiser/${option.place_id}`}><div style={{textAlign:"left", fontSize:"1.1rem"}}><p>{option.name}</p><p style={{color:"grey", fontSize:"0.9rem"}}> {option.formatted_address}</p></div></Link>;
               }}
+              open={true}
               sx={{ width: 346 }}
               renderInput={(params) => {
                 // console.log('params...',params)

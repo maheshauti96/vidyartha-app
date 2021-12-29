@@ -22,6 +22,18 @@ body {
     margin: 0 auto;
 }
 
+.public-wrap {
+    font: normal normal normal 18px PT Sans Pro;
+
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    @media (max-width: 768px) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
 .home-wrap {
 
     .main-banner {
@@ -34,13 +46,15 @@ body {
 
     .banner-wrap {
 
-        
+
         margin-left: 80px;
         margin-right: 80px;
+        height: 100vh;
 
         @media (max-width: 768px) {
             margin-left: 10px;
             margin-right: 10px;
+            height: auto;
         }
 
 
@@ -52,20 +66,23 @@ body {
             max-width: 712px;
             color: #FFFFFF;
             margin-bottom: 20px;
+
             @media (max-width: 1176px) {
                 padding-top: 140px;
             }
+
             @media (max-width: 768px) {
                 padding-top: 200px;
                 font: normal normal bold 44px PT Sans Pro;
                 color: #144B5E;
-            
+
             }
         }
 
         .logo-image {
             left: 20px;
             top: 50px;
+
             @media (max-width: 768px) {
                 width: 125px;
                 height: 70px;
@@ -86,14 +103,17 @@ body {
             border-radius: 43px;
             opacity: 0.8;
             padding: 65px 50px 50px;
+
             @media (max-width: 768px) {
                 padding: 58px 20px 30px;
                 border-radius: 23px;
             }
         }
+
         .MuiFormControl-root {
             background: rgba(123, 123, 123, 0.75) no-repeat padding-box;
         }
+
         .MuiTextField-root,
         input {
             border-radius: 20px;
@@ -112,10 +132,10 @@ body {
                     // top: 6px;
                 }
 
-            @media (max-width: 768px) {
-                font: normal normal normal 28px/32px PT Sans Pro;
-            
-            }
+                @media (max-width: 768px) {
+                    font: normal normal normal 28px/32px PT Sans Pro;
+
+                }
             }
         }
 
@@ -139,9 +159,11 @@ body {
 
             margin: 10px auto;
             width: 100%;
+
             .MuiFormControl-root {
                 background: rgba(123, 123, 123, 0.75) no-repeat padding-box;
             }
+
             .MuiSvgIcon-root {
                 fill: white;
             }
@@ -167,6 +189,7 @@ body {
     width: 100%;
     max-width: 300px;
     height: 68px;
+
     &.dark {
         background: #144B5E 0% 0% no-repeat padding-box;
         max-width: none;
@@ -190,6 +213,7 @@ body {
         box-shadow: none !important;
     }
 }
+
 .form-input-wrap {
     input {
         color: #144B5E;
@@ -203,14 +227,15 @@ body {
     .form-input-wrap {
         padding: 10px;
     }
-    
+
 
     .MuiFormControl-root {
 
         min-width: 380px;
 
         @media (max-width: 600px) {
-            width: 100%;
+        min-width: auto;
+        width: 100%;
         }
     }
 
@@ -230,10 +255,56 @@ body {
     p {
         span {
             padding: 0 5%;
-            font: normal normal normal 32px/42px PT Sans Pro;
+            font: normal normal normal 24px PT Sans Pro;
             letter-spacing: 0px;
             color: #144B5E;
             opacity: 1;
+        }
+    }
+}
+
+.ques-wrap {
+    margin-top: 112px;
+    margin-left: 80px;
+    margin-right: 80px;
+    padding-bottom: 100px;
+
+    @media (max-width: 768px) {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 20px;
+        padding-bottom: 50px;
+    }
+
+    p {
+        text-align: left;
+        font: normal normal bold 50px/65px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+
+    .acc-sum {
+        background: rgba(179, 192, 197, 0.41) 0% 0% no-repeat padding-box;
+        border: 1px solid #FFFFFF;
+
+        .accor {
+            text-align: left;
+            font: normal normal bold 36px/47px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #144B5E;
+        }
+    }
+
+    .acc-det {
+        background: #144B5E0D 0% 0% no-repeat padding-box;
+        border: 1px solid #FFFFFF;
+
+        .acc-par {
+            text-align: left;
+            font: normal normal normal 28px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #144B5E;
         }
     }
 }

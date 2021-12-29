@@ -1,12 +1,13 @@
 import Head from 'next/head';
-import { Button, TextField } from "@material-ui/core";
+import { Accordion, AccordionSummary, Button, TextField, Typography, AccordionDetails } from "@material-ui/core";
 import Image from 'next/image';
 import Link from "next/link";
 import { useState, useRef, useEffect } from 'react';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { get, debounce } from 'lodash';
-import { ArrowForwardIos } from '@material-ui/icons';
+import { ArrowForwardIos, ExpandMore } from '@material-ui/icons';
 import { useRouter } from 'next/router'
+import { faqs } from '../src/constants/faqs';
 
 export default function Home() {
 
@@ -71,11 +72,11 @@ export default function Home() {
         }
       }
     });
-  }, 500);
+  }, 10);
 
   function selectedValue(event, value) {
 
-    if(value){
+    if (value) {
       console.log(value)
       setFinalPlace(value)
       setText(value.name)
@@ -130,8 +131,8 @@ export default function Home() {
       <Head>
         <title>Vidyartha</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
       </Head>
       <main className="main-banner">
@@ -149,15 +150,15 @@ export default function Home() {
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.name.toString()}
               renderOption={(option) => {
-                return <div style={{textAlign:"left", fontSize:"1.1rem"}}><p>{option.name}</p><p style={{color:"grey", margin: "0px", fontSize:"0.9rem"}}> {option.formatted_address}</p></div>;
+                return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px"}}>{option.name}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.formatted_address}</p></div>;
               }}
               sx={{ width: 346 }}
               renderInput={(params) => {
-                console.log('params...',params)
-               return <TextField {...params} label="Find your school"
-                onChange={handleInput} variant="outlined"
-              />
-              } }
+                console.log('params...', params)
+                return <TextField {...params} label="Find your school"
+                  onChange={handleInput} variant="outlined"
+                />
+              }}
             />
             <Button
               className="primary-button"
@@ -173,18 +174,37 @@ export default function Home() {
             >Donate Now</Button>
           </div>
         </div>
+        <div className="ques-wrap">
+          <p>FAQ's</p>
+          {faqs.map((rec, index) => (
+            <Accordion>
+              <AccordionSummary className="acc-sum"
+                expandIcon={<ExpandMore />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className="accor">{`${index+1}. ${rec.question}`}</Typography>
+              </AccordionSummary>
+              <AccordionDetails className="acc-det">
+                <Typography className="acc-par">
+                  {`${rec.answer}`}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))
+          }</div>
         <div id="map"></div>
+        <footer>
+          <div className="foot-wrap center-align">
+            <p>
+              <Link href="/terms"><span style={{ cursor: "pointer" }}>Terms & Conditions</span></Link>
+              <Link href="/privacypolicy"><span style={{ cursor: "pointer" }}>Privacy Policy</span></Link>
+              <Link href="/returnpolicy"><span style={{ cursor: "pointer" }}>Return Policy</span></Link>
+            </p>
+          </div>
+        </footer>
       </main>
 
-      <footer>
-        <div className="foot-wrap center-align">
-          <p>
-            <Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link>
-            <Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link>
-            <Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link>
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }

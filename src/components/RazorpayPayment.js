@@ -7,7 +7,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 // import { RAZORPAY_PAYMENT_KEY_ID } from '../constants';
 import { Box, Button, CircularProgress, LinearProgress, Slide, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { copyUrlToClipboard, createRazorpayOrder } from '../services/service';
+import { copyUrlToClipboard, createRazorpayOrder, isValidEmail } from '../services/service';
 import { RAZORPAY_PAYMENT_KEY_ID } from '../constants/api';
 
 
@@ -25,7 +25,7 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
     async function displayRazorPay(e) {
         try {
             e.preventDefault();
-            if (!name || !email || !amount) {
+            if (!name || !email || !isValidEmail(email) || !amount) {
                 alert('Please fill out all Details');
                 return;
             }

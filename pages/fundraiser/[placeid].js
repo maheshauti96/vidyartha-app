@@ -84,8 +84,7 @@ export default function FundraiserPlace() {
         const placeAddress = _.get(placeInfo, 'formatted_address') || '';
         const placeName = _.get(placeInfo, 'name');
         const placeImage = _.get(placeInfo, 'photos[0]') && _.get(placeInfo, 'photos[0]').getUrl && _.get(placeInfo, 'photos[0]').getUrl();
-        console.log("PLACEEEEEEEEE IMAGEEEEEEEEE", placeImage)
-        if(!placeImage){
+        if (!placeImage) {
             placeImage = "/defaultschool.jpeg"
         }
         try {
@@ -97,7 +96,7 @@ export default function FundraiserPlace() {
                     placeAddress
                 );
                 setSchoolInfo({ schoolInfo, placeImage })
-                setProgress(parseInt(Number(schoolInfo.percentage) * 10));
+                setProgress(parseInt(Number(schoolInfo.percentage) * 100));
                 setRaisedAmount(parseInt(Number(schoolInfo.collected) / 100));
                 setRequiredAmount(parseInt(Number(schoolInfo.required) / 100));
                 return true;
@@ -110,11 +109,11 @@ export default function FundraiserPlace() {
         }
     }
 
-    const fetchTopDonors = async (schoolId) =>{
-        const data = await getTopDonorsBySchool({get, response}, schoolId)
+    const fetchTopDonors = async (schoolId) => {
+        const data = await getTopDonorsBySchool({ get, response }, schoolId)
         console.log("TOP DONORS", data)
-        if(data){
-            
+        if (data) {
+
             setTopDonors(data.content)
         }
     }
@@ -123,11 +122,11 @@ export default function FundraiserPlace() {
         setHref(window.location.href);
     }, [])
 
-    useEffect(()=> {
-        let {placeid} = router.query
+    useEffect(() => {
+        let { placeid } = router.query
         setSchoolId(placeid)
-    },[router])
-    
+    }, [router])
+
 
     useEffect(() => {
 
@@ -146,13 +145,13 @@ export default function FundraiserPlace() {
             getPlaceInfo(placeInfo)
         }
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
-        
+
 
     }, [placeid, placeInfo, schoolId])
 
-    useEffect(()=>{
-        console.log("NEW",placeid, schoolId);
-        if(placeid !== schoolId){
+    useEffect(() => {
+        console.log("NEW", placeid, schoolId);
+        if (placeid !== schoolId) {
             placeid = schoolId;
         }
     }, [schoolId])
@@ -166,14 +165,14 @@ export default function FundraiserPlace() {
         </Head>
         <main>
             <div className="center-align position-relative">
-                <header>
-                    <div className="inp-wrap">                        
+                    <div className="position-absolute inp-wrap">
                         {/* <TextField className="inp" label="Location" variant="outlined" />
                         <TextField className="inp" label="School" variant="outlined" /> */}
-                        <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
+                        {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
                     </div>
+                <header>
                 </header>
-                <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{cursor: "pointer"}}/></Link>
+                <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
@@ -201,21 +200,64 @@ export default function FundraiserPlace() {
                         </Grid>
                         <Grid item xs={12} sm={5} className="collection-info-wrap">
                             <h2>placeholder</h2>
-                            <div class="amount">
-                                &#8377;<span class="green">{raisedAmount}</span>
+                            <div className="amount">
+                                &#8377;<span className="green">{raisedAmount}</span>
                             </div>
                             <p className="raised-asof">{raisedAmount} of {requiredAmount} raised</p>
                             <div className="progress-bar-wrap position-relative">
                                 <LinearProgress className="progress-bar" variant="determinate" value={progress}></LinearProgress>
                                 <p className="tobe-raised position-absolute">&#8377; {requiredAmount}</p>
                             </div>
-                            <Button
+                            {/* <Button
                                 className="primary-button dark m-tb-25"
                                 onClick={() => {
                                     setOpenDialog(true);
                                 }}
                                 variant="contained"
-                            >Donate Now</Button>
+                            >Donate Now</Button> */}
+                            <div className="center-align donor-info-form pt-25">
+                                <div className="form-input-wrap">
+                                    <TextField
+                                        id="name"
+                                        label="Name"
+                                        fullWidth
+                                        onChange={({ target }) => setName(target.value)}
+                                        variant="outlined"
+                                    />
+                                </div>
+                                <div className="form-input-wrap">
+                                    <TextField
+                                        id="name"
+                                        label="Email Address"
+                                        fullWidth
+                                        error={email && !isValidEmail(email)}
+                                        onChange={({ target }) => setEmail(target.value)}
+                                        variant="outlined"
+                                    />
+                                </div>
+                                <div className="form-input-wrap">
+                                    <TextField
+                                        id="amount"
+                                        label="Amount"
+                                        onChange={({ target }) => {
+                                            if (isNaN(target.value)) {
+                                                alert('Please enter valid amount')
+                                            } else {
+                                                setAmount(target.value)
+                                            }
+                                        }}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </div>
+                                <RazorpayPayment
+                                    name={name}
+                                    email={email}
+                                    amount={amount}
+                                    httpClient={httpClient}
+                                    placeId={schoolId}
+                                ></RazorpayPayment>
+                            </div>
                             <h4 className="sub-text">Share and Support this campaign</h4>
                             <div className="social-share-icons">
                                 <ShareIcon
@@ -232,46 +274,13 @@ export default function FundraiserPlace() {
                                     <WhatsAppIcon className="whatsapp-icon" />
                                 </a>
                             </div>
-                            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+
+                            {/* <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
                                 <DialogTitle className="center-align"><h2 className="m-0">Enter your details</h2></DialogTitle>
                                 <DialogContent className="center-align donor-info-form">
-                                    <div className="form-input-wrap">
-                                        <TextField
-                                            id="name"
-                                            label="Name"
-                                            fullWidth
-                                            onChange={({ target }) => setName(target.value)}
-                                            variant="outlined"
-                                        />
-                                    </div>
-                                    <div className="form-input-wrap">
-                                        <TextField
-                                            id="name"
-                                            label="Email Address"
-                                            fullWidth
-                                            error={email && !isValidEmail(email)}
-                                            onChange={({ target }) => setEmail(target.value)}
-                                            variant="outlined"
-                                        />
-                                    </div>
-                                    <div className="form-input-wrap">
-                                        <TextField
-                                            id="amount"
-                                            label="Amount"
-                                            onChange={({ target }) => setAmount(target.value)}
-                                            fullWidth
-                                            variant="outlined"
-                                        />
-                                    </div>
-                                    <RazorpayPayment
-                                        name={name}
-                                        email={email}
-                                        amount={amount}
-                                        httpClient={httpClient}
-                                        placeId={schoolId}
-                                    ></RazorpayPayment>
+
                                 </DialogContent>
-                            </Dialog>
+                            </Dialog> */}
 
                         </Grid>
                     </Grid>
@@ -285,12 +294,12 @@ export default function FundraiserPlace() {
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={7} className="about-wrap">
                         <div className="about">
-                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
+                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
                         </div>
                     </Grid>
-                    
-                        {
-                            (topDonors.length > 0) && (<Grid item xs={12} sm={5}> 
+
+                    {
+                        (topDonors.length > 0) && (<Grid item xs={12} sm={5}>
                             <TableContainer component={Paper}>
                                 <Table className="table-wrap" aria-label="simple table">
                                     <TableHead className="thead">
@@ -299,20 +308,20 @@ export default function FundraiserPlace() {
                                             <TableCell className="th" align="center">Amount</TableCell>
                                         </TableRow>
                                     </TableHead>
-                                <TableBody className="tbody">
-                                    {
-                                        topDonors.map(donor => 
-                                        <TableRow className="tr" key={donor.name}>
-                                            <TableCell className="td" align="left">{donor.name}</TableCell>
-                                            <TableCell className="td" align="left">{donor.amount}</TableCell>
-                                        </TableRow>
-                                        )
-                                    }
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                                    <TableBody className="tbody">
+                                        {
+                                            topDonors.map(donor =>
+                                                <TableRow className="tr" key={donor.name}>
+                                                    <TableCell className="td" align="left">{donor.name}</TableCell>
+                                                    <TableCell className="td" align="left">{donor.amount}</TableCell>
+                                                </TableRow>
+                                            )
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                         </Grid>)
-                        }
+                    }
                 </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>
@@ -320,13 +329,13 @@ export default function FundraiserPlace() {
         </main>
 
         <footer>
-          <div className="foot-wrap center-align">
-            <p>
-                <Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link>
-                <Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link>
-                <Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link>
-            </p>
-          </div>
+            <div className="foot-wrap center-align">
+                <p>
+                    <Link href="/terms"><span style={{ cursor: "pointer" }}>Terms & Conditions</span></Link>
+                    <Link href="/privacypolicy"><span style={{ cursor: "pointer" }}>Privacy Policy</span></Link>
+                    <Link href="/returnpolicy"><span style={{ cursor: "pointer" }}>Return Policy</span></Link>
+                </p>
+            </div>
         </footer>
     </div>)
 }

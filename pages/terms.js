@@ -1,21 +1,10 @@
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 const Terms = () => {
-    useEffect(() => {
-        document.body.style.background = "linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url('/books.png')"
-        document.body.style.backgroundRepeat = 'repeat-y';
-        document.body.style.backgroundSize = '100vh 100%';
-        document.body.style.backgroundPosition = 'left 80px';
-        return () => {
-          document.body.style.background = "linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)) url('/books.png')"
-          document.body.style.backgroundRepeat = 'repeat-y';
-          document.body.style.backgroundSize = '100vh 100%';
-          document.body.style.backgroundPosition = 'left 80px';
-        }
-      }, []);
     return (
         <div>
-            <div className="main-wrap p-tb-20">
+            <div className="public-wrap p-tb-20">
               <h2>Terms & Conditions</h2>
             <p>
             <strong>OVERVIEW</strong>
@@ -98,6 +87,15 @@ const Terms = () => {
 
 
             </div>
+            <footer>
+          <div className="foot-wrap center-align">
+            <p>
+              <Link href="/terms"><span style={{ cursor: "pointer" }}>Terms & Conditions</span></Link>
+              <Link href="/privacypolicy"><span style={{ cursor: "pointer" }}>Privacy Policy</span></Link>
+              <Link href="/returnpolicy"><span style={{ cursor: "pointer" }}>Return Policy</span></Link>
+            </p>
+          </div>
+        </footer>
         </div>
     )
 }
