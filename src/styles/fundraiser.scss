@@ -6,29 +6,45 @@
         height: 145px;
         opacity: 1;
         background: transparent linear-gradient(180deg, #144B5E -70%, #FFFFFF00 100%) 0% 0% no-repeat padding-box;
+    }
 
-        .inp-wrap {
-            text-align: end;
-            padding: 2% 5%;
+    .inp-wrap {
+        text-align: end;
+        padding: 20px 60px;
+        right: 150px;
 
-            .inp {
-                background: #7B7B7B 0% 0% no-repeat padding-box;
-                border-radius: 20px;
-                opacity: 0.75;
-                padding: 0px 0px;
-                margin: 0 1%;
-            }
-            .MuiOutlinedInput-root {
-                position: relative;
-                border-radius: 20px;
-            }
-            .MuiFormLabel-root {
-                text-align: center;
-                font: normal normal normal 18px/20px PT Sans Pro;
-                letter-spacing: 0px;
-                color: #FFFFFF;
-                opacity: 1;
-            }
+        .MuiAutocomplete-root {
+            // width: 300px;
+            display: inline-block !important;
+        }
+
+        .MuiFormControl-root {
+            // width: 300px;
+            display: inline-block !important;
+        }
+
+        .inp {
+            background: #7B7B7B 0% 0% no-repeat padding-box;
+            border-radius: 10px;
+            opacity: 0.75;
+            padding: 0px 0px;
+            margin: 0 1%;
+        }
+
+        .MuiOutlinedInput-root {
+            position: relative;
+            border-radius: 10px;
+            margin-left: 15px;
+        }
+
+        .MuiFormLabel-root {
+            text-align: center;
+            font: normal normal normal 18px/20px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            opacity: 1;
+            margin-left: 15px;
+
         }
     }
 
@@ -51,10 +67,12 @@
     .fundraiser-section {
         margin-left: 90px;
         margin-right: 90px;
+
         @media (max-width: 768px) {
             margin-left: 15px;
             margin-right: 15px;
         }
+
         .school-info-wrap {
 
             h2 {
@@ -71,11 +89,13 @@
 
         .collection-info-wrap {
             padding: 0px 60px;
+
             h2 {
                 font: normal normal bold 40px/52px PT Sans Pro;
                 letter-spacing: 0px;
                 color: #144B5E;
                 visibility: hidden;
+
                 @media (max-width: 768px) {
                     display: none;
                 }
@@ -115,6 +135,7 @@
                 height: 17px;
                 border-radius: 41px;
                 border: 1px solid #707070;
+
                 &.MuiLinearProgress-colorPrimary {
                     background-color: #F0F0F0;
                 }
@@ -123,24 +144,27 @@
                     background-color: #07BE1A;
                 }
             }
+
             .sub-text {
                 font-size: 24px;
                 letter-spacing: 0px;
                 color: #144B5E;
-        
+
             }
+
             .social-share-icons {
                 .MuiSvgIcon-root {
                     font-size: 2.5rem;
                     margin-left: 12px;
                     cursor: pointer;
                 }
+
                 .whatsapp-icon {
                     &.MuiSvgIcon-root {
                         fill: #07BE1A
                     }
                 }
-            
+
                 a {
                     padding-left: 12px;
                 }
@@ -158,7 +182,7 @@
     }
 
     .about {
-        height: 360px;
+        height: auto;
         padding: 0 5%;
         scroll-behavior: auto;
         background: #F7F9FA 0% 0% no-repeat padding-box;
@@ -167,7 +191,7 @@
 
         p {
             text-align: left;
-            font: normal normal normal 32px/42px PT Sans Pro;
+            font: normal normal normal 26px/33px PT Sans Pro;
             letter-spacing: 0px;
             color: #144B5E;
             opacity: 1;
@@ -187,7 +211,7 @@
             background: #144B5E 0% 0% no-repeat padding-box;
             border: 1px solid #707070;
             opacity: 1;
-        
+
             .th {
                 border: 1px solid #144B5E;
                 text-align: center;
