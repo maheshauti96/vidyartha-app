@@ -136,7 +136,7 @@ export default function Home() {
       </Head>
       <main className="main-banner">
         <div className="banner-wrap center-align position-relative">
-          <img className="position-absolute logo-image" height="134px" width="248px" src="/white-logo.webp" />
+          <img className="position-absolute logo-image" height="104px" width="191px" src="/white-logo.webp" />
           <h1>Help Us To Donate Books For Your School!</h1>
           <div className="search-box-wrap">
             <TextField label="Find your city" inputRef={autoCompleteRef} variant="outlined" />
@@ -145,10 +145,11 @@ export default function Home() {
               noOptionsText={'No Options'}
               width={'346px'}
               options={schools}
+              // open={true}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.name.toString()}
               renderOption={(option) => {
-                return <div style={{textAlign:"left", fontSize:"1.1rem"}}><p>{option.name}</p><p style={{color:"grey", fontSize:"0.9rem"}}> {option.formatted_address}</p></div>;
+                return <div style={{textAlign:"left", fontSize:"1.1rem"}}><p>{option.name}</p><p style={{color:"grey", margin: "0px", fontSize:"0.9rem"}}> {option.formatted_address}</p></div>;
               }}
               sx={{ width: 346 }}
               renderInput={(params) => {

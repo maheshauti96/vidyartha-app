@@ -173,7 +173,7 @@ export default function FundraiserPlace() {
                         <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
                     </div>
                 </header>
-                <Link href="/"><img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" style={{cursor: "pointer"}}/></Link>
+                <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{cursor: "pointer"}}/></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
