@@ -45,7 +45,7 @@ body {
 
 
         h1 {
-            font: normal normal bold 71px/124px PT Sans Pro;
+            font: normal normal bold 52px/100px PT Sans Pro;
             letter-spacing: 0px;
             margin: auto;
             padding-top: 120px;
@@ -56,8 +56,8 @@ body {
                 padding-top: 140px;
             }
             @media (max-width: 768px) {
-                padding-top: 110px;
-                font: normal normal bold 54px PT Sans Pro;
+                padding-top: 200px;
+                font: normal normal bold 44px PT Sans Pro;
                 color: #144B5E;
             
             }
@@ -85,7 +85,7 @@ body {
             border: 1px solid #707070;
             border-radius: 43px;
             opacity: 0.8;
-            padding: 78px 50px 50px;
+            padding: 65px 50px 50px;
             @media (max-width: 768px) {
                 padding: 58px 20px 30px;
                 border-radius: 23px;
@@ -96,7 +96,7 @@ body {
         }
         .MuiTextField-root,
         input {
-            border-radius: 17px;
+            border-radius: 20px;
             font: normal normal normal 28px/32px PT Sans Pro;
             width: 100%;
 
