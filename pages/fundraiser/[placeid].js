@@ -123,6 +123,12 @@ export default function FundraiserPlace() {
         setHref(window.location.href);
     }, [])
 
+    useEffect(()=> {
+        let {placeid} = router.query
+        setSchoolId(placeid)
+    },[router])
+    
+
     useEffect(() => {
 
         // if (!placeInfo && !placeid) {
@@ -262,7 +268,7 @@ export default function FundraiserPlace() {
                                         email={email}
                                         amount={amount}
                                         httpClient={httpClient}
-                                        placeId={schoolInfo.schoolInfo.id}
+                                        placeId={schoolId}
                                     ></RazorpayPayment>
                                 </DialogContent>
                             </Dialog>
