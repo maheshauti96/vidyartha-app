@@ -121,6 +121,7 @@ export default function PlaceSearch({setSchoolId, setPlaceInfo}) {
       );
   
       setText("");
+      autoCompleteRef.current.value = "";
       setCardVisibility("none");
     }, [])
 
