@@ -1,14 +1,34 @@
+body {
+    margin: 0px 0px;
+}
+
 .home-wrap {
     background: transparent url('./../img/background.png') no-repeat padding-box;
-    background-size: cover;
+    background-size: contain;
     width: 100%;
     height: 100%;
     mix-blend-mode: normal;
+
+    .logo-wrap {
+        padding-left: 5%;
+        padding-top: 2%;
+
+        @media (max-width: 596px) {
+            #logo {
+                width: 100px;
+            }
+        }
+    }
 
     .banner-wrap {
         margin-left: 25%;
         width: 50%;
         padding-bottom: 10%;
+
+        @media (max-width: 596px) {
+            width: 100%;
+            margin: 0%;
+        }
 
         // .logo-wrap {
         //     background: url('./../img/logo.png');
@@ -18,7 +38,7 @@
             margin-right: 0px;
             margin-top: 0px;
             text-align: center;
-            font: normal normal bold 71px/124px PT Sans Pro;
+            font: normal normal bold 36px/70px PT Sans Pro;
             letter-spacing: 0px;
             color: #FFFFFF;
         }
@@ -63,7 +83,7 @@
                     margin: 5% 0;
                     text-align: center;
                     width: 100%;
-                    font: normal normal bold 28px/32px PT Sans Pro;
+                    font: normal normal bold 16px/19px PT Sans Pro;
                     letter-spacing: 0px;
                     color: #FFFFFF;
                 }
@@ -78,34 +98,59 @@
 // }
 
 .step-wrap {
-    p {
+    margin: 0px 33px;
+
+    h4 {
+        margin-bottom: 10%;
         text-align: center;
-        font: normal normal bold 71px/92px PT Sans Pro;
+        font: normal normal bold 36px/70px PT Sans Pro;
         letter-spacing: 0px;
         color: #144B5E;
         opacity: 1;
     }
 
     .time-wrap {
-        margin: 0 5%;
+        margin: 0% 5%;
 
         .MuiTimelineDot-root {
-            background: transparent url('./../img/icon-1.svg');
+            box-shadow: none;
+            background: none;
+        }
+        .icon-2 {
+            margin-left: 15px;
+        }
+        .content {
+            padding-top: 5%;
+            padding-left: 10%;
+            margin-bottom: 40%;
         }
         .time-head {
             text-align: left;
-            font: normal normal bold 42px/55px PT Sans Pro;
+            font: normal normal bold 24px/31px PT Sans Pro;
             letter-spacing: 0px;
             color: #144B5E;
         }
         .time-body {
             text-align: left;
-            font: normal normal normal 28px/37px PT Sans Pro;
+            font: normal normal normal 16px/20px PT Sans Pro;
             letter-spacing: 0px;
             color: #505050;
         }
         .MuiTimelineItem-missingOppositeContent:before {
             content: none;
+        }
+    }
+
+    .phone {
+        img {
+            margin: 15% 0 15% 10%;
+            width: 70%;
+            height: 70%;
+
+            @media (max-width: 596px) {
+                width: 60%;
+                margin: 0 20%;
+            }
         }
     }
 }
@@ -131,9 +176,12 @@
 // }
 
 .ques-wrap {
-    p {
+    margin: 0px 33px;
+
+    h4 {
+        margin-left: 2%;
         text-align: left;
-        font: normal normal bold 50px/65px PT Sans Pro;
+        font: normal normal bold 36px/47px PT Sans Pro;
         letter-spacing: 0px;
         color: #144B5E;
         opacity: 1;
@@ -145,7 +193,7 @@
 
         .accor {
             text-align: left;
-            font: normal normal bold 42px/55px PT Sans Pro;
+            font: normal normal bold 24px/31px PT Sans Pro;
             letter-spacing: 0px;
             color: #144B5E;
         }
@@ -157,7 +205,7 @@
 
         .acc-par {
             text-align: left;
-            font: normal normal normal 32px/42px PT Sans Pro;
+            font: normal normal normal 24px/31px PT Sans Pro;
             letter-spacing: 0px;
             color: #144B5E;
         }
@@ -165,9 +213,11 @@
 }
 
 .cont-wrap {
-    p {
+    margin: 0px 33px;
+
+    h4 {
         text-align: center;
-        font: normal normal bold 50px/65px PT Sans Pro;
+        font: normal normal bold 36px/47px PT Sans Pro;
         letter-spacing: 0px;
         color: #144B5E;
         opacity: 1;
@@ -208,7 +258,7 @@
             p {
                 margin: 5% 0;
                 text-align: center;
-                font: normal normal bold 32px/36px PT Sans Pro;
+                font: normal normal bold 18px/25px PT Sans Pro;
                 letter-spacing: 0px;
                 color: #FFFFFF;
                 opacity: 1;
@@ -224,8 +274,12 @@
 
     p {
         text-align: center;
-        font: normal normal normal 32px/42px PT Sans Pro;
+        font: normal normal normal 28px/36px PT Sans Pro;
         letter-spacing: 0px;
         color: #144B5E;
+    }
+
+    @media (max-width: 596px) {
+        padding-left: 0%;
     }
 }

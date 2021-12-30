@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image';
 import { createTheme } from '@material-ui/core/styles'
 import { TextField } from '@material-ui/core'
 import Button from '@material-ui/core/Button';
@@ -22,10 +23,12 @@ export default function Home() {
   return (
   <div>
     <div className="home-wrap">
+      <div className="logo-wrap">
+        <img id="logo" className="position-absolute logo-image" src="/logo-white.png" />
+      </div>
       <div className="banner-wrap">
-        {/* <div className="logo-wrap">
-        </div> */}
-        <h1>Help Us To Donate Books For Your School!</h1>
+        <h1>Help Us To Donate</h1>
+        <h1>Books For Your School!</h1>
         <div className="form-wrap">
           <TextField className="id" label="Find your city" variant="outlined" />
           <br />
@@ -43,43 +46,43 @@ export default function Home() {
     </div> */}
 
     <div className="step-wrap">
-      <p>Donate in three simple steps</p>
+      <h4>Donate in three simple steps</h4>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} className="time-wrap">
+        <Grid item xs={12} sm={5} className="time-wrap">
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot className="icon-1" />
-                <TimelineConnector className="i1" />
+                <TimelineDot><img src="/icon-1.svg" alt="icon one" /></TimelineDot>
+                <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>
+              <TimelineContent className="content">
                 <Typography className="time-head">Search for your school</Typography>
                 <Typography className="time-body">Search for your school by entering the location and name of the school.</Typography>
               </TimelineContent>
             </TimelineItem>
             <TimelineItem>
-              <TimelineSeparator>
-                <TimelineDot className="icon-2" />
-                <TimelineConnector className="i2" />
+              <TimelineSeparator className="icon-2">
+                <TimelineDot><img src="/icon-2.svg" alt="icon two" /></TimelineDot>
+                <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>
+              <TimelineContent className="content">
                 <Typography className="time-head">Share with others</Typography>
                 <Typography className="time-body">Help us in spreading this campaign and encourage others to donate.</Typography>                
               </TimelineContent>
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot className="icon-3" />
+                <TimelineDot><img src="/icon-3.svg" alt="icon three" /></TimelineDot>
               </TimelineSeparator>
-              <TimelineContent>
+              <TimelineContent className="content">
                 <Typography className="time-head">Click on donate</Typography>
                 <Typography className="time-body">Your donations will safely reach to us and once completed, we will donate books to the school.</Typography>                
               </TimelineContent>
             </TimelineItem>
           </Timeline>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          
+        <Grid item xs={12} sm={5} className="phone">
+          <img src="/phone.png"></img>
         </Grid>
       </Grid>
     </div>
@@ -97,7 +100,7 @@ export default function Home() {
     </div> */}
 
     <div className="ques-wrap">
-      <p>FAQ</p>
+      <h4>FAQ</h4>
       <Accordion>
         <AccordionSummary className="acc-sum"
           expandIcon={<ExpandMoreIcon />}
@@ -122,8 +125,7 @@ export default function Home() {
         </AccordionSummary>
         <AccordionDetails className="acc-det">
           <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -137,8 +139,7 @@ export default function Home() {
         </AccordionSummary>
         <AccordionDetails className="acc-det">
           <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          Spiritual books like Ramayana, Mahabharata, Sriman Bhagavatam, and Bhagavad Gita will be gifted to the schools.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -152,8 +153,7 @@ export default function Home() {
         </AccordionSummary>
         <AccordionDetails className="acc-det">
           <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          After the set target date whatever amount is collected worth those amount of books will be gifted to the school.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -167,15 +167,14 @@ export default function Home() {
         </AccordionSummary>
         <AccordionDetails className="acc-det">
           <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          If some school has any concerns we shall try our best to address those concerns, if still, any particular school is not willing to take the books then they will be given to some other interested school.
           </Typography>
         </AccordionDetails>
       </Accordion>
     </div>
 
     <div className="cont-wrap">
-      <p>Contact Us</p>
+      <h4>Contact Us</h4>
       <div className="form1-wrap">
         <TextField className="id1" label="Name" variant="outlined" />
         <br />
