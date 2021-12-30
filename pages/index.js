@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { createTheme } from '@material-ui/core/styles'
 import { TextField } from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
@@ -22,6 +23,8 @@ export default function Home() {
   <div>
     <div className="home-wrap">
       <div className="banner-wrap">
+        {/* <div className="logo-wrap">
+        </div> */}
         <h1>Help Us To Donate Books For Your School!</h1>
         <div className="form-wrap">
           <TextField className="id" label="Find your city" variant="outlined" />
@@ -46,8 +49,8 @@ export default function Home() {
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
+                <TimelineDot className="icon-1" />
+                <TimelineConnector className="i1" />
               </TimelineSeparator>
               <TimelineContent>
                 <Typography className="time-head">Search for your school</Typography>
@@ -56,8 +59,8 @@ export default function Home() {
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
+                <TimelineDot className="icon-2" />
+                <TimelineConnector className="i2" />
               </TimelineSeparator>
               <TimelineContent>
                 <Typography className="time-head">Share with others</Typography>
@@ -66,7 +69,7 @@ export default function Home() {
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot />
+                <TimelineDot className="icon-3" />
               </TimelineSeparator>
               <TimelineContent>
                 <Typography className="time-head">Click on donate</Typography>
@@ -169,81 +172,6 @@ export default function Home() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
-        <AccordionSummary className="acc-sum"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className="accor">6. What is the purpose of Vidyartha?</Typography>
-        </AccordionSummary>
-        <AccordionDetails className="acc-det">
-          <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary className="acc-sum"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className="accor">7. How does Vidyartha work?</Typography>
-        </AccordionSummary>
-        <AccordionDetails className="acc-det">
-          <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary className="acc-sum"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className="accor">8. What books will be gifted to the school?</Typography>
-        </AccordionSummary>
-        <AccordionDetails className="acc-det">
-          <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary className="acc-sum"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className="accor">9. What if you can not complete your targeted amount?</Typography>
-        </AccordionSummary>
-        <AccordionDetails className="acc-det">
-          <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary className="acc-sum"
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className="accor">10. What if the school refuses to accept the books?</Typography>
-        </AccordionSummary>
-        <AccordionDetails className="acc-det">
-          <Typography className="acc-par">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
     </div>
 
     <div className="cont-wrap">
@@ -261,14 +189,14 @@ export default function Home() {
       </div>
     </div>
     <footer className="foot-wrap">
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={4}>
+      <Grid container>
+        <Grid item xs={12} sm={3}>
           <p>Terms & Conditions</p>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <p>Privacy Policy</p>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <p>Return Policy</p>
         </Grid>
       </Grid>
