@@ -42,7 +42,7 @@ export default function Home() {
     </div>
 
     {/* <div className="item">
-
+      <img src="/ques-1.jpeg" alt="image" />
     </div> */}
 
     <div className="step-wrap">
@@ -61,22 +61,22 @@ export default function Home() {
               </TimelineContent>
             </TimelineItem>
             <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot><img src="/icon-3.svg" alt="icon three" /></TimelineDot>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent className="content">
+                <Typography className="time-head">Donate Now</Typography>
+                <Typography className="time-body">Your donations will safely reach to us and once completed, we will donate books to the school.</Typography>                
+              </TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
               <TimelineSeparator className="icon-2">
                 <TimelineDot><img src="/icon-2.svg" alt="icon two" /></TimelineDot>
-                <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent className="content">
                 <Typography className="time-head">Share with others</Typography>
                 <Typography className="time-body">Help us in spreading this campaign and encourage others to donate.</Typography>                
-              </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineDot><img src="/icon-3.svg" alt="icon three" /></TimelineDot>
-              </TimelineSeparator>
-              <TimelineContent className="content">
-                <Typography className="time-head">Click on donate</Typography>
-                <Typography className="time-body">Your donations will safely reach to us and once completed, we will donate books to the school.</Typography>                
               </TimelineContent>
             </TimelineItem>
           </Timeline>
@@ -89,13 +89,13 @@ export default function Home() {
 
     {/* <div className="video-wrap">
       <p>Watch this short video on importance of spiritual books.</p>
-    </div>
+    </div> */}
 
-    <div className="item">
+    {/* <div className="item">
+      <img src="/ques-2.jpeg" alt="image" />
+    </div> */}
 
-    </div>
-
-    <div className="tm-wrap">
+    {/* <div className="tm-wrap">
        <p>Testimonials</p>
     </div> */}
 
