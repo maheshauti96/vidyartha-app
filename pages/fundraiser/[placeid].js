@@ -313,7 +313,7 @@ export default function FundraiserPlace() {
                                             topDonors.map(donor =>
                                                 <TableRow className="tr" key={donor.name}>
                                                     <TableCell className="td" align="left">{donor.name}</TableCell>
-                                                    <TableCell className="td" align="left">{donor.amount}</TableCell>
+                                                    <TableCell className="td" align="left">{parseInt(Number(donor.amount) / 100)}</TableCell>
                                                 </TableRow>
                                             )
                                         }
