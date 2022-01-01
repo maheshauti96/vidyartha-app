@@ -162,14 +162,20 @@ export default function FundraiserPlace() {
             <link rel="icon" href="/favicon.ico" />
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+            <meta property="title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
+            <meta name="description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
+            <meta property="image" content="/banner-bg-original.png" />
+            <meta property="og:title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
+            <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
+            <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
         <main>
             <div className="center-align position-relative">
-                    <div className="position-absolute inp-wrap">
-                        {/* <TextField className="inp" label="Location" variant="outlined" />
+                <div className="position-absolute inp-wrap">
+                    {/* <TextField className="inp" label="Location" variant="outlined" />
                         <TextField className="inp" label="School" variant="outlined" /> */}
-                        {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
-                    </div>
+                    {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
+                </div>
                 <header>
                 </header>
                 <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
