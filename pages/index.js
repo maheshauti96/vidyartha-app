@@ -326,7 +326,7 @@ export default function Home() {
         <br />
         <TextField className="id1" label="Email" variant="outlined" />
         <br />
-        <textarea className="id2" type="text" placeholder="Feedback" cols="auto" rows="10" />
+        <TextField className="id2" label="Feedback" placeholder="Placeholder" multiline variant="outlined" />
         <br />
         <Button className="btn1" variant="contained">
           <p>Submit</p>

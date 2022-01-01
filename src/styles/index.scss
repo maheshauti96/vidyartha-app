@@ -347,6 +347,10 @@ body {
         text-align: center;
         padding: 5% 0;
 
+        .MuiOutlinedInput-root {
+            border-radius: 15px;
+        }
+
         .id1 {
             width: 60%;
             margin-bottom: 2%;
