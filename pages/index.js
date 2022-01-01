@@ -75,41 +75,41 @@ export default function Home() {
   }, 10);
 
   const fetchSchoolsAutoComplete = (() => {
-    
+
     var service = new google.maps.places.AutocompleteService();
 
     var pyrmont = new google.maps.LatLng(latitude, longitude);
 
-    var request = { 
-      input: text, 
-      types: ['establishment'], 
-      componentRestrictions:{ country: 'in' },
+    var request = {
+      input: text,
+      types: ['establishment'],
+      componentRestrictions: { country: 'in' },
       location: pyrmont,
       radius: '500',
-  }
+    }
 
 
-  service.getPlacePredictions(request,
-    function (predictions, status) {
+    service.getPlacePredictions(request,
+      function (predictions, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-            
+
           setCardVisibility("block")
-          
+
           let schoolsArr = []
 
-            for (var i = 0, prediction; prediction = predictions[i]; i++) {
-                if(prediction.types.includes("school") || prediction.types.includes("university")){
-                  schoolsArr.push(prediction)
-                  // console.log(prediction.description)
-                }
-                    
+          for (var i = 0, prediction; prediction = predictions[i]; i++) {
+            if (prediction.types.includes("school") || prediction.types.includes("university")) {
+              schoolsArr.push(prediction)
+              // console.log(prediction.description)
             }
-            console.table(predictions);
-            // console.table(schoolsArr);
-            setSchools(() => {  return schoolsArr.map((item) => item) });
+
+          }
+          console.table(predictions);
+          // console.table(schoolsArr);
+          setSchools(() => { return schoolsArr.map((item) => item) });
         }
-        
-    });
+
+      });
   });
 
 
@@ -196,7 +196,7 @@ export default function Home() {
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
               renderOption={(option) => {
-                return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px"}}>{option.structured_formatting.main_text}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.structured_formatting.secondary_text}</p></div>;
+                return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px" }}>{option.structured_formatting.main_text}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.structured_formatting.secondary_text}</p></div>;
               }}
               sx={{ width: 346 }}
               renderInput={(params) => {
@@ -239,6 +239,20 @@ export default function Home() {
             </Accordion>
           ))
           }</div>
+        <div className="cont-wrap">
+          <h4>Contact Us</h4>
+          <div className="form1-wrap">
+            <TextField className="id1" label="Name" variant="outlined" />
+            <br />
+            <TextField className="id1" label="Email" variant="outlined" />
+            <br />
+            <textarea className="id2" type="text" placeholder="Feedback" cols="auto" rows="10" />
+            <br />
+            <Button className="btn1" variant="contained">
+              <p>Submit</p>
+            </Button>
+          </div>
+        </div>
         <div id="map"></div>
         <footer>
           <div className="foot-wrap center-align">
