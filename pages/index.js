@@ -8,6 +8,7 @@ import { get, debounce } from 'lodash';
 import { ArrowForwardIos, ExpandMore } from '@material-ui/icons';
 import { useRouter } from 'next/router'
 import { faqs } from '../src/constants/faqs';
+import Form from '../src/components/Form'
 
 export default function Home() {
 
@@ -239,20 +240,22 @@ export default function Home() {
             </Accordion>
           ))
           }</div>
-        <div className="cont-wrap">
-          <h4>Contact Us</h4>
-          <div className="form1-wrap">
-            <TextField className="id1" label="Name" variant="outlined" />
-            <br />
-            <TextField className="id1" label="Email" variant="outlined" />
-            <br />
-            <textarea className="id2" type="text" placeholder="Feedback" cols="auto" rows="10" />
-            <br />
-            <Button className="btn1" variant="contained">
-              <p>Submit</p>
-            </Button>
-          </div>
-        </div>
+//         <div className="cont-wrap">
+//           <h4>Contact Us</h4>
+//           <div className="form1-wrap">
+//             <TextField className="id1" label="Name" variant="outlined" />
+//             <br />
+//             <TextField className="id1" label="Email" variant="outlined" />
+//             <br />
+//             <textarea className="id2" type="text" placeholder="Feedback" cols="auto" rows="10" />
+//             <br />
+//             <Button className="btn1" variant="contained">
+//               <p>Submit</p>
+//             </Button>
+//           </div>
+//         </div>
+
+<Form> </Form>
         <div id="map"></div>
         <footer>
           <div className="foot-wrap center-align">
