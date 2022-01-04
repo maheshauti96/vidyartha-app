@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Slider from 'react-slick';
 import { Button, TextField } from "@material-ui/core";
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
@@ -20,6 +21,8 @@ import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Home() {
 
@@ -188,7 +191,40 @@ export default function Home() {
       </main>
 
       <div className="item">
-        <img src="/ques-1.jpeg" alt="image" />
+        <Slider>
+          <div className="slide1">
+            {/* <Grid container spacing={4}>
+              <Grid item sm={6}>
+                <h1>What is the purpose of Vidyartha?</h1>
+                <p>The purpose of Vidyartha is to <b>make spiritualwisdom literature available in the school libraries.</b>Children need a <b>strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all theses needs can be effectively fulfilled by spiritual literature.</b> They also instill within us healthy pride about our own native culture & heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.</p>
+              </Grid>
+              <Grid item sm={6}>
+                <img src="/only pic-01.png" />
+              </Grid>
+            </Grid>             */}
+                <img src="/carosel-01.png" />
+                <div className="text">
+                  <h1>What is the purpose of Vidyartha?</h1>
+                  <p>The purpose of Vidyartha is to <b>make spiritualwisdom literature available in the school libraries.</b>Children need a <b>strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all theses needs can be effectively fulfilled by spiritual literature.</b> They also instill within us healthy pride about our own native culture & heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.</p>
+                </div>
+          </div>
+          <div className="slide2">            
+            {/* <Grid container spacing={4}>
+              <Grid item sm={6}>
+                <h1>How does Vidyartha work?</h1>
+                <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
+              </Grid>
+              <Grid item sm={6}>
+                <img src="/only pic-02.png" />
+              </Grid>
+            </Grid>             */}
+                <img src="/carosel-02.png" />
+                <div className="text">
+                  <h1>How does Vidyartha work?</h1>
+                  <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
+                </div>                
+          </div>
+        </Slider>
       </div>
 
       <div className="step-wrap">
@@ -237,9 +273,9 @@ export default function Home() {
         <p>Watch this short video on importance of spiritual books.</p>
       </div> */}
 
-      <div className="item">
+      {/* <div className="item">
         <img src="/ques-2.jpeg" alt="image" />
-      </div>
+      </div> */}
 
       {/* <div className="tm-wrap">
          <p>Testimonials</p>
