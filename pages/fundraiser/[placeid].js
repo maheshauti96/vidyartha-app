@@ -90,7 +90,6 @@ export default function FundraiserPlace() {
         try {
             if (placeName && schoolId) {
                 const schoolInfo = await getSchoolInfo(
-                    { post, response },
                     schoolId,
                     placeName,
                     placeAddress
@@ -110,8 +109,7 @@ export default function FundraiserPlace() {
     }
 
     const fetchTopDonors = async (schoolId) => {
-        const data = await getTopDonorsBySchool({ get, response }, schoolId)
-        console.log("TOP DONORS", data)
+        const data = await getTopDonorsBySchool(schoolId)
         if (data) {
 
             setTopDonors(data.content)
