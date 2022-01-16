@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Head from 'next/head';
-import Link from "next/link";
 import _ from 'lodash';
 import { useRouter } from 'next/router'
 import { useFetch } from "use-http";
@@ -20,7 +19,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import PlaceSearch from "../../src/components/PlaceSearch";
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Link from "next/link";
 
 
 
@@ -90,7 +94,6 @@ export default function FundraiserPlace() {
         try {
             if (placeName && schoolId) {
                 const schoolInfo = await getSchoolInfo(
-                    { post, response },
                     schoolId,
                     placeName,
                     placeAddress
@@ -110,8 +113,7 @@ export default function FundraiserPlace() {
     }
 
     const fetchTopDonors = async (schoolId) => {
-        const data = await getTopDonorsBySchool({ get, response }, schoolId)
-        console.log("TOP DONORS", data)
+        const data = await getTopDonorsBySchool(schoolId)
         if (data) {
 
             setTopDonors(data.content)
@@ -300,7 +302,7 @@ export default function FundraiserPlace() {
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={7} className="about-wrap">
                         <div className="about">
-                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
+                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
                         </div>
                     </Grid>
 
@@ -334,14 +336,92 @@ export default function FundraiserPlace() {
 
         </main>
 
-        <footer>
-            <div className="foot-wrap center-align">
-                <p>
-                    <Link href="/terms"><span style={{ cursor: "pointer" }}>Terms & Conditions</span></Link>
-                    <Link href="/privacypolicy"><span style={{ cursor: "pointer" }}>Privacy Policy</span></Link>
-                    <Link href="/returnpolicy"><span style={{ cursor: "pointer" }}>Return Policy</span></Link>
-                </p>
-            </div>
+        <div className="ques-wrap">
+        <h4>FAQ</h4>
+        <Accordion>
+          <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+            <Typography className="accor">1. What is the purpose of Vidyartha?</Typography>
+          </AccordionSummary>
+          <AccordionDetails className="acc-det">
+            <Typography className="acc-par">
+              The purpose of the Vidyartha is to make spiritual wisdom literature available in the school libraries. Children need a stronng foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all these needs can be effectively fulfilled by spiritual literature. They also instill within us healthy pride about our own native culture and heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+            <Typography className="accor">2. How does Vidyartha work?</Typography>
+          </AccordionSummary>
+          <AccordionDetails className="acc-det">
+            <Typography className="acc-par">
+            The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">3. What books will be gifted to the school?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          Spiritual books like Ramayana, Mahabharata, Sriman Bhagavatam, and Bhagavad Gita will be gifted to the schools.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">4. What if you can not complete your targeted amount?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          After the set target date whatever amount is collected worth those amount of books will be gifted to the school.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">5. What if the school refuses to accept the books?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          If some school has any concerns we shall try our best to address those concerns, if still, any particular school is not willing to take the books then they will be given to some other interested school.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+      </div>
+
+        <footer className="foot-wrap">
+            <Grid container>
+                <Grid item xs={12} sm={3}>
+                    <p>Terms & Conditions</p>
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                    <p>Privacy Policy</p>
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                    <p>Return Policy</p>
+                </Grid>
+            </Grid>
         </footer>
     </div>)
 }

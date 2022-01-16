@@ -9,7 +9,7 @@ import { Box, Button, CircularProgress, LinearProgress, Slide, Snackbar } from '
 import { Alert } from '@material-ui/lab';
 import { copyUrlToClipboard, createRazorpayOrder, isValidEmail } from '../services/service';
 import { RAZORPAY_PAYMENT_KEY_ID } from '../constants/api';
-
+import BasicModal from './BasicModal';
 
 
 
@@ -75,6 +75,7 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
             });
             rzp1.on('payment.paid', function (response) {
                 console.log("payment sucessful from event", response);
+                setSucess(true)
             });
             rzp1.open();
         } catch (err) {
@@ -133,7 +134,9 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
                 </div>
             </div>
 
-
+            {
+                success && <BasicModal open={success} setOpen={setSucess}></BasicModal>
+            }
             <div >
 
                 {
