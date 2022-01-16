@@ -138,6 +138,10 @@
             
                 a {
                     padding-left: 33px;
+
+                    @media (max-width: 1500px) {
+                        padding-left: 10px;
+                    }
                 }
             }
         }

@@ -253,6 +253,8 @@ body {
             }
             @media (max-width: 600px) {
                 font-size: 8px;
+                height: 60%;
+                overflow: hidden;
             }
         }
     }
@@ -265,6 +267,15 @@ body {
             left: 5%;
             top: 5%;
             font: normal normal normal 24px/31px PT Sans Pro;
+
+            @media (max-width: 1200px) {
+                font-size: 16px;
+            }
+            @media (max-width: 600px) {
+                font-size: 8px;
+                height: 60%;
+                overflow: hidden;
+            }
         }
     }
 }
