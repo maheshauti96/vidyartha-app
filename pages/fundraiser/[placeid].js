@@ -7,7 +7,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import { useForm } from 'react-hook-form';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { copyUrlToClipboard, getSchoolInfo, isValidEmail } from "../../src/services/service";
+import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
 import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
@@ -24,6 +24,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Link from 'next/link';
 
 
 
@@ -50,9 +51,9 @@ export default function FundraiserPlace() {
     const [placeInfo, setPlaceInfo] = useState(null);
     const [href, setHref] = useState(null);
     const [openDialog, setOpenDialog] = React.useState(false);
-
-
-
+    const [topDonors, setTopDonors] = useState([]);
+    const [schoolName, setSchoolName] = useState("")
+    const [schoolId, setSchoolId] = useState(placeid);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
@@ -60,7 +61,7 @@ export default function FundraiserPlace() {
 
         try {
             const request = {
-                placeId: placeid,
+                placeId: schoolId,
             };
 
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -74,6 +75,7 @@ export default function FundraiserPlace() {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     setPlaceInfo(place);
                     console.log('place-->', place);
+                    setSchoolName(place.name);
                 }
 
             });
@@ -86,25 +88,35 @@ export default function FundraiserPlace() {
         const placeAddress = _.get(placeInfo, 'formatted_address') || '';
         const placeName = _.get(placeInfo, 'name');
         const placeImage = _.get(placeInfo, 'photos[0]') && _.get(placeInfo, 'photos[0]').getUrl && _.get(placeInfo, 'photos[0]').getUrl();
+        if (!placeImage) {
+            placeImage = "/defaultschool.jpeg"
+        }
         try {
-            if (placeName && placeid) {
+            if (placeName && schoolId) {
                 const schoolInfo = await getSchoolInfo(
-                    { post, response },
-                    placeid,
+                    schoolId,
                     placeName,
                     placeAddress
                 );
                 setSchoolInfo({ schoolInfo, placeImage })
-                setProgress(parseInt(Number(schoolInfo.percentage) * 10));
+                setProgress(parseInt(Number(schoolInfo.percentage) * 100));
                 setRaisedAmount(parseInt(Number(schoolInfo.collected) / 100));
                 setRequiredAmount(parseInt(Number(schoolInfo.required) / 100));
                 return true;
             } else {
-                console.log('sry bro', { placeAddress, placeName, placeid });
+                console.log('sry bro', { placeAddress, placeName, schoolId });
             }
         } catch (error) {
             console.log('getPlaceInfo Error', error);
             return false;
+        }
+    }
+
+    const fetchTopDonors = async (schoolId) => {
+        const data = await getTopDonorsBySchool(schoolId)
+        if (data) {
+
+            setTopDonors(data.content)
         }
     }
 
@@ -113,21 +125,38 @@ export default function FundraiserPlace() {
     }, [])
 
     useEffect(() => {
+        let { placeid } = router.query
+        setSchoolId(placeid)
+    }, [router])
+
+
+    useEffect(() => {
 
         // if (!placeInfo && !placeid) {
         //     console.log('bye bye');
         //     router.push('/');
         // }
         console.log('placeInfo**', placeInfo);
-        if (placeid && !placeInfo) {
-            fetchSchoolDetails(placeid);
+        if (schoolId && !placeInfo) {
+            fetchSchoolDetails(schoolId);
+            fetchTopDonors(schoolId);
         }
-        if (placeid && placeInfo) {
+        if (schoolId && placeInfo) {
             console.log('got the placeinfo');
+            fetchTopDonors(schoolId);
             getPlaceInfo(placeInfo)
         }
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
-    }, [placeid, placeInfo])
+
+
+    }, [placeid, placeInfo, schoolId])
+
+    useEffect(() => {
+        console.log("NEW", placeid, schoolId);
+        if (placeid !== schoolId) {
+            placeid = schoolId;
+        }
+    }, [schoolId])
 
     return (<div className="fundraiser-wrap">
         <Head>
@@ -135,17 +164,23 @@ export default function FundraiserPlace() {
             <link rel="icon" href="/favicon.ico" />
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
+            <meta property="title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
+            <meta name="description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
+            <meta property="image" content="/banner-bg-original.png" />
+            <meta property="og:title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
+            <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
+            <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
         <main>
             <div className="center-align position-relative">
+                <div className="position-absolute inp-wrap">
+                    {/* <TextField className="inp" label="Location" variant="outlined" />
+                        <TextField className="inp" label="School" variant="outlined" /> */}
+                    {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
+                </div>
                 <header>
-                    <div className="inp-wrap">                        
-                        <TextField className="inp" label="Location" variant="outlined" />
-                        <TextField className="inp" label="School" variant="outlined" />
-                    </div>
                 </header>
-                <img className="position-absolute logo-image" height="120px" width="200px" src="/color-logo.webp" />
+                <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
@@ -162,7 +197,7 @@ export default function FundraiserPlace() {
                     </Grid>
                     : <Grid container spacing={4}>
                         <Grid item xs={12} sm={7} className="school-info-wrap">
-                            <h2>{schoolInfo.schoolInfo.name}</h2>
+                            <h2>{schoolName}</h2>
                             <img
                                 src={schoolInfo.placeImage}
                                 // src="https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAap_uEASRoEMZI9AimR0SHJsNyn8z08ox9ahWwly9NsFCuK4wKMsG0an-_O2q-AC7gjkvKJuUv1VtBoEFqbqTKzvfoOHY--FG1u2Nnk2OncxMvL-_1__CWLvYGyRcdfMP49EsOlAWwfTmOD_xXHwooLeK4HYpuMC8f3EJCKv5UlYiAgOK95r&3u800&5m1&2e1&callback=none&key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&token=109081"
@@ -173,21 +208,64 @@ export default function FundraiserPlace() {
                         </Grid>
                         <Grid item xs={12} sm={5} className="collection-info-wrap">
                             <h2>placeholder</h2>
-                            <div class="amount">
-                                &#8377;<span class="green">{raisedAmount}</span>
+                            <div className="amount">
+                                &#8377;<span className="green">{raisedAmount}</span>
                             </div>
                             <p className="raised-asof">{raisedAmount} of {requiredAmount} raised</p>
                             <div className="progress-bar-wrap position-relative">
                                 <LinearProgress className="progress-bar" variant="determinate" value={progress}></LinearProgress>
                                 <p className="tobe-raised position-absolute">&#8377; {requiredAmount}</p>
                             </div>
-                            <Button
+                            {/* <Button
                                 className="primary-button dark m-tb-25"
                                 onClick={() => {
                                     setOpenDialog(true);
                                 }}
                                 variant="contained"
-                            >Donate Now</Button>
+                            >Donate Now</Button> */}
+                            <div className="center-align donor-info-form pt-25">
+                                <div className="form-input-wrap">
+                                    <TextField
+                                        id="name"
+                                        label="Name"
+                                        fullWidth
+                                        onChange={({ target }) => setName(target.value)}
+                                        variant="outlined"
+                                    />
+                                </div>
+                                <div className="form-input-wrap">
+                                    <TextField
+                                        id="name"
+                                        label="Email Address"
+                                        fullWidth
+                                        error={email && !isValidEmail(email)}
+                                        onChange={({ target }) => setEmail(target.value)}
+                                        variant="outlined"
+                                    />
+                                </div>
+                                <div className="form-input-wrap">
+                                    <TextField
+                                        id="amount"
+                                        label="Amount"
+                                        onChange={({ target }) => {
+                                            if (isNaN(target.value)) {
+                                                alert('Please enter valid amount')
+                                            } else {
+                                                setAmount(target.value)
+                                            }
+                                        }}
+                                        fullWidth
+                                        variant="outlined"
+                                    />
+                                </div>
+                                <RazorpayPayment
+                                    name={name}
+                                    email={email}
+                                    amount={amount}
+                                    httpClient={httpClient}
+                                    placeId={schoolId}
+                                ></RazorpayPayment>
+                            </div>
                             <h4 className="sub-text">Share and Support this campaign</h4>
                             <div className="social-share-icons share-wrap">
                                 <ShareIcon
@@ -214,46 +292,13 @@ export default function FundraiserPlace() {
                                     <img src="/twitter.png" alt="twitter" />
                                 </a>
                             </div>
-                            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+
+                            {/* <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
                                 <DialogTitle className="center-align"><h2 className="m-0">Enter your details</h2></DialogTitle>
                                 <DialogContent className="center-align donor-info-form">
-                                    <div className="form-input-wrap">
-                                        <TextField
-                                            id="name"
-                                            label="Name"
-                                            fullWidth
-                                            onChange={({ target }) => setName(target.value)}
-                                            variant="outlined"
-                                        />
-                                    </div>
-                                    <div className="form-input-wrap">
-                                        <TextField
-                                            id="name"
-                                            label="Email Address"
-                                            fullWidth
-                                            error={email && !isValidEmail(email)}
-                                            onChange={({ target }) => setEmail(target.value)}
-                                            variant="outlined"
-                                        />
-                                    </div>
-                                    <div className="form-input-wrap">
-                                        <TextField
-                                            id="amount"
-                                            label="Amount"
-                                            onChange={({ target }) => setAmount(target.value)}
-                                            fullWidth
-                                            variant="outlined"
-                                        />
-                                    </div>
-                                    <RazorpayPayment
-                                        name={name}
-                                        email={email}
-                                        amount={amount}
-                                        httpClient={httpClient}
-                                        placeId={schoolInfo.schoolInfo.id}
-                                    ></RazorpayPayment>
+
                                 </DialogContent>
-                            </Dialog>
+                            </Dialog> */}
 
                         </Grid>
                     </Grid>
@@ -270,40 +315,31 @@ export default function FundraiserPlace() {
                             <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
                         </div>
                     </Grid>
-                    <Grid item xs={12} sm={5}>
-                        <TableContainer component={Paper}>
-                            <Table className="table-wrap" aria-label="simple table">
-                                <TableHead className="thead">
-                                    <TableRow className="tr">
-                                        <TableCell className="th" align="center">Top Donors</TableCell>
-                                        <TableCell className="th" align="center">Amount</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody className="tbody">
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
+
+                    {
+                        (topDonors.length > 0) && (<Grid item xs={12} sm={5}>
+                            <TableContainer component={Paper}>
+                                <Table className="table-wrap" aria-label="simple table">
+                                    <TableHead className="thead">
+                                        <TableRow className="tr">
+                                            <TableCell className="th" align="center">Top Donors</TableCell>
+                                            <TableCell className="th" align="center">Amount</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody className="tbody">
+                                        {
+                                            topDonors.map(donor =>
+                                                <TableRow className="tr" key={donor.name}>
+                                                    <TableCell className="td" align="left">{donor.name}</TableCell>
+                                                    <TableCell className="td" align="left">{parseInt(Number(donor.amount) / 100)}</TableCell>
+                                                </TableRow>
+                                            )
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>)
+                    }
                 </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>

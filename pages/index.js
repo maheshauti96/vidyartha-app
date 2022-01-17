@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Slider from 'react-slick';
 import { Button, TextField } from "@material-ui/core";
 import Image from 'next/image';
+import Link from "next/link";
 import { useState, useRef, useEffect } from 'react';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { get, debounce } from 'lodash';
@@ -87,22 +88,60 @@ export default function Home() {
         }
       }
     });
-  }, 500);
+  }, 10);
+
+  const fetchSchoolsAutoComplete = (() => {
+
+    var service = new google.maps.places.AutocompleteService();
+
+    var pyrmont = new google.maps.LatLng(latitude, longitude);
+
+    var request = {
+      input: text,
+      types: ['establishment'],
+      componentRestrictions: { country: 'in' },
+      location: pyrmont,
+      radius: '500',
+    }
+
+
+    service.getPlacePredictions(request,
+      function (predictions, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+          setCardVisibility("block")
+
+          let schoolsArr = []
+
+          for (var i = 0, prediction; prediction = predictions[i]; i++) {
+            if (prediction.types.includes("school") || prediction.types.includes("university")) {
+              schoolsArr.push(prediction)
+              // console.log(prediction.description)
+            }
+
+          }
+          console.table(predictions);
+          // console.table(schoolsArr);
+          setSchools(() => { return schoolsArr.map((item) => item) });
+        }
+
+      });
+  });
+
 
   function selectedValue(event, value) {
-    schools.map((school) => {
 
-
-      setFinalPlace(school)
-      setText(school.name);
-      localStorage.setItem('placeInfo', JSON.stringify(school));
+    if (value) {
+      console.log(value)
+      setFinalPlace(value)
+      setText(value.name)
+      localStorage.setItem('placeInfo', JSON.stringify(value));
     }
-    );
   }
 
   function handleInput(e) {
 
-    console.log("The event value received is : ", e.target.value);
+    // console.log("The event value received is : ", e.target.value);
 
     setLoading(true);
 
@@ -114,7 +153,8 @@ export default function Home() {
     }
     else {
       setText(e.target.value);
-      fetchSchools();
+      console.log("HEREEEEEEEEEEEE")
+      fetchSchoolsAutoComplete();
     }
 
   }
@@ -147,7 +187,15 @@ export default function Home() {
       <Head>
         <title>Vidyartha</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
+        <meta property="title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
+        <meta name="description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
+        <meta property="image" content="/banner-bg-original.png" />
+        <meta property="og:title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
+        <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
+        <meta property="og:image" content="/banner-bg-original.png" />
       </Head>
       <main className="main-banner">
         <div className="logo-wrap">
@@ -163,8 +211,12 @@ export default function Home() {
               noOptionsText={'No Options'}
               width={'346px'}
               options={schools}
+              // open={true}
               onChange={(event, value) => selectedValue(event, value)}
-              getOptionLabel={(option) => option.name.toString()}
+              getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
+              renderOption={(option) => {
+                return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px" }}>{option.structured_formatting.main_text}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.structured_formatting.secondary_text}</p></div>;
+              }}
               sx={{ width: 346 }}
               renderInput={(params) => {
                 console.log('params...',params)
@@ -202,7 +254,7 @@ export default function Home() {
                 <img src="/only pic-01.png" />
               </Grid>
             </Grid>             */}
-                <img src="/carosel-01.png" />
+                {/* <img src="/carosel-01.png" /> */}
                 <div className="text">
                   <h1>What is the purpose of Vidyartha?</h1>
                   <p>The purpose of Vidyartha is to <b>make spiritualwisdom literature available in the school libraries.</b>Children need a <b>strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all theses needs can be effectively fulfilled by spiritual literature.</b> They also instill within us healthy pride about our own native culture & heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.</p>
@@ -218,7 +270,7 @@ export default function Home() {
                 <img src="/only pic-02.png" />
               </Grid>
             </Grid>             */}
-                <img src="/carosel-02.png" />
+                {/* <img src="/carosel-02.png" /> */}
                 <div className="text">
                   <h1>How does Vidyartha work?</h1>
                   <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
@@ -362,7 +414,7 @@ export default function Home() {
         <br />
         <TextField className="id1" label="Email" variant="outlined" />
         <br />
-        <TextField className="id2" label="Feedback" placeholder="Placeholder" multiline variant="outlined" />
+        <TextField className="id2" label="Feedback" placeholder="Placeholder" multiline rows={10} variant="outlined" />
         <br />
         <Button className="btn1" variant="contained">
           <p>Submit</p>
