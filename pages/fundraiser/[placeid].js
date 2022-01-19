@@ -25,7 +25,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from 'next/link';
-
+import PlaceSearch from '../../src/components/PlaceSearch';
 
 
 export default function FundraiserPlace() {
@@ -172,11 +172,11 @@ export default function FundraiserPlace() {
             <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
         <main>
-            <div className="center-align position-relative">
+            <div className="position-relative">
                 <div className="position-absolute inp-wrap">
                     {/* <TextField className="inp" label="Location" variant="outlined" />
                         <TextField className="inp" label="School" variant="outlined" /> */}
-                    {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
+                    <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
                 </div>
                 <header>
                 </header>

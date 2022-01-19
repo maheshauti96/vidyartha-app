@@ -240,13 +240,13 @@ body {
     }
     .slide1 {
         position: relative;
-        background: url('/Carosel-01.png') 0% 0% no-repeat padding-box;
+        // background: url('/Carosel-01.png') 0% 0% no-repeat padding-box;
         
         .text {
             width: 50%;
-            // position: absolute;
-            // left: 5%;
-            // top: 5%;
+            position: absolute;
+            left: 5%;
+            top: 5%;
             font: normal normal normal 24px/31px PT Sans Pro;
 
             @media (max-width: 1200px) {
@@ -261,13 +261,13 @@ body {
     }
     .slide2 {
         position: relative;
-        background: url('/Carosel-02.png') 0% 0% no-repeat padding-box;
+        // background: url('/Carosel-02.png') 0% 0% no-repeat padding-box;
         
         .text {
             width: 50%;
-            // position: absolute;
-            // left: 5%;
-            // top: 5%;
+            position: absolute;
+            left: 5%;
+            top: 5%;
             font: normal normal normal 24px/31px PT Sans Pro;
 
             @media (max-width: 1200px) {

@@ -1,70 +1,95 @@
 @import "common.scss";
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap');
-.main{
-    margin: 0;
-    padding: 0;
-    background: rgb(2,0,36);
-background: linear-gradient(184deg, rgba(2,0,36,1) 0%, rgba(35,59,125,1) 100%, rgba(0,212,255,1) 100%);
-color: white;
-height: 800px;
-}
-.heading{
-    text-align: center;
-    position:relative;
-    left:-70px;
-    font-size: 90px;
-    font-weight: 800;
-    font-family: 'Fira Sans', sans-serif;
-}
-.heading1{
-    position: relative;
-    top:-60px;
-    text-align: center;
-    font-size: 90px;
-    font-weight: 800;
-    font-family: 'Fira Sans', sans-serif;
-}
-.heading2{
-    text-align: center;
-    position: relative;
-    top: -120px;
-    font-weight: 400;
-    font-size: 27px;
-    font-family: 'Fira Sans', sans-serif;
-}
-.line{
-    color: white;
-    width: 80%;
-    position: relative;
-    top: -120px;
-}
-.data{
-    text-align: center;
-    font-size: 30px;
-    position: relative;
-    top: -120px;
-    font-family: 'Fira Sans', sans-serif;
-}
-.primary-button{
-    text-align: center;
-    position: relative;
-   top: -75px;
-    left: 40%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+// .main{
+//     margin: 0;
+//     padding: 0;
+//     background: rgb(2,0,36);
+// background: linear-gradient(184deg, rgba(2,0,36,1) 0%, rgba(35,59,125,1) 100%, rgba(0,212,255,1) 100%);
+// color: white;
+// height: 800px;
+// }
+// .heading{
+//     text-align: center;
+//     position:relative;
+//     left:-70px;
+//     font-size: 90px;
+//     font-weight: 800;
+//     font-family: 'Fira Sans', sans-serif;
+// }
+// .heading1{
+//     position: relative;
+//     top:-60px;
+//     text-align: center;
+//     font-size: 90px;
+//     font-weight: 800;
+//     font-family: 'Fira Sans', sans-serif;
+// }
+// .heading2{
+//     text-align: center;
+//     position: relative;
+//     top: -120px;
+//     font-weight: 400;
+//     font-size: 27px;
+//     font-family: 'Fira Sans', sans-serif;
+// }
+// .line{
+//     color: white;
+//     width: 80%;
+//     position: relative;
+//     top: -120px;
+// }
+// .data{
+//     text-align: center;
+//     font-size: 30px;
+//     position: relative;
+//     top: -120px;
+//     font-family: 'Fira Sans', sans-serif;
+// }
+// .primary-button{
+//     text-align: center;
+//     position: relative;
+//    top: -75px;
+//     left: 40%;
+//   -ms-transform: translateY(-50%);
+//   transform: translateY(-50%);
   
-}
-.image{
-    text-align: center;
-    position: relative;
-   top: -5px;
-    left: 15%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.logo{
-    position: relative;
-    float: left;
-    right: -10px;
-    top: 15px;
+// }
+// .image{
+//     text-align: center;
+//     position: relative;
+//    top: -5px;
+//     left: 15%;
+//   -ms-transform: translateY(-50%);
+//   transform: translateY(-50%);
+// }
+// .logo{
+//     position: relative;
+//     float: left;
+//     right: -10px;
+//     top: 15px;
+// }
+
+.main {
+    margin: 0 33px;
+    padding: 3% 5%;
+    background: rgb(2,0,36);
+    background: linear-gradient(184deg, rgba(2,0,36,1) 0%, rgba(35,59,125,1) 100%, rgba(0,212,255,1) 100%);
+    h1 {
+        color: #FFFFFF;
+    }
+    h3 {
+        color: #FFFFFF; 
+    }
+    p {
+        color: #FFFFFF;
+    }
+    .btn1 {
+        background-color: gray;
+    }
+    .image {
+        width: 100%;
+    }
+    .logo {
+        text-align: right;
+    }
 }

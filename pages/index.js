@@ -254,7 +254,7 @@ export default function Home() {
                 <img src="/only pic-01.png" />
               </Grid>
             </Grid>             */}
-                {/* <img src="/carosel-01.png" /> */}
+                <img src="/carosel-01.png" />
                 <div className="text">
                   <h1>What is the purpose of Vidyartha?</h1>
                   <p>The purpose of Vidyartha is to <b>make spiritualwisdom literature available in the school libraries.</b>Children need a <b>strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all theses needs can be effectively fulfilled by spiritual literature.</b> They also instill within us healthy pride about our own native culture & heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.</p>
@@ -270,7 +270,7 @@ export default function Home() {
                 <img src="/only pic-02.png" />
               </Grid>
             </Grid>             */}
-                {/* <img src="/carosel-02.png" /> */}
+                <img src="/carosel-02.png" />
                 <div className="text">
                   <h1>How does Vidyartha work?</h1>
                   <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
