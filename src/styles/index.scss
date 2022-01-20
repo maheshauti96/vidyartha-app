@@ -240,6 +240,8 @@ body {
     }
     .slide1 {
         position: relative;
+        
+        background-image: linear-gradient(to bottom right, #FFFFFF, #8cbdb3);
         // background: url('/Carosel-01.png') 0% 0% no-repeat padding-box;
         
         .text {
@@ -261,6 +263,8 @@ body {
     }
     .slide2 {
         position: relative;
+
+        background-image: linear-gradient(to bottom right, #FFFFFF, #8cbdb3);
         // background: url('/Carosel-02.png') 0% 0% no-repeat padding-box;
         
         .text {
