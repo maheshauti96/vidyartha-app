@@ -71,23 +71,39 @@
 
 .main {
     margin: 0 33px;
-    padding: 3% 5%;
+    padding: 2% 5% 0.5% 5%;
     background: rgb(2,0,36);
-    background: linear-gradient(184deg, rgba(2,0,36,1) 0%, rgba(35,59,125,1) 100%, rgba(0,212,255,1) 100%);
-    h1 {
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(35,59,125,1) 100%, rgba(0,212,255,1) 100%);
+    .head {
+        margin: 0px 0px;
         color: #FFFFFF;
+        font-size: 80px;
+        font-weight: 800;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
-    h3 {
+    .sub-head {
+        margin: 0px 0px;
         color: #FFFFFF; 
+        font-size: 28px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
     p {
         color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 252;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
     .btn1 {
         background-color: gray;
+        padding: 1% 5%;
+        p {
+            margin: 0px 0px;
+        }
     }
     .image {
+        text-align: center;
         width: 100%;
+        margin-top: 1%;
     }
     .logo {
         text-align: right;
