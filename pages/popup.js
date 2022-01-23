@@ -1,11 +1,12 @@
 import { Button, TextField } from "@material-ui/core";
 import { ArrowForwardIos } from '@material-ui/icons';
+
 export default function Popup() {
     return (<div className="main">
-<div><img className="logo" src="white-logo.png" height={100} width={150}></img></div>
-        <h1 className="heading">HELP IN CREATING A</h1>
+        
+        {/* <p className="heading">HELP IN CREATING A</p>
 
-        <h1 className="heading1">BRIGHTER FUTURE</h1>
+        <p className="heading1">BRIGHTER FUTURE</p>
         <h2 className="heading2">BY DONATING SPRITUAL BOOKS TO THE CHILDREN</h2>
         <hr className="line"></hr>
         <h3 className="data">Reading spritual books helps in developing personality,
@@ -23,9 +24,21 @@ export default function Popup() {
             }}
             variant="contained"
             endIcon={<ArrowForwardIos />}
-        >Donate Now</Button></div>
+        >Donate Now</Button></div> */}
 
-        <div><img className="image" src="image1.png" width={1000}></img></div>
+        <div className="center-align">
+            <p className="head">HELP IN CREATING A</p>
+            <p className="head">BRIGHTER FUTURE</p>
+            <p className="sub-head">BY DONATING SPIRITUAL BOOKS TO THE CHILDREN</p>
+            <hr />
+            <p className="par">Reading spiritual books helps in developing personality, builds self esteem, increases moral values, concentration, knowledge and peace</p>
+            <Button className="btn1" variant="contained">
+                <p>Submit</p>
+            </Button>
+            <div className="image"><img className="center-align image" src="/book and bg-01.png"></img></div>
+        </div>
+        {/* <div className="image"><img className="center-align image" src="/book and bg-01.png"></img></div> */}
+        <div className="logo"><img src="logo-white.png"></img></div>
         
     </div>)
 }

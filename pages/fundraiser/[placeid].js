@@ -24,8 +24,8 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Link from "next/link";
-
+import Link from 'next/link';
+import PlaceSearch from '../../src/components/PlaceSearch';
 
 
 export default function FundraiserPlace() {
@@ -172,11 +172,11 @@ export default function FundraiserPlace() {
             <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
         <main>
-            <div className="center-align position-relative">
+            <div className="position-relative">
                 <div className="position-absolute inp-wrap">
                     {/* <TextField className="inp" label="Location" variant="outlined" />
                         <TextField className="inp" label="School" variant="outlined" /> */}
-                    {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
+                    <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
                 </div>
                 <header>
                 </header>
@@ -267,19 +267,29 @@ export default function FundraiserPlace() {
                                 ></RazorpayPayment>
                             </div>
                             <h4 className="sub-text">Share and Support this campaign</h4>
-                            <div className="social-share-icons">
+                            <div className="social-share-icons share-wrap">
                                 <ShareIcon
                                     onClick={() => {
                                         copyUrlToClipboard(href)
                                         alert('link is copied!');
                                     }}
                                 />
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
-                                    <FacebookIcon />
-                                </a>
 
                                 <a href={`whatsapp://send?text=Help me to Support this campaign ${href}`} data-action="share/whatsapp/share">
-                                    <WhatsAppIcon className="whatsapp-icon" />
+                                    <img src="/whatsapp.png" alt="whatsapp" />
+                                </a>
+
+                                <a href={`instagram://send?text=Help me to Support this campaign ${href}`}
+                                data-action="share/instagram/share">
+                                    <img src="/instagram.png" alt="instagram" />
+                                </a>                                
+
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
+                                    <img src="/facebook.png" alt="facebook" />
+                                </a>
+
+                                <a href={`https://www.twitter.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
+                                    <img src="/twitter.png" alt="twitter" />
                                 </a>
                             </div>
 
