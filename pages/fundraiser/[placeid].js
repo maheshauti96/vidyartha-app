@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
-import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../../src/components/RazorpayPayment";
@@ -29,10 +28,8 @@ import PlaceSearch from '../../src/components/PlaceSearch';
 
 
 export default function FundraiserPlace() {
-    const httpClient = useFetch(BASE_API_URL);
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
     console.log('getValues', getValues());
-    const { get, post, response, loading, error } = httpClient;
     const router = useRouter()
     const [schoolInfo, setSchoolInfo] = useState({
         schoolInfo: {
@@ -54,10 +51,13 @@ export default function FundraiserPlace() {
     const [topDonors, setTopDonors] = useState([]);
     const [schoolName, setSchoolName] = useState("")
     const [schoolId, setSchoolId] = useState(placeid);
+    const [loading, setLoading] = useState(true);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
         const pyrmont = new google.maps.LatLng(7.798, 68.14712);
+        
+        setLoading(true);
 
         try {
             const request = {
@@ -77,10 +77,11 @@ export default function FundraiserPlace() {
                     console.log('place-->', place);
                     setSchoolName(place.name);
                 }
-
+                setLoading(false);
             });
         } catch (error) {
             console.log('fetchSchoolDetails failed', error);
+            setLoading(false);
         }
     }
 
@@ -258,11 +259,11 @@ export default function FundraiserPlace() {
                                         variant="outlined"
                                     />
                                 </div>
+
                                 <RazorpayPayment
                                     name={name}
                                     email={email}
                                     amount={amount}
-                                    httpClient={httpClient}
                                     placeId={schoolId}
                                 ></RazorpayPayment>
                             </div>
