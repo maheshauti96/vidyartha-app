@@ -229,6 +229,7 @@ export default function Home() {
               className="primary-button"
               onClick={() => {
                 if (finalPlace) {
+                  localStorage.setItem("visited", true);
                   router.push(`/fundraiser/${finalPlace.place_id}`);
                 } else {
                   alert('Please Select the school')

@@ -25,6 +25,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from 'next/link';
 import PlaceSearch from '../../src/components/PlaceSearch';
+import Popup from "../popup";
 
 
 export default function FundraiserPlace() {
@@ -52,6 +53,7 @@ export default function FundraiserPlace() {
     const [schoolName, setSchoolName] = useState("")
     const [schoolId, setSchoolId] = useState(placeid);
     const [loading, setLoading] = useState(true);
+    const [showPopup, setShowPopup] = useState(true);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
@@ -123,6 +125,7 @@ export default function FundraiserPlace() {
 
     useEffect(() => {
         setHref(window.location.href);
+        localStorage.getItem("visited") ? setShowPopup(false) : setShowPopup(true);
     }, [])
 
     useEffect(() => {
@@ -172,6 +175,11 @@ export default function FundraiserPlace() {
             <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
             <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
+
+        {
+            showPopup && <Popup />
+        }
+
         <main>
             <div className="position-relative">
                 <div className="position-absolute inp-wrap">
