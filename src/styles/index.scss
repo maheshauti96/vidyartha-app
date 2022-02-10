@@ -233,7 +233,9 @@ body {
 }
 
 .item {
-    margin: 0px 33px;
+    margin-left: 33px;
+    margin-right: 33px;
+    margin-top: -200px;
 
     img {
         width: 100%;
@@ -255,8 +257,9 @@ body {
                 font-size: 16px;
             }
             @media (max-width: 600px) {
-                font-size: 8px;
-                height: 60%;
+                font-size: 12px;
+                width: 90%;
+                height: 100%;
                 overflow: hidden;
             }
         }
@@ -278,11 +281,18 @@ body {
                 font-size: 16px;
             }
             @media (max-width: 600px) {
-                font-size: 8px;
-                height: 60%;
+                font-size: 12px;
+                width: 80%;
+                height: 100%;
                 overflow: hidden;
             }
         }
+    }
+}
+
+@media (max-width: 600px) {
+    .item {
+        margin-top: -400px;
     }
 }
 
@@ -344,7 +354,9 @@ body {
 }
 
 .ques-wrap {
-    margin: 0px 33px;
+    // margin-left: 33px;
+    // margin-right: 33px;
+    // margin-top: -200px;
 
     h4 {
         margin-left: 2%;
