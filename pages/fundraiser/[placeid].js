@@ -123,6 +123,10 @@ export default function FundraiserPlace() {
         }
     }
 
+    const handlePopupClose = () => {
+        setShowPopup(false)
+    }
+
     useEffect(() => {
         setHref(window.location.href);
         localStorage.getItem("visited") ? setShowPopup(false) : setShowPopup(true);
@@ -177,7 +181,7 @@ export default function FundraiserPlace() {
         </Head>
 
         {
-            showPopup && <Popup />
+            showPopup && <Popup handleClose={handlePopupClose} />
         }
 
         <main>

@@ -1,6 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
 
-export default function Popup() {
+export default function Popup({handleClose}) {
     return (
         <div className="main">
             <div className="center-align">
@@ -12,8 +12,8 @@ export default function Popup() {
                     Reading spiritual books helps in developing personality, builds self
                     esteem, increases moral values, concentration, knowledge and peace
                 </p>
-                <Button className="btn1" variant="contained">
-                    <p>Submit</p>
+                <Button className="btn1" variant="contained" onClick={handleClose}>
+                    <p>Close</p>
                 </Button>
                 <div className="image">
                     <img className="center-align image" src="/book and bg-01.png"></img>
