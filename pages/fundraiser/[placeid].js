@@ -172,10 +172,10 @@ export default function FundraiserPlace() {
             <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
         <main>
-            <div className="position-relative">
-                <div className="inp-wrap">
+            <div className="position-relative inp-wrap">
+                <div className="position-absolute">
                     <TextField className="inp" label="Location" variant="outlined" />
-                        <TextField className="inp" label="School" variant="outlined" />
+                    <TextField className="inp" label="School" variant="outlined" />
                     {/* <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
                 </div>
                 <header>
@@ -316,7 +316,41 @@ export default function FundraiserPlace() {
                         </div>
                     </Grid>
 
-                    {
+                    <Grid item xs={12} sm={5}>
+                        <TableContainer component={Paper}>
+                            <Table className="table-wrap" aria-label="simple table">
+                                <TableHead className="thead">
+                                    <TableRow className="tr">
+                                        <TableCell className="th" align="center">Top Donors</TableCell>
+                                        <TableCell className="th" align="center">Amount</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody className="tbody">
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                    <TableRow className="tr">
+                                        <TableCell className="td" align="left">Name</TableCell>
+                                        <TableCell className="td" align="left">Amount</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                    {/* {
                         (topDonors.length > 0) && (<Grid item xs={12} sm={5}>
                             <TableContainer component={Paper}>
                                 <Table className="table-wrap" aria-label="simple table">
@@ -339,7 +373,7 @@ export default function FundraiserPlace() {
                                 </Table>
                             </TableContainer>
                         </Grid>)
-                    }
+                    } */}
                 </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>
