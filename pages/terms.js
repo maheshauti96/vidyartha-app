@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Grid } from "@material-ui/core";
 import { useEffect } from 'react';
 
 const Terms = () => {
@@ -87,15 +88,19 @@ const Terms = () => {
 
 
             </div>
-            <footer>
-          <div className="foot-wrap center-align">
-            <p>
-              <Link href="/terms"><span style={{ cursor: "pointer" }}>Terms & Conditions</span></Link>
-              <Link href="/privacypolicy"><span style={{ cursor: "pointer" }}>Privacy Policy</span></Link>
-              <Link href="/returnpolicy"><span style={{ cursor: "pointer" }}>Return Policy</span></Link>
-            </p>
-          </div>
-        </footer>
+            <footer className="foot-wrap">
+              <Grid container>
+                <Grid item xs={12} sm={3}>
+                    <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                    <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
+                </Grid>
+                <Grid item xs={12} sm={3}>
+                    <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
+                </Grid>
+              </Grid>
+            </footer>
         </div>
     )
 }

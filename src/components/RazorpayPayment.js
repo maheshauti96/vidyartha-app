@@ -13,13 +13,12 @@ import BasicModal from './BasicModal';
 
 
 
-const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
+const RazorpayPayment = ({ name, email, amount, placeId}) => {
 
     const [success, setSucess] = useState(false);
     const [failure, setFailure] = useState(false);
     const [buttonLoader, setButtonLoader] = useState(false);
     const [showSnackBar, setShowSnackBar] = React.useState(false);
-    const { get, post, response, loading, error } = httpClient;
 
 
     async function displayRazorPay(e) {
@@ -32,7 +31,7 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
             setSucess(false);
             setFailure(false);
             setButtonLoader(true);
-            const data = await createRazorpayOrder({ post, response }, parseInt(amount), placeId)
+            const data = await createRazorpayOrder(parseInt(amount), placeId)
 
             console.log(data)
 
@@ -144,12 +143,6 @@ const RazorpayPayment = ({ name, email, amount, placeId, httpClient }) => {
                 }
             </div>
 
-            <div>
-
-                {
-                    loading ? <div className="loading">...loading</div> : <div></div>
-                }
-            </div>
 
         </div>
     );
