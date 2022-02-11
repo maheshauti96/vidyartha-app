@@ -187,8 +187,8 @@ export default function FundraiserPlace() {
         <main>
             <div className="position-relative inp-wrap">
                 <div className="position-absolute">
-                    <TextField className="inp" label="Location" variant="outlined" />
-                    <TextField className="inp" label="School" variant="outlined" />
+                    {/* <TextField className="inp" label="Location" variant="outlined" />
+                    <TextField className="inp" label="School" variant="outlined" /> */}
                     {/* <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
                 </div>
                 <header>

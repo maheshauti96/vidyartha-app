@@ -202,8 +202,7 @@ export default function Home() {
           <img id="logo" className="position-absolute logo-image" src="/logo-white.png" />
         </div>
         <div className="banner-wrap center-align position-relative">
-          <h1>Help Us To Donate</h1>
-          <h1>Books For Your School!</h1>
+          <h1>Help Us To Donate <br /> Books For Your School!</h1>
           <div className="search-box-wrap">
             <TextField label="Find your city" inputRef={autoCompleteRef} variant="outlined" />
             <Autocomplete
@@ -229,7 +228,6 @@ export default function Home() {
               className="primary-button"
               onClick={() => {
                 if (finalPlace) {
-                  localStorage.setItem("visited", true);
                   router.push(`/fundraiser/${finalPlace.place_id}`);
                 } else {
                   alert('Please Select the school')
@@ -247,11 +245,13 @@ export default function Home() {
         <Slider>
           <div className="slide1">
             {/* <Grid container spacing={4}>
-              <Grid item sm={6}>
-                <h1>What is the purpose of Vidyartha?</h1>
-                <p>The purpose of Vidyartha is to <b>make spiritualwisdom literature available in the school libraries.</b>Children need a <b>strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all theses needs can be effectively fulfilled by spiritual literature.</b> They also instill within us healthy pride about our own native culture & heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.</p>
+              <Grid item sm={8}>
+                <div className="text">
+                  <h1>What is the purpose of Vidyartha?</h1>
+                  <p>The purpose of Vidyartha is to <b>make spiritualwisdom literature available in the school libraries.</b>Children need a <b>strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all theses needs can be effectively fulfilled by spiritual literature.</b> They also instill within us healthy pride about our own native culture & heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.</p>
+                </div>
               </Grid>
-              <Grid item sm={6}>
+              <Grid item sm={4}>
                 <img src="/only pic-01.png" />
               </Grid>
             </Grid>             */}
@@ -264,8 +264,10 @@ export default function Home() {
           <div className="slide2">            
             {/* <Grid container spacing={4}>
               <Grid item sm={6}>
-                <h1>How does Vidyartha work?</h1>
-                <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
+                <div className="text">
+                  <h1>How does Vidyartha work?</h1>
+                  <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
+                </div>
               </Grid>
               <Grid item sm={6}>
                 <img src="/only pic-02.png" />
@@ -275,7 +277,7 @@ export default function Home() {
                 <div className="text">
                   <h1>How does Vidyartha work?</h1>
                   <p>The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.</p>
-                </div>                
+                </div>
           </div>
         </Slider>
       </div>
@@ -287,7 +289,7 @@ export default function Home() {
           <Timeline>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot><img src="/icon-1.svg" alt="icon one" /></TimelineDot>
+                <TimelineDot><img className="step-icon" src="/icon-1.svg" alt="icon one" /></TimelineDot>
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent className="content">
@@ -297,7 +299,7 @@ export default function Home() {
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator className="icon-2">
-                <TimelineDot><img src="/icon-2.svg" alt="icon two" /></TimelineDot>
+                <TimelineDot><img className="step-icon" src="/icon-2.svg" alt="icon two" /></TimelineDot>
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent className="content">
@@ -307,7 +309,7 @@ export default function Home() {
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot><img src="/icon-3.svg" alt="icon three" /></TimelineDot>
+                <TimelineDot><img className="step-icon" src="/icon-3.svg" alt="icon three" /></TimelineDot>
               </TimelineSeparator>
               <TimelineContent className="content">
                 <Typography className="time-head">Click on donate</Typography>
@@ -425,14 +427,20 @@ export default function Home() {
 
       <footer className="foot-wrap">
       <Grid container>
-        <Grid item xs={12} sm={3}>
-          <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
+        <Grid item xs={12} sm={2}>
+          <p>Terms & Conditions</p>
         </Grid>
-        <Grid item xs={12} sm={3}>
-          <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
+        <Grid item xs={12} sm={2}>
+          <p>Privacy Policy</p>
         </Grid>
-        <Grid item xs={12} sm={3}>
-          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
+        <Grid item xs={12} sm={2}>
+          <p>Return Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Shipping Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Contact Us</p>
         </Grid>
       </Grid>
     </footer>

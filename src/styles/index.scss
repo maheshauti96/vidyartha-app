@@ -50,6 +50,7 @@ body {
         padding-bottom: 10%;
 
         @media (max-width: 596px) {
+            padding-top: 30%;
             width: 100%;
             margin: 0%;
         }
@@ -59,15 +60,17 @@ body {
             margin-right: 0px;
             margin-top: 0px;
             text-align: center;
-            font: normal normal bold 48px/70px PT Sans Pro;
+            font: normal normal bold 36px/70px PT Sans Pro;
             letter-spacing: 0px;
             color: #FFFFFF;
+            line-height: 2ch;
             // @media (max-width: 1176px) {
             //     padding-top: 140px;
             // }
             @media (max-width: 596px) {
+                // padding-top: 50px;
                 font: normal normal bold 36px PT Sans Pro;
-                color: #FFFFFF;
+                color: #144B5E;
             
             }
         }
@@ -220,6 +223,7 @@ body {
 
         @media (max-width: 600px) {
             width: 100%;
+            min-width: 0px;
         }
     }
 
@@ -238,59 +242,88 @@ body {
 
     img {
         width: 100%;
+        // height: 180px;
+        @media (max-width:600)
+        {
+            width: 100%;
+        }
+   
     }
     .slide1 {
         position: relative;
         
         background-image: linear-gradient(to bottom right, #FFFFFF, #8cbdb3);
         // background: url('/Carosel-01.png') 0% 0% no-repeat padding-box;
-        
+        img {
+            @media (max-width: 600px) {
+                height: 180px;
+            }
+        }
         .text {
-            width: 50%;
+            width: 70%;
             position: absolute;
-            left: 5%;
-            top: 5%;
+            left: 1%;
+            top: -15px;
             font: normal normal normal 24px/31px PT Sans Pro;
 
             @media (max-width: 1200px) {
                 font-size: 16px;
             }
             @media (max-width: 600px) {
-                font-size: 12px;
-                width: 90%;
+               
+                h1{
+                    font-size: 12px;
+                    width: 100%;
+                }
+                p{ font-size: 10px;
+                width: 95%;
                 height: 100%;
                 overflow: hidden;
+          line-height: 2ch;
+          position: relative;
+          top: -12px;
+              }
+               
             }
         }
     }
-    @media (max-width: 600px) {
-        p {
-            width: 58%;
-            font-size: 12px ;
-        }
-    }
-
     .slide2 {
         position: relative;
 
         background-image: linear-gradient(to bottom right, #FFFFFF, #8cbdb3);
         // background: url('/Carosel-02.png') 0% 0% no-repeat padding-box;
-        
+        img {
+            @media (max-width: 600px) {
+                height: 180px;
+            }
+        }
+
         .text {
-            width: 50%;
+            width: 90%;
             position: absolute;
-            left: 5%;
-            top: 5%;
+            left: 2%;
+            top: 2%;
             font: normal normal normal 24px/31px PT Sans Pro;
 
             @media (max-width: 1200px) {
                 font-size: 16px;
             }
             @media (max-width: 600px) {
-                font-size: 12px;
-                width: 80%;
+                h1{
+                    font-size: 12px;
+                    width: 100%;
+                }
+                p{ font-size: 10px;
+                width: 70%;
                 height: 100%;
                 overflow: hidden;
+          line-height: 2ch;
+          position: relative;
+          top: -15px;
+              }
+               
+
+
             }
         }
     }
@@ -345,14 +378,62 @@ body {
         }
     }
 
+    @media (max-width: 600px) {
+        margin: 0px 10px;
+
+    h4 {
+        text-align: center;
+        font: normal normal bold 36px/70px PT Sans Pro;
+        letter-spacing: 0px;
+        color: #144B5E;
+        opacity: 1;
+    }
+
+    .time-wrap {
+        margin: 0px 10px;
+        .step-icon {
+            width: 80px;
+        }
+
+        .MuiTimelineDot-root {
+            box-shadow: none;
+            background: none;
+        }
+        .icon-2 {
+            margin-left: 0px;
+        }
+        .content {
+            padding-top: 5%;
+            padding-left: 5%;
+            margin-bottom: 10%;
+        }
+        .time-head {
+            text-align: left;
+            font: normal normal bold 20px/31px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #144B5E;
+        }
+        .time-body {
+            text-align: left;
+            font: normal normal normal 12px/20px PT Sans Pro;
+            letter-spacing: 0px;
+            color: #505050;
+        }
+        .MuiTimelineItem-missingOppositeContent:before {
+            content: none;
+        }
+    }
+    }
+
     .phone {
         img {
             margin: 15% 0 15% 10%;
             width: 70%;
             height: 70%;
 
-            @media (max-width: 596px) {
+            @media (max-width: 600px) {
                 width: 50%;
+                height: fit-content;
                 margin: 0 25%;
             }
         }
@@ -426,6 +507,10 @@ body {
             border: 2px solid #144B5E;
             border-radius: 15px;
             opacity: 1;
+
+            @media (max-width:600px){
+                width: 90%;
+            }
         }
 
         .id2 {
@@ -435,6 +520,11 @@ body {
             border: 2px solid #144B5E;
             border-radius: 15px;
             opacity: 1;
+
+            @media (max-width:600px){
+                width: 90%;
+            }
+        
         }
 
         .btn1 {
@@ -452,13 +542,16 @@ body {
                 color: #FFFFFF;
                 opacity: 1;
             }
+            @media (max-width:600px){
+                width: 60%;
+            }
         }
     }
 }
 
 .foot-wrap {
     margin-top: 5%;
-    padding-left: 20%;
+    // padding-left: 20%;
     background: #C8D5DA 0% 0% no-repeat padding-box;
 
     p {
