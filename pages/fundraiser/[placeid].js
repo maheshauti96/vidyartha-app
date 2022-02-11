@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
-import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../../src/components/RazorpayPayment";
@@ -26,13 +25,12 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from 'next/link';
 import PlaceSearch from '../../src/components/PlaceSearch';
+import Popup from "../popup";
 
 
 export default function FundraiserPlace() {
-    const httpClient = useFetch(BASE_API_URL);
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
     console.log('getValues', getValues());
-    const { get, post, response, loading, error } = httpClient;
     const router = useRouter()
     const [schoolInfo, setSchoolInfo] = useState({
         schoolInfo: {
@@ -54,10 +52,14 @@ export default function FundraiserPlace() {
     const [topDonors, setTopDonors] = useState([]);
     const [schoolName, setSchoolName] = useState("")
     const [schoolId, setSchoolId] = useState(placeid);
+    const [loading, setLoading] = useState(true);
+    const [showPopup, setShowPopup] = useState(true);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
         const pyrmont = new google.maps.LatLng(7.798, 68.14712);
+        
+        setLoading(true);
 
         try {
             const request = {
@@ -77,10 +79,11 @@ export default function FundraiserPlace() {
                     console.log('place-->', place);
                     setSchoolName(place.name);
                 }
-
+                setLoading(false);
             });
         } catch (error) {
             console.log('fetchSchoolDetails failed', error);
+            setLoading(false);
         }
     }
 
@@ -120,8 +123,13 @@ export default function FundraiserPlace() {
         }
     }
 
+    const handlePopupClose = () => {
+        setShowPopup(false)
+    }
+
     useEffect(() => {
         setHref(window.location.href);
+        localStorage.getItem("visited") ? setShowPopup(false) : setShowPopup(true);
     }, [])
 
     useEffect(() => {
@@ -171,6 +179,11 @@ export default function FundraiserPlace() {
             <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
             <meta property="og:image" content="/banner-bg-original.png" />
         </Head>
+
+        {
+            showPopup && <Popup handleClose={handlePopupClose} />
+        }
+
         <main>
             <div className="position-relative">
                 <div className="inp-wrap">
@@ -258,11 +271,11 @@ export default function FundraiserPlace() {
                                         variant="outlined"
                                     />
                                 </div>
+
                                 <RazorpayPayment
                                     name={name}
                                     email={email}
                                     amount={amount}
-                                    httpClient={httpClient}
                                     placeId={schoolId}
                                 ></RazorpayPayment>
                             </div>
@@ -423,13 +436,13 @@ export default function FundraiserPlace() {
         <footer className="foot-wrap">
             <Grid container>
                 <Grid item xs={12} sm={3}>
-                    <p>Terms & Conditions</p>
+                    <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                    <p>Privacy Policy</p>
+                    <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                    <p>Return Policy</p>
+                    <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
                 </Grid>
             </Grid>
         </footer>

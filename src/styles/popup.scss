@@ -70,6 +70,8 @@
 // }
 
 .main {
+    position: fixed;
+    z-index: 9999;
     margin: 0 33px;
     padding: 2% 5% 0.5% 5%;
     background: rgb(2,0,36);
