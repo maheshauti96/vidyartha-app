@@ -1,5 +1,7 @@
 import {useState} from "react"
 import { Box, Button, Typography, Modal } from "@material-ui/core";
+import Close from "@material-ui/icons/Close";
+
 
 const style = {
   position: 'absolute',
@@ -15,10 +17,20 @@ const style = {
 
 };
 
-export default function BasicModal({open, setOpen}) {
-  // const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const closeStyle = {
+  position: "absolute",
+  top: "1rem",
+  right: "1rem",
+  color: "white",
+  fontSize: "2rem",
+  cursor: "pointer"
+}
+
+export default function Popup({open, handlePopupClose}) {
+  
+  const handleClose = () => {
+    handlePopupClose();
+  };
 
   return (
     <div>
@@ -40,9 +52,7 @@ export default function BasicModal({open, setOpen}) {
                     Reading spiritual books helps in developing personality, builds self
                     esteem, increases moral values, concentration, knowledge and peace
                 </p>
-                <Button className="btn1" variant="contained" onClick={handleClose}>
-                    <p>Close</p>
-                </Button>
+                
                 <div className="image">
                     <img className="center-align image" src="/book and bg-01.png"></img>
                 </div>
@@ -51,6 +61,8 @@ export default function BasicModal({open, setOpen}) {
             <div className="logo">
                 <img src="/logo-white.png"></img>
             </div>
+
+            <Close style={closeStyle}  onClick={handleClose}></Close>
         </div>
 
         </Box>
