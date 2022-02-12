@@ -417,22 +417,23 @@ export default function Home() {
 
       <footer className="foot-wrap">
       <Grid container>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={2}>
             <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={2}>
            <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
         </Grid>
-<<<<<<< HEAD
         <Grid item xs={12} sm={2}>
           <p>About Us</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>Contact Us</p>
-=======
-        <Grid item xs={12} sm={3}>
+        </Grid>
+        <Grid item xs={12} sm={2}>
           <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
->>>>>>> 2c448423ce47d452a91030913b79137b1538f49f
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Shipping Policy</p>
         </Grid>
       </Grid>
     </footer>
