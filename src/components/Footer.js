@@ -17,10 +17,10 @@ export default function Footer() {
         <p><Link href="/Shippingpolicy"><span style={{cursor:"pointer"}}>Shipping policy </span></Link></p>
       </Grid>
       <Grid item xs={12} sm={2}>
-      <p><Link href="/aboutus"><span style={{cursor:"pointer"}}>About Us</span></Link></p>
+      <p><Link href="/about-us"><span style={{cursor:"pointer"}}>About Us</span></Link></p>
       </Grid>
       <Grid item xs={12} sm={2}>
-      <p><Link href="/contactus"><span style={{cursor:"pointer"}}>Contact Us</span></Link></p>
+      <p><Link href="/contact-us"><span style={{cursor:"pointer"}}>Contact Us</span></Link></p>
       </Grid>
 
     </Grid>
