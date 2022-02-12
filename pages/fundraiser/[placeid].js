@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Head from 'next/head';
-import Link from "next/link";
 import _ from 'lodash';
 import { useRouter } from 'next/router'
 import { useFetch } from "use-http";
@@ -9,9 +8,8 @@ import { useForm } from 'react-hook-form';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
-import { BASE_API_URL } from "../../src/constants/api";
 import { Skeleton } from "@material-ui/lab";
-import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
+import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField} from "@material-ui/core";
 import RazorpayPayment from "../../src/components/RazorpayPayment";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -20,15 +18,21 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import PlaceSearch from "../../src/components/PlaceSearch";
-
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Link from 'next/link';
+import PlaceSearch from '../../src/components/PlaceSearch';
+import Popup from "../../src/components/Popup";
+import SendIcon from "@material-ui/icons/Search";
+import Footer from "../../src/components/Footer";
 
 
 export default function FundraiserPlace() {
-    const httpClient = useFetch(BASE_API_URL);
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
     console.log('getValues', getValues());
-    const { get, post, response, loading, error } = httpClient;
     const router = useRouter()
     const [schoolInfo, setSchoolInfo] = useState({
         schoolInfo: {
@@ -36,7 +40,7 @@ export default function FundraiserPlace() {
             id: '',
         }
     });
-    const { placeid } = router.query;
+    let { placeid } = router.query;
     console.log('placeid', placeid);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -49,11 +53,16 @@ export default function FundraiserPlace() {
     const [openDialog, setOpenDialog] = React.useState(false);
     const [topDonors, setTopDonors] = useState([]);
     const [schoolName, setSchoolName] = useState("")
+    const [schoolAdress, setSchoolAddress] = useState("");
     const [schoolId, setSchoolId] = useState(placeid);
+    const [loading, setLoading] = useState(true);
+    const [showPopup, setShowPopup] = useState(true);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
         const pyrmont = new google.maps.LatLng(7.798, 68.14712);
+        
+        setLoading(true);
 
         try {
             const request = {
@@ -72,11 +81,13 @@ export default function FundraiserPlace() {
                     setPlaceInfo(place);
                     console.log('place-->', place);
                     setSchoolName(place.name);
+                    setSchoolAddress([place.formatted_address]);
                 }
-
+                setLoading(false);
             });
         } catch (error) {
             console.log('fetchSchoolDetails failed', error);
+            setLoading(false);
         }
     }
 
@@ -116,8 +127,14 @@ export default function FundraiserPlace() {
         }
     }
 
+    const handlePopupClose = () => {
+        setShowPopup(false)
+        localStorage.setItem("visited", "true")
+    }
+
     useEffect(() => {
         setHref(window.location.href);
+        localStorage.getItem("visited") ? setShowPopup(false) : setShowPopup(true);
     }, [])
 
     useEffect(() => {
@@ -162,21 +179,33 @@ export default function FundraiserPlace() {
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             <meta property="title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
             <meta name="description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
-            <meta property="image" content="/banner-bg-original.png" />
+            <meta property="image" content={schoolInfo.placeImage} />
             <meta property="og:title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
             <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
-            <meta property="og:image" content="/banner-bg-original.png" />
+            <meta property="og:image" content={schoolInfo.placeImage} />
         </Head>
+
+        {
+            showPopup && <Popup  open={showPopup} setOpen={setShowPopup} handlePopupClose={handlePopupClose} />
+        }
+
         <main>
-            <div className="center-align position-relative">
-                <div className="position-absolute inp-wrap">
-                    {/* <TextField className="inp" label="Location" variant="outlined" />
-                        <TextField className="inp" label="School" variant="outlined" /> */}
-                    {/* <PlaceSearch setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
-                </div>
-                <header>
+            <div className="position-relative inp-wrap">
+                {/* <div className="position-absolute">
+                    <TextField className="inp" label="Location" variant="outlined" />
+                    <TextField className="inp" label="School" variant="outlined" />
+                    <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
+                </div> */}
+                <header style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center", "padding": "0 1rem"}}>
+                    <Link href="/"><img className="logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer", margin: "0" }} /></Link>
+                    <Button variant="outlined" 
+                            startIcon={<SendIcon/>} 
+                            className = "search-btn"
+                            onClick={() => router.push("/")}
+                    >
+                        Search school
+                    </Button>
                 </header>
-                <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
@@ -194,6 +223,7 @@ export default function FundraiserPlace() {
                     : <Grid container spacing={4}>
                         <Grid item xs={12} sm={7} className="school-info-wrap">
                             <h2>{schoolName}</h2>
+                            <p style={{"fontSize": "1.1rem", "color": "#4B5563"}}>{schoolAdress}</p>
                             <img
                                 src={schoolInfo.placeImage}
                                 // src="https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAap_uEASRoEMZI9AimR0SHJsNyn8z08ox9ahWwly9NsFCuK4wKMsG0an-_O2q-AC7gjkvKJuUv1VtBoEFqbqTKzvfoOHY--FG1u2Nnk2OncxMvL-_1__CWLvYGyRcdfMP49EsOlAWwfTmOD_xXHwooLeK4HYpuMC8f3EJCKv5UlYiAgOK95r&3u800&5m1&2e1&callback=none&key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&token=109081"
@@ -254,28 +284,38 @@ export default function FundraiserPlace() {
                                         variant="outlined"
                                     />
                                 </div>
+
                                 <RazorpayPayment
                                     name={name}
                                     email={email}
                                     amount={amount}
-                                    httpClient={httpClient}
                                     placeId={schoolId}
                                 ></RazorpayPayment>
                             </div>
                             <h4 className="sub-text">Share and Support this campaign</h4>
-                            <div className="social-share-icons">
+                            <div className="social-share-icons share-wrap">
                                 <ShareIcon
                                     onClick={() => {
                                         copyUrlToClipboard(href)
                                         alert('link is copied!');
                                     }}
                                 />
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
-                                    <FacebookIcon />
-                                </a>
 
                                 <a href={`whatsapp://send?text=Help me to Support this campaign ${href}`} data-action="share/whatsapp/share">
-                                    <WhatsAppIcon className="whatsapp-icon" />
+                                    <img src="/whatsapp.png" alt="whatsapp" />
+                                </a>
+
+                                <a href={`instagram://send?text=Help me to Support this campaign ${href}`}
+                                data-action="share/instagram/share">
+                                    <img src="/instagram.png" alt="instagram" />
+                                </a>                                
+
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
+                                    <img src="/facebook.png" alt="facebook" />
+                                </a>
+
+                                <a href={`https://www.twitter.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
+                                    <img src="/twitter.png" alt="twitter" />
                                 </a>
                             </div>
 
@@ -298,11 +338,36 @@ export default function FundraiserPlace() {
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={7} className="about-wrap">
                         <div className="about">
-                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
+                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
                         </div>
                     </Grid>
 
                     {
+                        (topDonors.length > 0) && (
+                    <Grid item xs={12} sm={5}>
+                        <TableContainer component={Paper}>
+                            <Table className="table-wrap" aria-label="simple table">
+                                <TableHead className="thead">
+                                    <TableRow className="tr">
+                                        <TableCell className="th" align="center">Top Donors</TableCell>
+                                        <TableCell className="th" align="center">Amount</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody className="tbody">
+                                {
+                                    topDonors.map(donor => 
+                                        <TableRow className="tr" key={donor.name}>
+                                            <TableCell className="td" align="left">{donor.name}</TableCell>
+                                            <TableCell className="td" align="left">{parseInt(Number(donor.amount) / 100)}</TableCell>
+                                            </TableRow>
+                                        )
+                                }
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                    )}
+                    {/* {
                         (topDonors.length > 0) && (<Grid item xs={12} sm={5}>
                             <TableContainer component={Paper}>
                                 <Table className="table-wrap" aria-label="simple table">
@@ -325,21 +390,88 @@ export default function FundraiserPlace() {
                                 </Table>
                             </TableContainer>
                         </Grid>)
-                    }
+                    } */}
                 </Grid>
             </div>
             <div style={{ visibility: 'hidden' }} id="map"></div>
 
         </main>
 
-        <footer>
-            <div className="foot-wrap center-align">
-                <p>
-                    <Link href="/terms"><span style={{ cursor: "pointer" }}>Terms & Conditions</span></Link>
-                    <Link href="/privacypolicy"><span style={{ cursor: "pointer" }}>Privacy Policy</span></Link>
-                    <Link href="/returnpolicy"><span style={{ cursor: "pointer" }}>Return Policy</span></Link>
-                </p>
-            </div>
-        </footer>
+        <div className="ques-wrap">
+        <h4>FAQ</h4>
+        <Accordion>
+          <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+            <Typography className="accor">1. What is the purpose of Vidyartha?</Typography>
+          </AccordionSummary>
+          <AccordionDetails className="acc-det">
+            <Typography className="acc-par">
+              The purpose of the Vidyartha is to make spiritual wisdom literature available in the school libraries. Children need a stronng foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all these needs can be effectively fulfilled by spiritual literature. They also instill within us healthy pride about our own native culture and heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+            <Typography className="accor">2. How does Vidyartha work?</Typography>
+          </AccordionSummary>
+          <AccordionDetails className="acc-det">
+            <Typography className="acc-par">
+            The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">3. What books will be gifted to the school?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          Spiritual books like Ramayana, Mahabharata, Sriman Bhagavatam, and Bhagavad Gita will be gifted to the schools.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">4. What if you can not complete your targeted amount?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          After the set target date whatever amount is collected worth those amount of books will be gifted to the school.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">5. What if the school refuses to accept the books?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          If some school has any concerns we shall try our best to address those concerns, if still, any particular school is not willing to take the books then they will be given to some other interested school.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+      </div>
+
+    <Footer />
+       
     </div>)
 }

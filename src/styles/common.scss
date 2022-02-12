@@ -34,3 +34,26 @@
 .position-absolute {
     position: absolute !important;
 }
+
+.h-100 {
+    min-height: 100vh;
+}
+
+.ab {
+    position: relative;
+    top: 200px;
+    @media (max-width: 600px) {
+        position: relative;
+        top: 0px;
+    }
+}
+
+.ft {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    @media (max-width: 600px) {
+        position: relative;
+        top: 60px;
+    }
+} 
