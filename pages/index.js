@@ -229,6 +229,7 @@ export default function Home() {
               onClick={() => {
                 console.error(finalPlace)
                 if (finalPlace) {
+                  localStorage.setItem("visited", true);
                   router.push(`/fundraiser/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
                 } else {
                   alert('Please Select the school')
@@ -428,20 +429,14 @@ export default function Home() {
 
       <footer className="foot-wrap">
       <Grid container>
-        <Grid item xs={12} sm={2}>
-          <p>Terms & Conditions</p>
+        <Grid item xs={12} sm={3}>
+            <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
         </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Privacy Policy</p>
+        <Grid item xs={12} sm={3}>
+           <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
         </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Return Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Contact Us</p>
+        <Grid item xs={12} sm={3}>
+          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
         </Grid>
       </Grid>
     </footer>
