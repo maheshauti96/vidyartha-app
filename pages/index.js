@@ -229,6 +229,7 @@ export default function Home() {
               onClick={() => {
                 console.error(finalPlace)
                 if (finalPlace) {
+                  localStorage.setItem("visited", true);
                   router.push(`/fundraiser/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
                 } else {
                   alert('Please Select the school')
