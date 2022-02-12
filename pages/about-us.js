@@ -7,7 +7,7 @@ import Footer from "../src/components/Footer";
 export default function Contact() {
 
     return (<div>
-        <div className="container text-center">
+        <div className="public-wrap container text-center">
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="#">
                 {/* <img > </img> */}
