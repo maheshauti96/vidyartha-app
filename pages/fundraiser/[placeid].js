@@ -177,10 +177,10 @@ export default function FundraiserPlace() {
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             <meta property="title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
             <meta name="description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
-            <meta property="image" content="/banner-bg-original.png" />
+            <meta property="image" content={schoolInfo.placeImage} />
             <meta property="og:title" content="Vidyartha | Help Us To Donate Books For Your School!" key="title" />
             <meta name="og:description" content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically." />
-            <meta property="og:image" content="/banner-bg-original.png" />
+            <meta property="og:image" content={schoolInfo.placeImage} />
         </Head>
 
         {
