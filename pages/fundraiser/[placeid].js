@@ -9,7 +9,7 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
 import { Skeleton } from "@material-ui/lab";
-import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField } from "@material-ui/core";
+import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField} from "@material-ui/core";
 import RazorpayPayment from "../../src/components/RazorpayPayment";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -25,7 +25,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from 'next/link';
 import PlaceSearch from '../../src/components/PlaceSearch';
-import Popup from "../popup";
+import Popup from "../../src/components/Popup";
+import SendIcon from "@material-ui/icons/Send";
 
 
 export default function FundraiserPlace() {
@@ -181,19 +182,26 @@ export default function FundraiserPlace() {
         </Head>
 
         {
-            showPopup && <Popup handleClose={handlePopupClose} />
+            showPopup && <Popup  open={showPopup} setOpen={setShowPopup} />
         }
 
         <main>
             <div className="position-relative inp-wrap">
-                <div className="position-absolute">
-                    {/* <TextField className="inp" label="Location" variant="outlined" />
-                    <TextField className="inp" label="School" variant="outlined" /> */}
-                    {/* <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch> */}
-                </div>
-                <header>
+                {/* <div className="position-absolute">
+                    <TextField className="inp" label="Location" variant="outlined" />
+                    <TextField className="inp" label="School" variant="outlined" />
+                    <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
+                </div> */}
+                <header style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center", "padding": "0 1rem"}}>
+                    <Link href="/"><img className="logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
+                    <Button variant="contained" 
+                            endIcon={<SendIcon/>} 
+                            style={{"background": "#144B5E", "color": "white"}}
+                            onClick={() => router.push("/")}
+                    >
+                        Donate For Other School
+                    </Button>
                 </header>
-                <Link href="/"><img className="position-absolute logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
             </div>
             <div className="fundraiser-section center-align">
                 {loading ?
@@ -329,6 +337,8 @@ export default function FundraiserPlace() {
                         </div>
                     </Grid>
 
+                    {
+                        (topDonors.length > 0) && (
                     <Grid item xs={12} sm={5}>
                         <TableContainer component={Paper}>
                             <Table className="table-wrap" aria-label="simple table">
@@ -339,30 +349,19 @@ export default function FundraiserPlace() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody className="tbody">
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
-                                    <TableRow className="tr">
-                                        <TableCell className="td" align="left">Name</TableCell>
-                                        <TableCell className="td" align="left">Amount</TableCell>
-                                    </TableRow>
+                                {
+                                    topDonors.map(donor => 
+                                        <TableRow className="tr" key={donor.name}>
+                                            <TableCell className="td" align="left">{donor.name}</TableCell>
+                                            <TableCell className="td" align="left">{parseInt(Number(donor.amount) / 100)}</TableCell>
+                                            </TableRow>
+                                        )
+                                }
                                 </TableBody>
                             </Table>
                         </TableContainer>
                     </Grid>
+                    )}
                     {/* {
                         (topDonors.length > 0) && (<Grid item xs={12} sm={5}>
                             <TableContainer component={Paper}>
