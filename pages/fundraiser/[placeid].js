@@ -40,7 +40,7 @@ export default function FundraiserPlace() {
             id: '',
         }
     });
-    let { placeid } = router.query;
+    let placeid = router.query.placeid;
     console.log('placeid', placeid);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
