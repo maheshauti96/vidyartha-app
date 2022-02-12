@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Grid } from "@material-ui/core";
 import { useEffect } from 'react';
+import Footer from '../src/components/Footer';
 
 const PrivacyPolicy = () => {
     return (
@@ -11,19 +12,8 @@ const PrivacyPolicy = () => {
 
             </div>
             
-            <footer className="foot-wrap">
-              <Grid container>
-                <Grid item xs={12} sm={3}>
-                    <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                    <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                    <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
-                </Grid>
-              </Grid>
-            </footer>
+    <Footer />
+            
         </div>
     )
 }

@@ -25,6 +25,7 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from '../src/components/Footer';
 
 export default function Home() {
 
@@ -415,29 +416,8 @@ export default function Home() {
 
       <Form ></Form>
 
-      <footer className="foot-wrap">
-      <Grid container>
-        <Grid item xs={12} sm={3}>
-            <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-           <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <p><Link href="/Shippingpolicy"><span style={{cursor:"pointer"}}>Shipping policy </span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-        <p><Link href="/aboutus"><span style={{cursor:"pointer"}}>About Us</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-        <p><Link href="/contactus"><span style={{cursor:"pointer"}}>Contact Us</span></Link></p>
-        </Grid>
-
-      </Grid>
-    </footer>
+    <Footer />
+      
     </div>
   )
 }
