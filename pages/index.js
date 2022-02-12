@@ -4,6 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import Image from 'next/image';
 import Link from "next/link";
 import { useState, useRef, useEffect } from 'react';
+import Form from './../src/components/Form'
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { get, debounce } from 'lodash';
 import { ArrowForwardIos } from '@material-ui/icons';
@@ -227,8 +228,10 @@ export default function Home() {
             <Button
               className="primary-button"
               onClick={() => {
+                console.error(finalPlace)
                 if (finalPlace) {
-                  router.push(`/fundraiser/${finalPlace.place_id}`);
+                  localStorage.setItem("visited", true);
+                  router.push(`/fundraiser/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
                 } else {
                   alert('Please Select the school')
                 }
@@ -410,40 +413,26 @@ export default function Home() {
         </Accordion>
       </div>
 
-      <div className="cont-wrap">
-      <h4>Contact Us</h4>
-      <div className="form1-wrap">
-        <TextField className="id1" label="Name" variant="outlined" />
-        <br />
-        <TextField className="id1" label="Email" variant="outlined" />
-        <br />
-        <TextField className="id2" label="Feedback" placeholder="Placeholder" multiline rows={10} variant="outlined" />
-        <br />
-        <Button className="btn1" variant="contained">
-          <p>Submit</p>
-        </Button>
-      </div>
-      </div>
+      <Form ></Form>
 
       <footer className="foot-wrap">
       <Grid container>
-        <Grid item xs={12} sm={2}>
-          <p>Terms & Conditions</p>
+        <Grid item xs={12} sm={3}>
+            <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
         </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Privacy Policy</p>
+        <Grid item xs={12} sm={3}>
+           <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
         </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Return Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
-        </Grid>
+<<<<<<< HEAD
         <Grid item xs={12} sm={2}>
           <p>About Us</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>Contact Us</p>
+=======
+        <Grid item xs={12} sm={3}>
+          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
+>>>>>>> 2c448423ce47d452a91030913b79137b1538f49f
         </Grid>
       </Grid>
     </footer>

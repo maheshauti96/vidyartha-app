@@ -70,23 +70,26 @@
 // }
 
 .main {
-    position: fixed;
-    z-index: 9999;
-    margin: 0 33px;
+    // position: fixed;
+    // z-index: 9999;
+    // margin: 0 33px;
+    position: relative;
+    max-width: 750px;
+    margin: auto;
     padding: 2% 5% 0.5% 5%;
     background: rgb(2,0,36);
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(35,59,125,1) 100%, rgba(0,212,255,1) 100%);
     .head {
         margin: 0px 0px;
         color: #FFFFFF;
-        font-size: 80px;
+        font-size: 3rem;
         font-weight: 800;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
     .sub-head {
         margin: 0px 0px;
         color: #FFFFFF; 
-        font-size: 28px;
+        font-size: 2rem;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
     p {
@@ -94,6 +97,7 @@
         font-size: 18px;
         font-weight: 252;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        line-height: 1.5;
     }
     .btn1 {
         background-color: gray;
@@ -109,5 +113,21 @@
     }
     .logo {
         text-align: right;
+    }
+
+    @media (max-width: 600px) { 
+        max-width: 90%;
+
+        .head { 
+            font-size: 2rem;
+        }
+
+        .sub-head { 
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
     }
 }
