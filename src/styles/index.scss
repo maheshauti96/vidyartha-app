@@ -235,11 +235,12 @@ body {
 
     }
 }
-
+.public-wrap {
+    min-height: 878px;
+}
 .item {
     margin-left: 33px;
     margin-right: 33px;
-    margin-top: -200px;
 
     img {
         width: 100%;
@@ -538,7 +539,7 @@ body {
 
         .btn1 {
             width: 20%;
-            padding: 0 0;
+            padding: 0.5rem 0;
             background: #144B5E 0% 0% no-repeat padding-box;
             border-radius: 11px;
             opacity: 1;

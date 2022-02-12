@@ -25,6 +25,7 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from '../src/components/Footer';
 
 export default function Home() {
 
@@ -437,6 +438,7 @@ export default function Home() {
         </Grid>
       </Grid>
     </footer>
+    {/* <Footer /> */}
     </div>
   )
 }

@@ -20,9 +20,7 @@
     "react-slick": "^0.28.1",
     "sass": "^1.45.1",
     "slick-carousel": "^1.8.1",
-    "use-http": "^1.0.26"
-  },
-  "devDependencies": {
+    "use-http": "^1.0.26",
     "font-awesome": "^4.7.0"
   }
 }

@@ -2,11 +2,12 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Footer from "../src/components/Footer";
 
 export default function Contact() {
 
     return (<div>
-        <div className="container text-center ab">
+        <div className="public-wrap container ab text-center">
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="#">
                 {/* <img > </img> */}
@@ -21,25 +22,26 @@ export default function Contact() {
             Helping humanity unwind themselves from their difficulties & ease up is our main goal through awakening the level of consciousness. Our Founder-Acharya: His Divine Grace A. C. Bhaktivedanta Swami Prabhupada, has bought down the age old science, culture & tradition just suited to the modern era. We pray for your deeper understanding of the subjects of your own true self.</p>
 
     </div>
+    {/* <Footer /> */}
     <footer className="foot-wrap ft">
       <Grid container>
         <Grid item xs={12} sm={2}>
-          <p>Terms & Conditions</p>
+            <p>Terms & Conditions</p>
         </Grid>
         <Grid item xs={12} sm={2}>
-          <p>Privacy Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Return Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
+           <p>Privacy Policy</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>About Us</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>Contact Us</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Return Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Shipping Policy</p>
         </Grid>
       </Grid>
     </footer>

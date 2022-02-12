@@ -2,6 +2,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/font-awesome/css/font-awesome.min.css"
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Footer from "../src/components/Footer";
 
 export default function Shipping() {
 
@@ -101,25 +102,26 @@ export default function Shipping() {
 
         </div>
         </div>
+        {/* <Footer /> */}
     <footer className="foot-wrap">
       <Grid container>
         <Grid item xs={12} sm={2}>
-          <p>Terms & Conditions</p>
+            <p>Terms & Conditions</p>
         </Grid>
         <Grid item xs={12} sm={2}>
-          <p>Privacy Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Return Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
+           <p>Privacy Policy</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>About Us</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>Contact Us</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Return Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Shipping Policy</p>
         </Grid>
       </Grid>
     </footer>

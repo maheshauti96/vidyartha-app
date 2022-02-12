@@ -27,6 +27,7 @@ import Link from 'next/link';
 import PlaceSearch from '../../src/components/PlaceSearch';
 import Popup from "../../src/components/Popup";
 import SendIcon from "@material-ui/icons/Search";
+import Footer from "../../src/components/Footer";
 
 
 export default function FundraiserPlace() {
@@ -39,7 +40,7 @@ export default function FundraiserPlace() {
             id: '',
         }
     });
-    const { placeid } = router.query;
+    let { placeid } = router.query;
     console.log('placeid', placeid);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -337,7 +338,8 @@ export default function FundraiserPlace() {
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={7} className="about-wrap">
                         <div className="about">
-                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
+                            <p>Vidyartha aims to distribute spiritual and inspirational books to school libraries through respective alumnus of the school. You can contribute your choice amount on this platform to gift amazing books of wisdom to your own school or college library. 
+                            You can also share the link to associated alumnus of the schools.  As soon as we raise funds upto the targeted amount, the books would be courired to your school.</p>
                         </div>
                     </Grid>
 
@@ -469,28 +471,28 @@ export default function FundraiserPlace() {
         </AccordionDetails>
         </Accordion>
       </div>
-
-        <footer className="foot-wrap">
-            <Grid container>
-                <Grid item xs={12} sm={2}>
-                    <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <p>About Us</p>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <p>Contact Us</p>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
-                </Grid>
-                <Grid item xs={12} sm={2}>
-                    <p>Shipping Policy</p>
-                </Grid>
-            </Grid>
-        </footer>
+    <footer  className="foot-wrap">
+      <Grid container>
+        <Grid item xs={12} sm={2}>
+            <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+           <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>About Us</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Contact Us</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Shipping Policy</p>
+        </Grid>
+      </Grid>
+    </footer>
+    {/* <Footer /> */}
     </div>)
 }
