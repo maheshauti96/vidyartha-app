@@ -26,7 +26,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from 'next/link';
 import PlaceSearch from '../../src/components/PlaceSearch';
 import Popup from "../../src/components/Popup";
-import SendIcon from "@material-ui/icons/Send";
+import SendIcon from "@material-ui/icons/Search";
 
 
 export default function FundraiserPlace() {
@@ -128,6 +128,7 @@ export default function FundraiserPlace() {
 
     const handlePopupClose = () => {
         setShowPopup(false)
+        localStorage.setItem("visited", "true")
     }
 
     useEffect(() => {
@@ -184,7 +185,7 @@ export default function FundraiserPlace() {
         </Head>
 
         {
-            showPopup && <Popup  open={showPopup} setOpen={setShowPopup} />
+            showPopup && <Popup  open={showPopup} setOpen={setShowPopup} handlePopupClose={handlePopupClose} />
         }
 
         <main>
@@ -195,13 +196,13 @@ export default function FundraiserPlace() {
                     <PlaceSearch className="ps " setSchoolId={setSchoolId} setPlaceInfo={setPlaceInfo}></PlaceSearch>
                 </div> */}
                 <header style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center", "padding": "0 1rem"}}>
-                    <Link href="/"><img className="logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer" }} /></Link>
-                    <Button variant="contained" 
-                            endIcon={<SendIcon/>} 
-                            style={{"background": "#144B5E", "color": "white"}}
+                    <Link href="/"><img className="logo-image" height="104px" width="191px" src="/color-logo.webp" style={{ cursor: "pointer", margin: "0" }} /></Link>
+                    <Button variant="outlined" 
+                            startIcon={<SendIcon/>} 
+                            className = "search-btn"
                             onClick={() => router.push("/")}
                     >
-                        Donate For Other School
+                        Search school
                     </Button>
                 </header>
             </div>

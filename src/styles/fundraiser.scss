@@ -48,6 +48,21 @@
         }
     }
 
+    .search-btn {
+        text-transform: capitalize;
+        margin-right: 3rem;
+        color: #144B5E;
+        font-size: 1rem;
+        padding: 0.5rem 4rem;
+        border-radius: 5px;
+
+        @media (max-width: 768px) { 
+            padding: 0.25rem 1.5rem;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+    }
+
     .fundraiser-section {
         margin-left: 90px;
         margin-right: 90px;
