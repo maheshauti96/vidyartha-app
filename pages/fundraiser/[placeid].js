@@ -52,6 +52,7 @@ export default function FundraiserPlace() {
     const [openDialog, setOpenDialog] = React.useState(false);
     const [topDonors, setTopDonors] = useState([]);
     const [schoolName, setSchoolName] = useState("")
+    const [schoolAdress, setSchoolAddress] = useState("");
     const [schoolId, setSchoolId] = useState(placeid);
     const [loading, setLoading] = useState(true);
     const [showPopup, setShowPopup] = useState(true);
@@ -79,6 +80,7 @@ export default function FundraiserPlace() {
                     setPlaceInfo(place);
                     console.log('place-->', place);
                     setSchoolName(place.name);
+                    setSchoolAddress([place.formatted_address]);
                 }
                 setLoading(false);
             });
@@ -219,6 +221,7 @@ export default function FundraiserPlace() {
                     : <Grid container spacing={4}>
                         <Grid item xs={12} sm={7} className="school-info-wrap">
                             <h2>{schoolName}</h2>
+                            <p style={{"fontSize": "1.1rem", "color": "#4B5563"}}>{schoolAdress}</p>
                             <img
                                 src={schoolInfo.placeImage}
                                 // src="https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAap_uEASRoEMZI9AimR0SHJsNyn8z08ox9ahWwly9NsFCuK4wKMsG0an-_O2q-AC7gjkvKJuUv1VtBoEFqbqTKzvfoOHY--FG1u2Nnk2OncxMvL-_1__CWLvYGyRcdfMP49EsOlAWwfTmOD_xXHwooLeK4HYpuMC8f3EJCKv5UlYiAgOK95r&3u800&5m1&2e1&callback=none&key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&token=109081"
