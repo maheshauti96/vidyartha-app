@@ -227,8 +227,9 @@ export default function Home() {
             <Button
               className="primary-button"
               onClick={() => {
+                console.error(finalPlace)
                 if (finalPlace) {
-                  router.push(`/fundraiser/${finalPlace.place_id}`);
+                  router.push(`/fundraiser/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replace(" ", "-")}`);
                 } else {
                   alert('Please Select the school')
                 }
