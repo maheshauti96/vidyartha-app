@@ -242,7 +242,7 @@ export default function Home() {
       </main>
 
       <div className="item">
-        <Slider>
+        <Slider dots={true} autoplay={true} speed={2000}>
           <div className="slide1">
             {/* <Grid container spacing={4}>
               <Grid item sm={8}>
@@ -438,6 +438,9 @@ export default function Home() {
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>Shipping Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>About Us</p>
         </Grid>
         <Grid item xs={12} sm={2}>
           <p>Contact Us</p>

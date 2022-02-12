@@ -1,10 +1,13 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/font-awesome/css/font-awesome.min.css"
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 export default function Shipping() {
 
 
-    return (<div className="container text-center ">
+    return (<div>
+        <div className="container text-center ">
 
 
         <h1 className="display-3"><strong>Shipping Policies</strong></h1>
@@ -96,29 +99,30 @@ export default function Shipping() {
             <hr></hr>
 
 
-
-
         </div>
-
+        </div>
+    <footer className="foot-wrap">
+      <Grid container>
+        <Grid item xs={12} sm={2}>
+          <p>Terms & Conditions</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Privacy Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Return Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Shipping Policy</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>About Us</p>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <p>Contact Us</p>
+        </Grid>
+      </Grid>
+    </footer>
     </div >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     )
 };
