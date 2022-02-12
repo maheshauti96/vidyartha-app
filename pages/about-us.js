@@ -1,5 +1,5 @@
 
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Footer from "../src/components/Footer";

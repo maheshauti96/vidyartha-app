@@ -47,7 +47,7 @@ export default function Form() {
                 <TextField className="id1" label="Email" value={email} variant="outlined" onChange={(e) => {setEmail(e.target.value), setMessage("")}}
                 required />
                 <br />
-                <textarea className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" multiline rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
+                <textarea className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
                 required />
                 <br />
                 <Button className="btn1" variant="contained" type="submit" disabled={buttonLoader}>
