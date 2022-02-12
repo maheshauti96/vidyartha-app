@@ -426,6 +426,9 @@ export default function Home() {
         <Grid item xs={12} sm={3}>
           <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
         </Grid>
+        <Grid item xs={12} sm={3}>
+          <p><Link href="/Shippingpolicy"><span style={{cursor:"pointer"}}>Shipping policy </span></Link></p>
+        </Grid>
         <Grid item xs={12} sm={2}>
         <p><Link href="/aboutus"><span style={{cursor:"pointer"}}>About Us</span></Link></p>
         </Grid>
