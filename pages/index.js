@@ -4,6 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import Image from 'next/image';
 import Link from "next/link";
 import { useState, useRef, useEffect } from 'react';
+import Form from './../src/components/Form'
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { get, debounce } from 'lodash';
 import { ArrowForwardIos } from '@material-ui/icons';
@@ -411,20 +412,7 @@ export default function Home() {
         </Accordion>
       </div>
 
-      <div className="cont-wrap">
-      <h4>Contact Us</h4>
-      <div className="form1-wrap">
-        <TextField className="id1" label="Name" variant="outlined" />
-        <br />
-        <TextField className="id1" label="Email" variant="outlined" />
-        <br />
-        <TextField className="id2" label="Feedback" placeholder="Placeholder" multiline rows={10} variant="outlined" />
-        <br />
-        <Button className="btn1" variant="contained">
-          <p>Submit</p>
-        </Button>
-      </div>
-      </div>
+      <Form ></Form>
 
       <footer className="foot-wrap">
       <Grid container>
