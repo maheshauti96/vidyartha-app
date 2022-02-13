@@ -338,7 +338,8 @@ export default function FundraiserPlace() {
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={7} className="about-wrap">
                         <div className="about">
-                            <p>In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically.</p>
+                            <p>Vidyartha aims to distribute spiritual and inspirational books to school libraries through respective alumni of the school. You can contribute your choice amount on this platform to gift amazing books of wisdom to your own school or college library. 
+You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.</p>
                         </div>
                     </Grid>
 
