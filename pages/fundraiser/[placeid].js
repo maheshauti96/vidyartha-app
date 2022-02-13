@@ -339,7 +339,7 @@ export default function FundraiserPlace() {
                     <Grid item xs={12} sm={7} className="about-wrap">
                         <div className="about">
                             <p>Vidyartha aims to distribute spiritual and inspirational books to school libraries through respective alumni of the school. You can contribute your choice amount on this platform to gift amazing books of wisdom to your own school or college library. 
-                            You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.</p>
+                            You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.</p>
                         </div>
                     </Grid>
 
@@ -471,28 +471,6 @@ export default function FundraiserPlace() {
         </AccordionDetails>
         </Accordion>
       </div>
-    <footer  className="foot-wrap">
-      <Grid container>
-        <Grid item xs={12} sm={2}>
-            <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-           <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>About Us</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Contact Us</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
-        </Grid>
-      </Grid>
-    </footer>
-    {/* <Footer /> */}
+    <Footer />
     </div>)
 }

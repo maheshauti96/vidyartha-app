@@ -14,28 +14,6 @@ export default function Shipping() {
         <h3><strong>8262002275 or vidyartha@gmail.com</strong></h3>
     </div>
 
-    {/* <Footer /> */}
-    <footer className="foot-wrap ft">
-      <Grid container>
-        <Grid item xs={12} sm={2}>
-            <p>Terms & Conditions</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-           <p>Privacy Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>About Us</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Contact Us</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Return Policy</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
-        </Grid>
-      </Grid>
-    </footer>
+    <Footer />
     </div>)
 }

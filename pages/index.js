@@ -302,22 +302,22 @@ export default function Home() {
               </TimelineContent>
             </TimelineItem>
             <TimelineItem>
-              <TimelineSeparator className="icon-2">
-                <TimelineDot><img className="step-icon" src="/icon-2.svg" alt="icon two" /></TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent className="content">
-                <Typography className="time-head">Share with others</Typography>
-                <Typography className="time-body">Help us in spreading this campaign and encourage others to donate.</Typography>                
-              </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot><img className="step-icon" src="/icon-3.svg" alt="icon three" /></TimelineDot>
+                <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent className="content">
                 <Typography className="time-head">Click on donate</Typography>
                 <Typography className="time-body">Your donations will safely reach to us and once completed, we will donate books to the school.</Typography>                
+              </TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator className="icon-2">
+                <TimelineDot><img className="step-icon" src="/icon-2.svg" alt="icon two" /></TimelineDot>
+              </TimelineSeparator>
+              <TimelineContent className="content">
+                <Typography className="time-head">Share with others</Typography>
+                <Typography className="time-body">Help us in spreading this campaign and encourage others to donate.</Typography>                
               </TimelineContent>
             </TimelineItem>
           </Timeline>
@@ -416,29 +416,7 @@ export default function Home() {
 
       <Form ></Form>
 
-      <footer className="foot-wrap">
-      <Grid container>
-        <Grid item xs={12} sm={2}>
-            <p><Link href="/terms"><span style={{cursor:"pointer"}}>Terms & Conditions</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-           <p><Link href="/privacypolicy"><span style={{cursor:"pointer"}}>Privacy Policy</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>About Us</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Contact Us</p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p><Link href="/returnpolicy"><span style={{cursor:"pointer"}}>Return Policy</span></Link></p>
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <p>Shipping Policy</p>
-        </Grid>
-      </Grid>
-    </footer>
-    {/* <Footer /> */}
+    <Footer />
     </div>
   )
 }
