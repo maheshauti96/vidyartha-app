@@ -302,22 +302,22 @@ export default function Home() {
               </TimelineContent>
             </TimelineItem>
             <TimelineItem>
-              <TimelineSeparator className="icon-2">
-                <TimelineDot><img className="step-icon" src="/icon-2.svg" alt="icon two" /></TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent className="content">
-                <Typography className="time-head">Share with others</Typography>
-                <Typography className="time-body">Help us in spreading this campaign and encourage others to donate.</Typography>                
-              </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot><img className="step-icon" src="/icon-3.svg" alt="icon three" /></TimelineDot>
+                <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent className="content">
                 <Typography className="time-head">Click on donate</Typography>
                 <Typography className="time-body">Your donations will safely reach to us and once completed, we will donate books to the school.</Typography>                
+              </TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator className="icon-2">
+                <TimelineDot><img className="step-icon" src="/icon-2.svg" alt="icon two" /></TimelineDot>
+              </TimelineSeparator>
+              <TimelineContent className="content">
+                <Typography className="time-head">Share with others</Typography>
+                <Typography className="time-body">Help us in spreading this campaign and encourage others to donate.</Typography>                
               </TimelineContent>
             </TimelineItem>
           </Timeline>
@@ -417,7 +417,6 @@ export default function Home() {
       <Form ></Form>
 
     <Footer />
-      
     </div>
   )
 }

@@ -103,7 +103,6 @@ export default function Shipping() {
         </div>
         </div>
         <Footer />
-    
     </div >
     )
 };
