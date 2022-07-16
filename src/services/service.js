@@ -27,7 +27,7 @@ export async function getSchoolInfo(placeid, placeName, address = '') {
 }
 
 
-export async function createRazorpayOrder({ post, response }, amount, placeId) {
+export async function createRazorpayOrder(amount, placeId) {
 
   let orderObj = {
     amount,
