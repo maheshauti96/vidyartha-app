@@ -171,6 +171,53 @@ body {
     }
 }
 
+@media (min-width: 601px) and (max-width: 1024px) {
+    .home-wrap .main-banner {
+        height: 600px ;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .home-wrap .main-banner {
+        height: 650px ;
+    }
+}
+@media (min-width: 1201px) and (max-width: 1300px) {
+    .home-wrap .main-banner {
+        height: 700px ;
+    }
+}
+@media (min-width: 1300px) and (max-width: 1350px) {
+    .home-wrap .main-banner {
+        height: 740px ;
+    }
+}
+@media (min-width: 1351px) and (max-width: 1500px) {
+    .home-wrap .main-banner {
+        height: 800px ;
+    }
+}
+@media (min-width: 1501px) and (max-width: 1650px) {
+    .home-wrap .main-banner {
+        height: 900px ;
+    }
+}
+@media (min-width: 1651px) and (max-width: 1750px) {
+    .home-wrap .main-banner {
+        height: 950px ;
+    }
+}
+@media (min-width: 1751px) and (max-width: 1920px) {
+    .home-wrap .main-banner {
+        background-size: cover;
+        height: 990px ;
+    }
+}
+@media (min-width: 1921px) {
+    .home-wrap .main-banner {
+        background-size: cover;
+        height: 1100px ;
+    }
+}
 .primary-button {
     letter-spacing: 0px;
     color: #FFFFFF;
