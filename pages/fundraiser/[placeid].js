@@ -331,7 +331,7 @@ export default function FundraiserPlace() {
                 }
 
                 <Grid container spacing={4}>
-                    <Grid item xs={12} sm={12} className="about-wrap">
+                    <Grid item xs={12} sm={`${(topDonors.length > 0) ? 7 : 12}`} className="about-wrap">
                         <p>About Fundraiser campaign</p>
                     </Grid>
                     <Grid item xs={12} sm={`${(topDonors.length > 0) ? 7 : 12}`} className="about-wrap">
