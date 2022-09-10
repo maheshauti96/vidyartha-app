@@ -331,15 +331,13 @@ export default function FundraiserPlace() {
                 }
 
                 <Grid container spacing={4}>
-                    <Grid item xs={12} sm={7} className="about-wrap">
+                    <Grid item xs={12} sm={`${(topDonors.length > 0) ? 7 : 12}`} className="about-wrap">
                         <p>About Fundraiser campaign</p>
                     </Grid>
-                </Grid>
-                <Grid container spacing={4}>
-                    <Grid item xs={12} sm={7} className="about-wrap">
+                    <Grid item xs={12} sm={`${(topDonors.length > 0) ? 7 : 12}`} className="about-wrap">
                         <div className="about">
                             <p>Vidyartha aims to distribute spiritual and inspirational books to school libraries through respective alumni of the school. You can contribute your choice amount on this platform to gift amazing books of wisdom to your own school or college library. 
-                            You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.</p>
+                            You can also share the link to associated alumni of the schools.  As soon as we raise funds upto the targeted amount, the books would be couriered to your school.</p>
                         </div>
                     </Grid>
 
