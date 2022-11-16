@@ -13,12 +13,12 @@ import BasicModal from './BasicModal';
 
 
 
-const RazorpayPayment = ({ name, email, amount, placeId}) => {
+const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, placeId,setUpdateRaisedAmount}) => {
 
     const [success, setSucess] = useState(false);
     const [failure, setFailure] = useState(false);
     const [buttonLoader, setButtonLoader] = useState(false);
-    const [showSnackBar, setShowSnackBar] = React.useState(false);
+    const [showSnackBar, setShowSnackBar] = useState(false);
 
 
     async function displayRazorPay(e) {
@@ -49,6 +49,10 @@ const RazorpayPayment = ({ name, email, amount, placeId}) => {
                     setFailure(false);
                     setButtonLoader(false);
                     setShowSnackBar('success');
+                    setUpdateRaisedAmount(true)
+                    setName('')
+                    setEmail('')
+                    setAmount('')
                 },
                 "prefill": {
                     "name": name,
@@ -61,6 +65,12 @@ const RazorpayPayment = ({ name, email, amount, placeId}) => {
                 },
                 "theme": {
                     "color": "#10B981"
+                },
+                "modal": {
+                    "ondismiss": function(){
+                        setButtonLoader(false)
+
+                    }
                 }
 
             };
@@ -71,10 +81,14 @@ const RazorpayPayment = ({ name, email, amount, placeId}) => {
                 setSucess(false);
                 setFailure(true);
                 setButtonLoader(false);
+
             });
             rzp1.on('payment.paid', function (response) {
                 console.log("payment sucessful from event", response);
                 setSucess(true)
+                setButtonLoader(false);
+                setUpdateRaisedAmount(true)
+
             });
             rzp1.open();
         } catch (err) {
@@ -92,8 +106,7 @@ const RazorpayPayment = ({ name, email, amount, placeId}) => {
                     disabled={buttonLoader}
                     onClick={displayRazorPay}
                     target="_blank"
-                    rel="noopener noreferrer"
-                >
+                    rel="noopener noreferrer">
                     <div>
                         <div>
                     Donate now

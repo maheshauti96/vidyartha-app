@@ -57,6 +57,7 @@ export default function FundraiserPlace() {
     const [schoolId, setSchoolId] = useState(placeid);
     const [loading, setLoading] = useState(true);
     const [showPopup, setShowPopup] = useState(true);
+    const [updateRaiseAmount,setUpdateRaisedAmount] = useState(false)
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
@@ -142,9 +143,7 @@ export default function FundraiserPlace() {
         setSchoolId(placeid)
     }, [router])
 
-
     useEffect(() => {
-
         // if (!placeInfo && !placeid) {
         //     console.log('bye bye');
         //     router.push('/');
@@ -154,7 +153,8 @@ export default function FundraiserPlace() {
             fetchSchoolDetails(schoolId);
             fetchTopDonors(schoolId);
         }
-        if (schoolId && placeInfo) {
+        if ((schoolId && placeInfo) || updateRaiseAmount) {
+
             console.log('got the placeinfo');
             fetchTopDonors(schoolId);
             getPlaceInfo(placeInfo)
@@ -162,7 +162,7 @@ export default function FundraiserPlace() {
         // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
 
 
-    }, [placeid, placeInfo, schoolId])
+    }, [placeid, placeInfo,updateRaiseAmount, schoolId])
 
     useEffect(() => {
         console.log("NEW", placeid, schoolId);
@@ -254,6 +254,7 @@ export default function FundraiserPlace() {
                                     <TextField
                                         id="name"
                                         label="Name"
+                                        value={name}
                                         fullWidth
                                         onChange={({ target }) => setName(target.value)}
                                         variant="outlined"
@@ -264,6 +265,7 @@ export default function FundraiserPlace() {
                                         id="name"
                                         label="Email Address"
                                         fullWidth
+                                        value={email}
                                         error={email && !isValidEmail(email)}
                                         onChange={({ target }) => setEmail(target.value)}
                                         variant="outlined"
@@ -273,6 +275,7 @@ export default function FundraiserPlace() {
                                     <TextField
                                         id="amount"
                                         label="Amount"
+                                        value={amount}
                                         onChange={({ target }) => {
                                             if (isNaN(target.value)) {
                                                 alert('Please enter valid amount')
@@ -289,7 +292,11 @@ export default function FundraiserPlace() {
                                     name={name}
                                     email={email}
                                     amount={amount}
+                                    setName={setName}
+                                    setEmail={setEmail}
+                                    setAmount={setAmount}
                                     placeId={schoolId}
+                                    setUpdateRaisedAmount={setUpdateRaisedAmount}
                                 ></RazorpayPayment>
                             </div>
                             <h4 className="sub-text">Share and Support this campaign</h4>
