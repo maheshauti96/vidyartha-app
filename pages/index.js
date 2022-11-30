@@ -212,6 +212,7 @@ export default function Home() {
               noOptionsText={'No Options'}
               width={'346px'}
               options={schools}
+              multiline="true" 
               // open={true}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
@@ -220,7 +221,6 @@ export default function Home() {
               }}
               sx={{ width: 346 }}
               renderInput={(params) => {
-                console.log('params...',params)
                return <TextField {...params} label="Find your school"
                 onChange={handleInput} variant="outlined"
               />
@@ -229,7 +229,6 @@ export default function Home() {
             <Button
               className="primary-button"
               onClick={() => {
-                console.error(finalPlace)
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
                   router.push(`/fundraiser/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
