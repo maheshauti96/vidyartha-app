@@ -285,6 +285,19 @@ body {
 .public-wrap {
     min-height: 878px;
 }
+
+.gifting-slider {
+    .slide1 {
+        text-align: center;
+        text-align: -webkit-center !important;
+        h4 {
+            @media (max-width: 600px) {
+                font: normal normal bold 20px/31px PT Sans Pro;
+                letter-spacing: 0px;
+            }
+        }
+    }
+}
 .item {
     margin-left: 33px;
     margin-right: 33px;
@@ -300,7 +313,7 @@ body {
     }
     .slide1 {
         position: relative;
-        
+
         background-image: linear-gradient(to bottom right, #FFFFFF, #8cbdb3);
         // background: url('/Carosel-01.png') 0% 0% no-repeat padding-box;
         img {

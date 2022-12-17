@@ -327,6 +327,19 @@ export default function Home() {
       </Grid>
       </div>
 
+      <div className="step-wrap gifting-slider">
+      <Slider dots={true} autoplay={false} speed={2000}>
+      <div className="slide1" style={{ textAlign: '-webkit-center' }}>
+            <h4>Gifting books to principal of PGKM School in Pune</h4>
+            <img width="80%" src='/pkgm_school.jpg' alt='picture_while_giving_books_to_pkgm_school' />
+      </div>
+      <div className="slide1" style={{ textAlign: '-webkit-center' }}>
+        <h4>Gifting books to principal of PVG school in Pune</h4>
+        <img width="80%" src='/PVG_School.jpg' alt='picture_while_giving_books_to_PVG_School' />
+      </div>
+      </Slider>
+      </div>
+      
       {/* <div className="video-wrap">
         <p>Watch this short video on importance of spiritual books.</p>
       </div> */}
