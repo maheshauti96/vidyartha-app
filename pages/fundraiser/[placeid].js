@@ -107,9 +107,16 @@ export default function FundraiserPlace() {
                     placeAddress
                 );
                 setSchoolInfo({ schoolInfo, placeImage })
-                setProgress(parseInt(Number(schoolInfo.percentage) * 100));
-                setRaisedAmount(parseInt(Number(schoolInfo.collected) / 100));
-                setRequiredAmount(parseInt(Number(schoolInfo.required) / 100));
+
+                const raisedAmount = +schoolInfo.collected / 100;
+
+                const requiredAmount = Math.ceil(raisedAmount/10000)*10000;
+                const progress = raisedAmount/requiredAmount*100
+
+                setRaisedAmount(raisedAmount);
+                setRequiredAmount(requiredAmount)
+                setProgress(progress) 
+                
                 return true;
             } else {
                 console.log('sry bro', { placeAddress, placeName, schoolId });
