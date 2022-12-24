@@ -110,7 +110,7 @@ export default function FundraiserPlace() {
 
                 const raisedAmount = +schoolInfo.collected / 100;
 
-                const requiredAmount = Math.ceil(raisedAmount/10000)*10000;
+                const requiredAmount = Math.ceil(raisedAmount/10000)*10000 === 0 ? 10000 : Math.ceil(raisedAmount/10000)*10000;
                 const progress = raisedAmount/requiredAmount*100
 
                 setRaisedAmount(raisedAmount);
