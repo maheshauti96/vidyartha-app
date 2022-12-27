@@ -1,0 +1,22 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/Shippingpolicy": "pages/Shippingpolicy.html",
+  "/DonationReview": "pages/DonationReview.html",
+  "/api/contactus/contactus": "pages/api/contactus/contactus.js",
+  "/about-us": "pages/about-us.html",
+  "/api/donors/[id]": "pages/api/donors/[id].js",
+  "/api/donors/topall": "pages/api/donors/topall.js",
+  "/api/place/info": "pages/api/place/info.js",
+  "/contact-us": "pages/contact-us.html",
+  "/api/order/order": "pages/api/order/order.js",
+  "/fundraiser/[placeid]": "pages/fundraiser/[placeid].html",
+  "/payment-page": "pages/payment-page.html",
+  "/": "pages/index.html",
+  "/popup": "pages/popup.html",
+  "/returnpolicy": "pages/returnpolicy.html",
+  "/terms": "pages/terms.html",
+  "/privacypolicy": "pages/privacypolicy.html",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}
