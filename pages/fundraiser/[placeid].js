@@ -108,10 +108,17 @@ export default function FundraiserPlace() {
                 );
                 setSchoolInfo({ schoolInfo, placeImage })
 
-                const raisedAmount = +schoolInfo.collected / 100;
+                let raisedAmount = +schoolInfo.collected / 100;
 
-                const requiredAmount = Math.ceil(raisedAmount/10000)*10000 === 0 ? 10000 : Math.ceil(raisedAmount/10000)*10000;
-                const progress = raisedAmount/requiredAmount*100
+                let requiredAmount = Math.ceil(raisedAmount/10000)*10000 === 0 ? 10000 : Math.ceil(raisedAmount/10000)*10000;
+                let progress = raisedAmount/requiredAmount*100
+
+
+                if(raisedAmount % 10000 === 0) {
+                    requiredAmount = Math.ceil((+raisedAmount+1)/10000)*10000 === 0 ? 10000 : Math.ceil((+raisedAmount+1)/10000)*10000;
+                    progress = raisedAmount/requiredAmount*100
+                }
+
 
                 setRaisedAmount(raisedAmount);
                 setRequiredAmount(requiredAmount)
