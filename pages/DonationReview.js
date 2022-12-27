@@ -10,12 +10,12 @@ const DonationReview = () => {
     page: 0,
     first: true,
     last: false,
+    totalPages: 1,
   });
   useEffect(() => {
     getData(0);
   }, []);
   const getData = async (page) => {
-    console.log({ page });
     const pageNumber = page;
     const pageSize = 100;
     const donorObjInfo = await fetch(
@@ -38,6 +38,7 @@ const DonationReview = () => {
       page: donorObjInfo.number,
       first: donorObjInfo.first,
       last: donorObjInfo.last,
+      totalPages: donorObjInfo.totalPages,
     });
     return donorObjInfo;
   };
@@ -84,6 +85,9 @@ const DonationReview = () => {
             >
               Next Page
             </Button>
+            <p style={{ fontWeight: "700" }}>
+              Page: {paginationData?.page + 1} / {paginationData?.totalPages}
+            </p>
           </div>
           <DataGrid
             rows={rows}
