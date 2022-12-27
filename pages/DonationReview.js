@@ -30,6 +30,7 @@ const DonationReview = () => {
           ...d,
           placeId: `https://vidyartha.org/fundraiser/${d.placeId}`,
           donorContact: `No: ${d.donorContact}`,
+          amount: d.amount/100
         }))
       );
       setDonorList(true);
