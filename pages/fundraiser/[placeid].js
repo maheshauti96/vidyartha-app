@@ -417,7 +417,8 @@ export default function FundraiserPlace() {
 
         </main>
 
-        <div className="ques-wrap">
+        
+      <div className="ques-wrap">
         <h4>FAQ</h4>
         <Accordion>
           <AccordionSummary className="acc-sum"
@@ -429,7 +430,7 @@ export default function FundraiserPlace() {
           </AccordionSummary>
           <AccordionDetails className="acc-det">
             <Typography className="acc-par">
-              The purpose of the Vidyartha is to make spiritual wisdom literature available in the school libraries. Children need a stronng foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all these needs can be effectively fulfilled by spiritual literature. They also instill within us healthy pride about our own native culture and heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.
+              The purpose of the Vidyartha is to make spiritual wisdom literature available in the school libraries. Children need a strong foundation of moral values, the ability to handle emotionally turbulent situations, strong determination, and healthy habits, all these needs can be effectively fulfilled by spiritual literature. They also instill within us healthy pride about our own native culture and heritage and explain the deeper meanings behind them. Vidyartha is committed to gift this literature to the schools.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -443,7 +444,7 @@ export default function FundraiserPlace() {
           </AccordionSummary>
           <AccordionDetails className="acc-det">
             <Typography className="acc-par">
-            The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this Campaign with other alumni to quickly complete the target.
+            The Vidyartha is a Crowdfunding platform where alumni can find their school & sponsor their choice amount to gift spiritual literature as gratitude for their schools. They can also share this campaign with other alumni to quickly complete the target.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -457,7 +458,7 @@ export default function FundraiserPlace() {
         </AccordionSummary>
         <AccordionDetails className="acc-det">
           <Typography className="acc-par">
-          Spiritual books like Ramayana, Mahabharata, Sriman Bhagavatam, and Bhagavad Gita will be gifted to the schools.
+          Spiritual books like Ramayana, Mahabharata, Srimad Bhagavatam, Bhagavad Gita, many other value education, story and picture books will be gifted to the schools.
           </Typography>
         </AccordionDetails>
         </Accordion>
@@ -485,7 +486,21 @@ export default function FundraiserPlace() {
         </AccordionSummary>
         <AccordionDetails className="acc-det">
           <Typography className="acc-par">
-          If some school has any concerns we shall try our best to address those concerns, if still, any particular school is not willing to take the books then they will be given to some other interested school.
+          If you are doubtful about acceptance of the books by your school, you may once inform the school about your desire to gift them books and check their response. From our side too, if some school has any concerns we shall try our best to address those concerns, if still, any particular school is not willing to take the books then they will be given to some other interested school.
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
+        <Accordion>
+        <AccordionSummary className="acc-sum"
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className="accor">6. What if I am not able to find my school?</Typography>
+        </AccordionSummary>
+        <AccordionDetails className="acc-det">
+          <Typography className="acc-par">
+          Please search the name of your school on Google Maps and try the same name.
           </Typography>
         </AccordionDetails>
         </Accordion>
