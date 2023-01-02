@@ -190,14 +190,20 @@
         p {
             text-align: left;
             font: normal normal normal 32px/42px PT Sans Pro;
+            font-size: 1.25rem;
             letter-spacing: 0px;
             color: #144B5E;
             opacity: 1;
             text-align: justify;
+
+            @media (max-width: 600px) { 
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 600px) {
             height: fit-content;
+            padding: 0 1rem;
         }
     }
 }
