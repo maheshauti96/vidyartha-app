@@ -11,6 +11,7 @@ const Dashboard = () => {
     endDate: "2023-01-01",
     value: "All",
   });
+  const [showFilteredMsg, setShowFilteredMsg] = useState(false);
 
   useEffect(() => {
     async function getTotalNumberOfDonations() {
@@ -35,6 +36,7 @@ const Dashboard = () => {
 
     async function init() {
       try {
+        setLoading(true);
         console.log("fetching total number");
         const totalNumberOfElements = await getTotalNumberOfDonations();
         console.log("fetching donations");
@@ -61,6 +63,7 @@ const Dashboard = () => {
           }, []);
         dataRef.current = sum;
         setData(sum);
+        setLoading(false);
       } catch (err) {
         console.log({ err });
       }
@@ -72,6 +75,7 @@ const Dashboard = () => {
   function applyFilters() {
     console.log("applying filters");
     setLoading(true);
+    setShowFilteredMsg(false);
     const startDate = new Date(filters.startDate);
     const endDate = new Date(filters.endDate);
 
@@ -121,6 +125,8 @@ const Dashboard = () => {
     console.log("done", newData);
     setLoading(false);
     setData(newData);
+    setShowFilteredMsg(true);
+    setTimeout(() => setShowFilteredMsg(false), 3000)
   }
 
   const rows = data;
@@ -156,7 +162,7 @@ const Dashboard = () => {
   console.log(filters);
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
-      {loading && <div>Loading</div>}
+      {loading && <h2>Loading...</h2>}
       {!loading && (
         <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
           <label style={{ display: "block" }}>
@@ -202,6 +208,9 @@ const Dashboard = () => {
           <div>
             <button onClick={applyFilters}>Apply Filters</button>
           </div>
+          {
+            showFilteredMsg && <span>Filters applied!</span>
+          }
         </div>
       )}
       {!loading && data && data.length > 0 && (
@@ -209,6 +218,9 @@ const Dashboard = () => {
           <DataGrid rows={rows} columns={columns} />
         </div>
       )}
+      {
+        !loading && data && data.length === 0 && <h2>No data!</h2>
+      }
     </div>
   );
 };
