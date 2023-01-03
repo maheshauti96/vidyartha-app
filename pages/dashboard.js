@@ -37,11 +37,8 @@ const Dashboard = () => {
     async function init() {
       try {
         setLoading(true);
-        console.log("fetching total number");
         const totalNumberOfElements = await getTotalNumberOfDonations();
-        console.log("fetching donations");
         const donationsData = await getAllDonations(totalNumberOfElements);
-        console.log("calculating by school");
         const sum = donationsData.content
           .map((d) => ({
             ...d,
@@ -73,7 +70,6 @@ const Dashboard = () => {
   }, []);
 
   function applyFilters() {
-    console.log("applying filters");
     setLoading(true);
     setShowFilteredMsg(false);
     const startDate = new Date(filters.startDate);
@@ -122,7 +118,6 @@ const Dashboard = () => {
       }
     });
 
-    console.log("done", newData);
     setLoading(false);
     setData(newData);
     setShowFilteredMsg(true);
@@ -159,7 +154,6 @@ const Dashboard = () => {
     { field: "placeAddress", headerName: "Place Address", width: 250 },
     { field: "id", headerName: "Order Id", width: 250 },
   ];
-  console.log(filters);
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
       {loading && <h2>Loading...</h2>}
