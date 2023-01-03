@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const Dashboard = () => {
   const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getTotalNumberOfDonations() {
@@ -93,6 +94,9 @@ const Dashboard = () => {
 
   return (
     <div>
+      {
+        loading && <div>Loading</div>
+      }
       {data && data.length > 0 && (
         <div style={{ height: "90vh", width: "90vw", margin: "auto" }}>
           <DataGrid rows={rows} columns={columns} />
