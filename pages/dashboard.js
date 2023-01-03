@@ -1,10 +1,15 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const Dashboard = () => {
   const [data, setData] = useState();
+  const dataRef = useRef([]);
   const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState({
+    startDate: "2023-01-01",
+    endDate: "2023-01-01",
+  });
 
   useEffect(() => {
     async function getTotalNumberOfDonations() {
@@ -53,7 +58,7 @@ const Dashboard = () => {
 
             return [...acc];
           }, []);
-        console.log(sum);
+        dataRef.current = sum;
         setData(sum);
       } catch (err) {
         console.log({ err });
@@ -63,6 +68,21 @@ const Dashboard = () => {
     init();
   }, []);
 
+  function applyFilters() {
+    console.log("applying filters");
+    setLoading(true);
+    const startDate = new Date(filters.startDate);
+    const endDate = new Date(filters.endDate);
+
+    const newData = dataRef.current.filter((el) => {
+      const donatedDate = new Date(el.donatedAt);
+      return startDate <= donatedDate && donatedDate <= endDate;
+    });
+    console.log("done", newData);
+    setLoading(false);
+    setData(newData);
+  }
+
   const rows = data;
 
   const columns = [
@@ -71,7 +91,9 @@ const Dashboard = () => {
       headerName: "Place Id",
       width: 450,
       renderCell: (params) => (
-        <Link href={`https://vidyartha.org/fundraiser/${params.value}`}>{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
+        <Link
+          href={`https://vidyartha.org/fundraiser/${params.value}`}
+        >{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
       ),
     },
     { field: "placeName", headerName: "Place Name", width: 350 },
@@ -93,12 +115,37 @@ const Dashboard = () => {
   ];
 
   return (
-    <div>
-      {
-        loading && <div>Loading</div>
-      }
-      {data && data.length > 0 && (
-        <div style={{ height: "90vh", width: "90vw", margin: "auto" }}>
+    <div style={{ width: "90vw", margin: "auto" }}>
+      {loading && <div>Loading</div>}
+      {!loading && (
+        <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
+          <label style={{ display: "block" }}>
+            <span>Start Date:</span>
+            <input
+              type="date"
+              value={filters.startDate}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, startDate: e.target.value }))
+              }
+            />
+          </label>
+          <label style={{ display: "block" }}>
+            <span>End Date:</span>
+            <input
+              type="date"
+              value={filters.endDate}
+              onChange={(e) =>
+                setFilters((prev) => ({ ...prev, endDate: e.target.value }))
+              }
+            />
+          </label>
+          <div>
+            <button onClick={applyFilters}>Apply Filters</button>
+          </div>
+        </div>
+      )}
+      {!loading && data && data.length > 0 && (
+        <div style={{ height: "90vh" }}>
           <DataGrid rows={rows} columns={columns} />
         </div>
       )}
