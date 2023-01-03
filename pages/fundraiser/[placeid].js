@@ -29,6 +29,7 @@ import Popup from "../../src/components/Popup";
 import SendIcon from "@material-ui/icons/Search";
 import Footer from "../../src/components/Footer";
 import FAQ from "../../src/components/FAQ";
+import DonorsTable from "../../src/components/DonorsTable";
 
 
 export default function FundraiserPlace() {
@@ -365,28 +366,7 @@ export default function FundraiserPlace() {
 
                     {
                         (topDonors.length > 0) && (
-                    <Grid item xs={12} sm={5}>
-                        <TableContainer component={Paper}>
-                            <Table className="table-wrap" aria-label="simple table">
-                                <TableHead className="thead">
-                                    <TableRow className="tr">
-                                        <TableCell className="th" align="center">Top Donors</TableCell>
-                                        <TableCell className="th" align="center">Amount</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody className="tbody">
-                                {
-                                    topDonors.map(donor => 
-                                        <TableRow className="tr" key={donor.name}>
-                                            <TableCell className="td" align="left">{donor.name}</TableCell>
-                                            <TableCell className="td" align="left">{parseInt(Number(donor.amount) / 100)}</TableCell>
-                                            </TableRow>
-                                        )
-                                }
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
+                            <DonorsTable topDonors={topDonors}/>
                     )}
                     {/* {
                         (topDonors.length > 0) && (<Grid item xs={12} sm={5}>
