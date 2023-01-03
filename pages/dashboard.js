@@ -9,6 +9,7 @@ const Dashboard = () => {
   const [filters, setFilters] = useState({
     startDate: "2023-01-01",
     endDate: "2023-01-01",
+    value: "All",
   });
 
   useEffect(() => {
@@ -76,8 +77,47 @@ const Dashboard = () => {
 
     const newData = dataRef.current.filter((el) => {
       const donatedDate = new Date(el.donatedAt);
-      return startDate <= donatedDate && donatedDate <= endDate;
+      const donatedAmount = el.sum;
+
+      switch (filters.amountRange) {
+        case "1-2k":
+          return (
+            donatedAmount <= 2000 &&
+            startDate <= donatedDate &&
+            donatedDate <= endDate
+          );
+        case "2k-5k":
+          return (
+            donatedAmount >= 2000 &&
+            donatedAmount <= 5000 &&
+            startDate <= donatedDate &&
+            donatedDate <= endDate
+          );
+        case "5k-8k":
+          return (
+            donatedAmount >= 5000 &&
+            donatedAmount <= 8000 &&
+            startDate <= donatedDate &&
+            donatedDate <= endDate
+          );
+        case "8k-10k":
+          return (
+            donatedAmount >= 8000 &&
+            donatedAmount <= 10000 &&
+            startDate <= donatedDate &&
+            donatedDate <= endDate
+          );
+        case "10k-more":
+          return (
+            donatedAmount >= 10000 &&
+            startDate <= donatedDate &&
+            donatedDate <= endDate
+          );
+        default:
+          return startDate <= donatedDate && donatedDate <= endDate;
+      }
     });
+
     console.log("done", newData);
     setLoading(false);
     setData(newData);
@@ -113,7 +153,7 @@ const Dashboard = () => {
     { field: "placeAddress", headerName: "Place Address", width: 250 },
     { field: "id", headerName: "Order Id", width: 250 },
   ];
-
+  console.log(filters);
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
       {loading && <div>Loading</div>}
@@ -139,6 +179,26 @@ const Dashboard = () => {
               }
             />
           </label>
+          <div>
+            <label>
+              <span>Amount Range: </span>
+              <select
+                onChange={(e) =>
+                  setFilters((prev) => ({
+                    ...prev,
+                    amountRange: e.target.value,
+                  }))
+                }
+              >
+                <option value="All">All</option>
+                <option value="1-2k">1 to 2k</option>
+                <option value="2k-5k">2k to 5k</option>
+                <option value="5k-8k">5k to 8k</option>
+                <option value="8k-10k">8k to 10k</option>
+                <option value="10k-more">10k and more</option>
+              </select>
+            </label>
+          </div>
           <div>
             <button onClick={applyFilters}>Apply Filters</button>
           </div>
