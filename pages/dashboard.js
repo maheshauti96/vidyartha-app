@@ -7,7 +7,7 @@ const Dashboard = () => {
   const dataRef = useRef([]);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
-    startDate: "2023-01-01",
+    startDate: "2022-01-01",
     endDate: "2023-01-01",
     value: "All",
   });
@@ -75,53 +75,37 @@ const Dashboard = () => {
     const startDate = new Date(filters.startDate);
     const endDate = new Date(filters.endDate);
 
-    const newData = dataRef.current.filter((el) => {
+    const dateFilteredData = dataRef.current.filter((el) => {
       const donatedDate = new Date(el.donatedAt);
+
+      return startDate <= donatedDate && donatedDate <= endDate;
+    });
+
+    const amountFilteredData = dateFilteredData.filter((el) => {
       const donatedAmount = el.sum;
 
       switch (filters.amountRange) {
         case "1-2k":
-          return (
-            donatedAmount <= 2000 &&
-            startDate <= donatedDate &&
-            donatedDate <= endDate
-          );
+          return donatedAmount <= 2000;
         case "2k-5k":
-          return (
-            donatedAmount >= 2000 &&
-            donatedAmount <= 5000 &&
-            startDate <= donatedDate &&
-            donatedDate <= endDate
-          );
+          return donatedAmount >= 2000 && donatedAmount <= 5000;
         case "5k-8k":
-          return (
-            donatedAmount >= 5000 &&
-            donatedAmount <= 8000 &&
-            startDate <= donatedDate &&
-            donatedDate <= endDate
-          );
+          return donatedAmount >= 5000 && donatedAmount <= 8000;
         case "8k-10k":
-          return (
-            donatedAmount >= 8000 &&
-            donatedAmount <= 10000 &&
-            startDate <= donatedDate &&
-            donatedDate <= endDate
-          );
+          return donatedAmount >= 8000 && donatedAmount <= 10000;
         case "10k-more":
-          return (
-            donatedAmount >= 10000 &&
-            startDate <= donatedDate &&
-            donatedDate <= endDate
-          );
+          return donatedAmount >= 10000;
         default:
-          return startDate <= donatedDate && donatedDate <= endDate;
+          return true;
       }
     });
 
+    const filteredData = [...amountFilteredData]
+
     setLoading(false);
-    setData(newData);
+    setData(filteredData);
     setShowFilteredMsg(true);
-    setTimeout(() => setShowFilteredMsg(false), 3000)
+    setTimeout(() => setShowFilteredMsg(false), 3000);
   }
 
   const rows = data;
@@ -202,9 +186,7 @@ const Dashboard = () => {
           <div>
             <button onClick={applyFilters}>Apply Filters</button>
           </div>
-          {
-            showFilteredMsg && <span>Filters applied!</span>
-          }
+          {showFilteredMsg && <span>Filters applied!</span>}
         </div>
       )}
       {!loading && data && data.length > 0 && (
@@ -212,9 +194,7 @@ const Dashboard = () => {
           <DataGrid rows={rows} columns={columns} />
         </div>
       )}
-      {
-        !loading && data && data.length === 0 && <h2>No data!</h2>
-      }
+      {!loading && data && data.length === 0 && <h2>No data!</h2>}
     </div>
   );
 };
