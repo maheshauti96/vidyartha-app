@@ -1,4 +1,5 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const columns = [
@@ -33,7 +34,7 @@ const SchoolDashboard = ({ placeId, data, goToAllSchools }) => {
           ...el,
           amount: el.amount / 100,
           donatedAt: getFormattedDate(el.donatedAt),
-          donorContact: `No: ${el.donorContact}`
+          donorContact: `No: ${el.donorContact}`,
         }));
       setSchoolData(schoolDonors);
       console.log(Object.keys(schoolDonors[0]));
@@ -61,13 +62,21 @@ const SchoolDashboard = ({ placeId, data, goToAllSchools }) => {
       <h1>School Dashboard</h1>
 
       {!loading && schoolData && (
-        <div style={{ width: "90vw", margin: "auto", height: "90vh" }}>
-          <DataGrid
-            components={{ Toolbar: GridToolbar }}
-            rows={schoolData}
-            columns={columns}
-          />
-        </div>
+        <>
+          <p><b>School Name: </b>{schoolData[0].placeName}</p>
+          <p><b>School Address: </b> {schoolData[0].placeAddress}</p>
+          <p><b>Link: </b> <Link
+            href={`https://vidyartha.org/fundraiser/${schoolData[0].placeId}`}
+          >{`https://vidyartha.org/fundraiser/${schoolData[0].placeId}`}</Link></p>
+          
+          <div style={{ width: "90vw", margin: "1rem auto", height: "90vh" }}>
+            <DataGrid
+              components={{ Toolbar: GridToolbar }}
+              rows={schoolData}
+              columns={columns}
+            />
+          </div>
+        </>
       )}
     </div>
   );
