@@ -54,6 +54,7 @@ const Dashboard = () => {
             placeUrl: `https://vidyartha.org/fundraiser/${d.placeId}`,
             donorContact: `No: ${d.donorContact}`,
             amount: d.amount / 100,
+            schoolId: d.placeId
           }))
           .reduce((acc, curr) => {
             const elFound = acc.filter((el) => el.placeId === curr.placeId)[0];
@@ -134,6 +135,14 @@ const Dashboard = () => {
         >
           View School Dashboard
         </button>
+      ),
+    },
+    {
+      field: "schoolId",
+      headerName: "School Link",
+      width: 450,
+      renderCell: (params) => (
+        <Link href={`https://vidyartha.org/fundraiser/${params.value}`}>{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
       ),
     },
     { field: "placeName", headerName: "Place Name", width: 350 },
