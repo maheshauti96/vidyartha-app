@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [mode, setMode] = useState(MODES.ALL_SCHOOLS);
   const [selectedSchool, setSelectedSchool] = useState();
   const [totalFundsCollected, setTotalFundsCollected] = useState(0);
-  const [totalCampaigns, setTotalCampaingns] = useState(0);
+  const [totalDonors, setTotalDonors] = useState(0);
   const allDataRef = useRef();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Dashboard = () => {
       try {
         setLoading(true);
         const totalNumberOfElements = await getTotalNumberOfDonations();
-        setTotalCampaingns(totalNumberOfElements);
+        setTotalDonors(totalNumberOfElements);
         const donationsData = await getAllDonations(totalNumberOfElements);
         let totalFunds = 0;
         const sum = donationsData.content
@@ -169,6 +169,7 @@ const Dashboard = () => {
             <>
             <p><b>Total Campaigns:</b> {dataRef.current.length}</p>
             <p><b>Total Funds Collected:</b> {totalFundsCollected}</p>
+            <p><b>Total Donors:</b> {totalDonors}</p>
             <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
               <div>
                 <label>
