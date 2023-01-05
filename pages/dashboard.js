@@ -1,6 +1,12 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import SchoolDashboard from "../src/components/SchoolDashboard";
+
+const MODES = {
+  ALL_SCHOOLS: "ALL_SCHOOLS",
+  ONE_SCHOOL: "ONE_SCHOOL",
+};
 
 const Dashboard = () => {
   const [data, setData] = useState();
@@ -12,6 +18,9 @@ const Dashboard = () => {
     value: "All",
   });
   const [showFilteredMsg, setShowFilteredMsg] = useState(false);
+  const [mode, setMode] = useState(MODES.ALL_SCHOOLS);
+  const [selectedSchool, setSelectedSchool] = useState();
+  const allDataRef = useRef();
 
   useEffect(() => {
     async function getTotalNumberOfDonations() {
@@ -58,6 +67,7 @@ const Dashboard = () => {
 
             return [...acc];
           }, []);
+        allDataRef.current = donationsData.content
         dataRef.current = sum;
         setData(sum);
         setLoading(false);
@@ -100,7 +110,7 @@ const Dashboard = () => {
       }
     });
 
-    const filteredData = [...amountFilteredData]
+    const filteredData = [...amountFilteredData];
 
     setLoading(false);
     setData(filteredData);
@@ -116,9 +126,14 @@ const Dashboard = () => {
       headerName: "Place Id",
       width: 450,
       renderCell: (params) => (
-        <Link
-          href={`https://vidyartha.org/fundraiser/${params.value}`}
-        >{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
+        <button
+          onClick={() => {
+            setMode(MODES.ONE_SCHOOL);
+            setSelectedSchool(params.value);
+          }}
+        >
+          View School Dashboard
+        </button>
       ),
     },
     { field: "placeName", headerName: "Place Name", width: 350 },
@@ -141,60 +156,78 @@ const Dashboard = () => {
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
       {loading && <h2>Loading...</h2>}
-      {!loading && (
-        <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
-          <label style={{ display: "block" }}>
-            <span>Start Date:</span>
-            <input
-              type="date"
-              value={filters.startDate}
-              onChange={(e) =>
-                setFilters((prev) => ({ ...prev, startDate: e.target.value }))
-              }
-            />
-          </label>
-          <label style={{ display: "block" }}>
-            <span>End Date:</span>
-            <input
-              type="date"
-              value={filters.endDate}
-              onChange={(e) =>
-                setFilters((prev) => ({ ...prev, endDate: e.target.value }))
-              }
-            />
-          </label>
-          <div>
-            <label>
-              <span>Amount Range: </span>
-              <select
-                onChange={(e) =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    amountRange: e.target.value,
-                  }))
-                }
-              >
-                <option value="All">All</option>
-                <option value="1-2k">1 to 2k</option>
-                <option value="2k-5k">2k to 5k</option>
-                <option value="5k-8k">5k to 8k</option>
-                <option value="8k-10k">8k to 10k</option>
-                <option value="10k-more">10k and more</option>
-              </select>
-            </label>
-          </div>
-          <div>
-            <button onClick={applyFilters}>Apply Filters</button>
-          </div>
-          {showFilteredMsg && <span>Filters applied!</span>}
-        </div>
+      {mode === MODES.ALL_SCHOOLS && (
+        <>
+          {!loading && (
+            <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
+              <label style={{ display: "block" }}>
+                <span>Start Date:</span>
+                <input
+                  type="date"
+                  value={filters.startDate}
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      startDate: e.target.value,
+                    }))
+                  }
+                />
+              </label>
+              <label style={{ display: "block" }}>
+                <span>End Date:</span>
+                <input
+                  type="date"
+                  value={filters.endDate}
+                  onChange={(e) =>
+                    setFilters((prev) => ({ ...prev, endDate: e.target.value }))
+                  }
+                />
+              </label>
+              <div>
+                <label>
+                  <span>Amount Range: </span>
+                  <select
+                    onChange={(e) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        amountRange: e.target.value,
+                      }))
+                    }
+                  >
+                    <option value="All">All</option>
+                    <option value="1-2k">1 to 2k</option>
+                    <option value="2k-5k">2k to 5k</option>
+                    <option value="5k-8k">5k to 8k</option>
+                    <option value="8k-10k">8k to 10k</option>
+                    <option value="10k-more">10k and more</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <button onClick={applyFilters}>Apply Filters</button>
+              </div>
+              {showFilteredMsg && <span>Filters applied!</span>}
+            </div>
+          )}
+          {!loading && data && data.length > 0 && (
+            <div style={{ height: "90vh" }}>
+              <DataGrid
+                components={{ Toolbar: GridToolbar }}
+                rows={rows}
+                columns={columns}
+              />
+            </div>
+          )}
+          {!loading && data && data.length === 0 && <h2>No data!</h2>}
+        </>
       )}
-      {!loading && data && data.length > 0 && (
-        <div style={{ height: "90vh" }}>
-          <DataGrid rows={rows} columns={columns} />
-        </div>
+      {mode === MODES.ONE_SCHOOL && selectedSchool && (
+        <SchoolDashboard
+          data={allDataRef.current}
+          placeId={selectedSchool}
+          goToAllSchools={() => setMode(MODES.ALL_SCHOOLS)}
+        />
       )}
-      {!loading && data && data.length === 0 && <h2>No data!</h2>}
     </div>
   );
 };
