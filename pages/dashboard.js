@@ -13,8 +13,6 @@ const Dashboard = () => {
   const dataRef = useRef([]);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
-    startDate: "2022-01-01",
-    endDate: "2023-01-01",
     value: "All",
   });
   const [showFilteredMsg, setShowFilteredMsg] = useState(false);
@@ -86,13 +84,7 @@ const Dashboard = () => {
     const startDate = new Date(filters.startDate);
     const endDate = new Date(filters.endDate);
 
-    const dateFilteredData = dataRef.current.filter((el) => {
-      const donatedDate = new Date(el.donatedAt);
-
-      return startDate <= donatedDate && donatedDate <= endDate;
-    });
-
-    const amountFilteredData = dateFilteredData.filter((el) => {
+    const amountFilteredData = dataRef.current.filter((el) => {
       const donatedAmount = el.sum;
 
       switch (filters.amountRange) {
@@ -169,29 +161,6 @@ const Dashboard = () => {
         <>
           {!loading && (
             <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
-              <label style={{ display: "block" }}>
-                <span>Start Date:</span>
-                <input
-                  type="date"
-                  value={filters.startDate}
-                  onChange={(e) =>
-                    setFilters((prev) => ({
-                      ...prev,
-                      startDate: e.target.value,
-                    }))
-                  }
-                />
-              </label>
-              <label style={{ display: "block" }}>
-                <span>End Date:</span>
-                <input
-                  type="date"
-                  value={filters.endDate}
-                  onChange={(e) =>
-                    setFilters((prev) => ({ ...prev, endDate: e.target.value }))
-                  }
-                />
-              </label>
               <div>
                 <label>
                   <span>Amount Range: </span>
