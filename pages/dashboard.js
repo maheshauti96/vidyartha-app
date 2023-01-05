@@ -18,6 +18,8 @@ const Dashboard = () => {
   const [showFilteredMsg, setShowFilteredMsg] = useState(false);
   const [mode, setMode] = useState(MODES.ALL_SCHOOLS);
   const [selectedSchool, setSelectedSchool] = useState();
+  const [totalFundsCollected, setTotalFundsCollected] = useState(0);
+  const [totalCampaigns, setTotalCampaingns] = useState(0);
   const allDataRef = useRef();
 
   useEffect(() => {
@@ -45,7 +47,9 @@ const Dashboard = () => {
       try {
         setLoading(true);
         const totalNumberOfElements = await getTotalNumberOfDonations();
+        setTotalCampaingns(totalNumberOfElements);
         const donationsData = await getAllDonations(totalNumberOfElements);
+        let totalFunds = 0;
         const sum = donationsData.content
           .map((d) => ({
             ...d,
@@ -55,6 +59,9 @@ const Dashboard = () => {
             schoolId: d.placeId
           }))
           .reduce((acc, curr) => {
+
+            totalFunds += curr.amount;
+
             const elFound = acc.filter((el) => el.placeId === curr.placeId)[0];
 
             if (elFound) {
@@ -69,6 +76,7 @@ const Dashboard = () => {
         allDataRef.current = donationsData.content
         dataRef.current = sum;
         setData(sum);
+        setTotalFundsCollected(totalFunds)
         setLoading(false);
       } catch (err) {
         console.log({ err });
@@ -81,8 +89,6 @@ const Dashboard = () => {
   function applyFilters() {
     setLoading(true);
     setShowFilteredMsg(false);
-    const startDate = new Date(filters.startDate);
-    const endDate = new Date(filters.endDate);
 
     const amountFilteredData = dataRef.current.filter((el) => {
       const donatedAmount = el.sum;
@@ -160,6 +166,9 @@ const Dashboard = () => {
       {mode === MODES.ALL_SCHOOLS && (
         <>
           {!loading && (
+            <>
+            <p><b>Total Campaigns:</b> {dataRef.current.length}</p>
+            <p><b>Total Funds Collected:</b> {totalFundsCollected}</p>
             <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
               <div>
                 <label>
@@ -186,6 +195,7 @@ const Dashboard = () => {
               </div>
               {showFilteredMsg && <span>Filters applied!</span>}
             </div>
+            </>
           )}
           {!loading && data && data.length > 0 && (
             <div style={{ height: "90vh" }}>
