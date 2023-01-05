@@ -13,8 +13,6 @@ const Dashboard = () => {
   const dataRef = useRef([]);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
-    startDate: "2022-01-01",
-    endDate: "2023-01-01",
     value: "All",
   });
   const [showFilteredMsg, setShowFilteredMsg] = useState(false);
@@ -86,24 +84,18 @@ const Dashboard = () => {
     const startDate = new Date(filters.startDate);
     const endDate = new Date(filters.endDate);
 
-    const dateFilteredData = dataRef.current.filter((el) => {
-      const donatedDate = new Date(el.donatedAt);
-
-      return startDate <= donatedDate && donatedDate <= endDate;
-    });
-
-    const amountFilteredData = dateFilteredData.filter((el) => {
+    const amountFilteredData = dataRef.current.filter((el) => {
       const donatedAmount = el.sum;
 
       switch (filters.amountRange) {
-        case "1-2k":
-          return donatedAmount <= 2000;
-        case "2k-5k":
-          return donatedAmount >= 2000 && donatedAmount <= 5000;
-        case "5k-8k":
-          return donatedAmount >= 5000 && donatedAmount <= 8000;
-        case "8k-10k":
-          return donatedAmount >= 8000 && donatedAmount <= 10000;
+        case "1-1999":
+          return donatedAmount <= 1999;
+        case "2k-4999":
+          return donatedAmount >= 2000 && donatedAmount <= 4999;
+        case "5k-7999":
+          return donatedAmount >= 5000 && donatedAmount <= 7999;
+        case "8k-9999":
+          return donatedAmount >= 8000 && donatedAmount <= 9999;
         case "10k-more":
           return donatedAmount >= 10000;
         default:
@@ -169,29 +161,6 @@ const Dashboard = () => {
         <>
           {!loading && (
             <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
-              <label style={{ display: "block" }}>
-                <span>Start Date:</span>
-                <input
-                  type="date"
-                  value={filters.startDate}
-                  onChange={(e) =>
-                    setFilters((prev) => ({
-                      ...prev,
-                      startDate: e.target.value,
-                    }))
-                  }
-                />
-              </label>
-              <label style={{ display: "block" }}>
-                <span>End Date:</span>
-                <input
-                  type="date"
-                  value={filters.endDate}
-                  onChange={(e) =>
-                    setFilters((prev) => ({ ...prev, endDate: e.target.value }))
-                  }
-                />
-              </label>
               <div>
                 <label>
                   <span>Amount Range: </span>
@@ -204,10 +173,10 @@ const Dashboard = () => {
                     }
                   >
                     <option value="All">All</option>
-                    <option value="1-2k">1 to 2k</option>
-                    <option value="2k-5k">2k to 5k</option>
-                    <option value="5k-8k">5k to 8k</option>
-                    <option value="8k-10k">8k to 10k</option>
+                    <option value="1-1999">1 to 1999</option>
+                    <option value="2k-4999">2k to 4999</option>
+                    <option value="5k-7999">5k to 7999</option>
+                    <option value="8k-9999">8k to 9999</option>
                     <option value="10k-more">10k and more</option>
                   </select>
                 </label>
