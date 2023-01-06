@@ -122,8 +122,9 @@ const Dashboard = () => {
   const columns = [
     {
       field: "placeId",
-      headerName: "Place Id",
-      width: 450,
+      headerName: "View School Dashboard",
+      width: 250,
+      disableExport: true,
       renderCell: (params) => (
         <button
           onClick={() => {
@@ -135,6 +136,7 @@ const Dashboard = () => {
         </button>
       ),
     },
+    { field: "placeName", headerName: "Place Name", width: 350 },
     {
       field: "schoolId",
       headerName: "School Link",
@@ -143,7 +145,6 @@ const Dashboard = () => {
         <Link href={`https://vidyartha.org/fundraiser/${params.value}`}>{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
       ),
     },
-    { field: "placeName", headerName: "Place Name", width: 350 },
     {
       field: "sum",
       headerName: "Sum",
@@ -157,8 +158,7 @@ const Dashboard = () => {
         return `${valueFormatted}`;
       },
     },
-    { field: "placeAddress", headerName: "Place Address", width: 250 },
-    { field: "id", headerName: "Order Id", width: 250 },
+    { field: "placeAddress", headerName: "Place Address", width: 450 },
   ];
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
