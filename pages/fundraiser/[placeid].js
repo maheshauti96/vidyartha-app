@@ -58,7 +58,7 @@ export default function FundraiserPlace() {
     const [schoolAdress, setSchoolAddress] = useState("");
     const [schoolId, setSchoolId] = useState(placeid);
     const [loading, setLoading] = useState(true);
-    const [showPopup, setShowPopup] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
     const [updateRaiseAmount,setUpdateRaisedAmount] = useState(false)
 
     function fetchSchoolDetails(placeid) {
@@ -151,7 +151,6 @@ export default function FundraiserPlace() {
 
     useEffect(() => {
         setHref(window.location.href);
-        localStorage.getItem("visited") ? setShowPopup(false) : setShowPopup(true);
     }, [])
 
     useEffect(() => {
