@@ -11,7 +11,7 @@ export default function Shipping() {
         <div className=" public-wrap container text-center ab p-5">
         <h2>Contact US</h2>
         <h4>ISKCON NVCC, Off Katraj-Kondhwa Bypass Rd, Kondhwa (Bk), Pune-411048.</h4>
-        <h3><strong>8262002275 or vidyartha@gmail.com</strong></h3>
+        <h3><strong>8262002275 or reachtovidyartha@gmail.com</strong></h3>
     </div>
 
     <Footer />
