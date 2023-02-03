@@ -180,7 +180,7 @@
 
     .about {
         height: fit-content;
-        padding: 0 38px;
+        padding: 12px 42px;
         scroll-behavior: auto;
         margin-top: -35px;
         background: #F7F9FA 0% 0% no-repeat padding-box;
@@ -190,7 +190,7 @@
         p {
             text-align: left;
             font: normal normal normal 32px/42px PT Sans Pro;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             letter-spacing: 0px;
             color: #144B5E;
             opacity: 1;
@@ -227,6 +227,8 @@
                 letter-spacing: 0px;
                 color: #FFFFFF;
                 opacity: 1;
+                font-size: 1.45rem;
+                padding: 0.85rem;
             }
         }
     }
@@ -243,6 +245,8 @@
                 letter-spacing: 0px;
                 color: #144B5E;
                 opacity: 1;
+                font-size: 1.15rem;
+                padding: 0.85rem;
             }
         }
     }
