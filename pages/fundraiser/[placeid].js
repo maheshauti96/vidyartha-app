@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Head from 'next/head';
 import _ from 'lodash';
 import { useRouter } from 'next/router'
@@ -60,6 +60,7 @@ export default function FundraiserPlace() {
     const [loading, setLoading] = useState(true);
     const [showPopup, setShowPopup] = useState(true);
     const [updateRaiseAmount,setUpdateRaisedAmount] = useState(false)
+    const amountInputRef = useRef(null);
 
     function fetchSchoolDetails(placeid) {
         console.log('in fetchSchoolDetails')
@@ -288,10 +289,18 @@ export default function FundraiserPlace() {
                                     />
                                 </div>
                                 <div className="form-input-wrap">
+                                    <div className="pills">
+                                        <div className="pill" onClick={() => {amountInputRef.current.focus();setAmount(1000)}}>1000</div>
+                                        <div className="pill" onClick={() => setAmount(2500)}>2500</div>
+                                        <div className="pill" onClick={() => setAmount(5000)}>5000</div>
+                                    </div>
+                                </div>
+                                <div className="form-input-wrap">
                                     <TextField
                                         id="amount"
                                         label="Amount"
-                                        value={amount}
+                                        value={amount || ''}
+                                        ref={amountInputRef}
                                         onChange={({ target }) => {
                                             if (isNaN(target.value)) {
                                                 alert('Please enter valid amount')

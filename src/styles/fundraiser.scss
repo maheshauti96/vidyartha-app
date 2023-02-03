@@ -288,3 +288,15 @@
         }
     }
 }
+
+.pills {
+    display: flex;
+    gap: 1rem;
+    
+    .pill {
+        cursor: pointer;
+        background: #e5e7eb;
+        padding: 0.25rem 1rem;
+        border-radius: 1rem;
+    }
+}
