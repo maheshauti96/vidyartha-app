@@ -13,7 +13,6 @@ import React from "react";
 
 const DonorsTable = ({ topDonors }) => {
 
-  const donors = topDonors.slice(0, 5);
   return (
     <Grid item xs={12} sm={5}>
       <TableContainer component={Paper}>
@@ -29,7 +28,7 @@ const DonorsTable = ({ topDonors }) => {
             </TableRow>
           </TableHead>
           <TableBody className="tbody">
-            {donors.map((donor) => (
+            {topDonors.map((donor) => (
               <TableRow className="tr" key={donor.name}>
                 <TableCell className="td" align="left">
                   {donor.name}
