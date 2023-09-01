@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Box , Input, LinearProgress, TextField } from '@material-ui/core'
 
-const FundInfo = () => {
+const FundInfo = ({ schoolInfo ,raisedAmount , requiredAmount , progress}) => {
     const [amount , setAmount] = useState()
     return (
         <div className='fund-info'>
             <div className='fund-title new-classname-for-funds' >
-                <h1 className='fund-name'>Lorem Ipsum</h1>
+                <h1 className='fund-name'>India International School</h1>
                 <div className='fund-links' >
                     <a><img src='/new-assets/share-icon.svg' /></a>
                     <a><img src='/whatsapp.png' /></a>
@@ -15,10 +15,10 @@ const FundInfo = () => {
                 </div>
                 
             </div>
-            <p className='address' >Address</p>
+            <p className='address' >West Delhi , India</p>
             <div className='progress-container'>
             <div className='fund-progress'>
-                <p>Rs. 5000 raised out of Rs. 10,000</p>
+                <p>Rs. {7000} raised out of Rs. {10000}</p>
                 <Box sx={{ width: '80%' }} >
                     <LinearProgress style={{ height: '12px', borderRadius: '6px', backgroundColor: '#fff', outline: '1px solid black' }} variant="determinate" value={70} />
                 </Box>
@@ -26,7 +26,7 @@ const FundInfo = () => {
             <div className='fund-progress'>
                 <p>Books worth Rs. 3000 have been sent</p>
                 <Box sx={{ width: '80%' }} >
-                    <LinearProgress style={{ height: '12px', borderRadius: '6px', backgroundColor: '#fff', outline: '1px solid black' }} variant="determinate" value={70} />
+                    <LinearProgress style={{ height: '12px', borderRadius: '6px', backgroundColor: '#fff', outline: '1px solid black' }} variant="determinate" value={30} />
                 </Box>
             </div>
             </div>
