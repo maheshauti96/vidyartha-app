@@ -5,7 +5,7 @@ const FundInfo = () => {
     const [amount , setAmount] = useState()
     return (
         <div className='fund-info'>
-            <div className='fund-title' >
+            <div className='fund-title new-classname-for-funds' >
                 <h1 className='fund-name'>Lorem Ipsum</h1>
                 <div className='fund-links' >
                     <a><img src='/new-assets/share-icon.svg' /></a>
