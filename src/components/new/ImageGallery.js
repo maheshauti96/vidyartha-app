@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ImageGallery = () => {
+const ImageGallery = ({schoolSrc}) => {
     const [currImage , setCurrImage] = useState(0)
     const images = ['/new-assets/placeholder.png','/new-assets/books-donated-icon.svg','/new-assets/placeholder.png','/new-assets/placeholder.png','/new-assets/placeholder.png']
     console.log(currImage)
