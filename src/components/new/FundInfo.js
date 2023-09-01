@@ -6,7 +6,7 @@ const FundInfo = ({ schoolInfo ,raisedAmount , requiredAmount , progress}) => {
     return (
         <div className='fund-info'>
             <div className='fund-title new-classname-for-funds' >
-                <h1 className='fund-name'>India International School</h1>
+                <h1 style={{textAlign : 'center'}} className='fund-name'>India International School</h1>
                 <div className='fund-links' >
                     <a><img src='/new-assets/share-icon.svg' /></a>
                     <a><img src='/whatsapp.png' /></a>
