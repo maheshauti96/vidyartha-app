@@ -825,10 +825,20 @@ body {
                 input {
                     width: 80%;
                     font-size: 1.1rem;
+                    height: 3rem;
+                    padding: 0 1rem;
                     border: none;
+                    border: 1px solid;
                     border-radius: 0.5rem;
                     border-top-right-radius: 0;
                     border-bottom-right-radius: 0;
+
+                    @media (max-width : 1000px) {
+                        border-radius: 0.5rem;
+                        width: 80%;
+                        display: block;
+                        margin: auto;
+                    }
                 }
     
                 button {

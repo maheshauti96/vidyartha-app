@@ -9,7 +9,7 @@ const Comments = () => {
   return (
     <div className="container comments">
       <div className="input-el">
-      <TextField fullWidth variant='outlined' label = "Write a comment" />
+      <input placeholder = "Write a comment" />
         <button>Post</button>
       </div>
       {comments.map((val) => (
