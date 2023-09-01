@@ -8,7 +8,7 @@ const DonationSteps = () => {
       <div className='donation-steps-container'>
       <DonationTimeline/>
       <div className='mobile-image' >
-        <img src='./new-assets/mobile-img.png' />
+        <img src='./phone.png' />
       </div>
       </div>
     </div>
