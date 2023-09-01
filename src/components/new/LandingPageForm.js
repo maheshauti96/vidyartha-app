@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
 
+
 const LandingPageForm = () => {
   let autoCompleteRef = useRef(null)
   const router = useRouter()
@@ -169,7 +170,7 @@ const LandingPageForm = () => {
               onClick={() => {
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
-                  router.push(`/fundraiser/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
+                  router.push(`/new-funds-page/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
                 } else {
                   alert('Please Select the school')
                 }
