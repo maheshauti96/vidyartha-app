@@ -14,7 +14,7 @@ const FundraiserComponent = () => {
         <CarouselComponent>
         {
                 carouselList.map((el) => (
-                    <div className='fundraiser-carousel-item'>
+                    <div  key = {el} className='fundraiser-carousel-item'>
                         <div className='images'>
                             <img className='main-img' src='./new-assets/placeholder.png' />
                             <div className='other-img'>

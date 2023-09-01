@@ -10,7 +10,7 @@ const NewsAndStoriesCarousel = () => {
         <CarouselComponent>
         {
                 carouselList.map((el , index) => (
-                    <div className='news-carousel-item'>
+                    <div key={el} className='news-carousel-item'>
                             <img className='main-img' src='./new-assets/placeholder.png' />
                         <div style = {{width : '80%'}}>
                         <h3 className='name'>Lorem Ipsum {el}</h3>
