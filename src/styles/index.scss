@@ -1,6 +1,8 @@
 @import 'common.scss';
 @import 'fundraiser.scss';
 @import 'shipping.scss';
+@import 'new.scss';
+
 
 @font-face {
     font-family: 'PT Sans Pro'; // 400
@@ -22,6 +24,7 @@
 body {
     margin: 0 auto;
 }
+
 
 .home-wrap {
 
