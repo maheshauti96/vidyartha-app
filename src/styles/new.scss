@@ -431,7 +431,7 @@ body {
 
         .user-info {
             display: flex;
-            align-items: start;
+            align-items: flex-start;
             justify-content: center;
             gap: 1rem;
             width: 90%;
@@ -768,7 +768,7 @@ body {
 .section-2 {
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     gap: 4rem;
     margin-top: 5rem;
     .comments-faqs {
@@ -916,7 +916,7 @@ body {
         }
         .donors {
             display: flex;
-            align-items: start;
+            align-items: flex-start;
             gap: 1rem;
             margin: 2rem 0;
             color: #404040;
