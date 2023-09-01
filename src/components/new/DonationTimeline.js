@@ -8,7 +8,7 @@ const DonationTimeline = () => {
       <TimelineItem style = {{height : '150px' , maxWidth : '80%'}}>
         <TimelineSeparator>
         <div className = "icon-image">
-            <img src='./new-assets/timeline-icon-1.svg' />
+            <img src='/phone.png' />
           </div>
           <TimelineConnector />
         </TimelineSeparator>
