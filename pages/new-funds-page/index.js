@@ -3,9 +3,11 @@ import React from 'react'
 import { Box, LinearProgress, TextField } from '@material-ui/core'
 import Header from '../../src/components/new/Header'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Fundraisers = () => {
     let carouselList = [1,2,3,4,5,6,7,8,9,]
+    const router = useRouter()
   return (
     <div style={{fontFamily  :"Inter"}}>
         <Header/>
@@ -14,7 +16,7 @@ const Fundraisers = () => {
             <form className='donate-form'>
                 <TextField className='text-field' label='Find your city' fullWidth variant='outlined' />
                 <TextField className='text-field' label='Find your school' fullWidth variant='outlined' />
-                <button>Donate</button>
+                <button onClick={() => {router.push('/new-funds-page/123')}}>Donate</button>
             </form>
             
             <div className='fundraiser-grid'>
