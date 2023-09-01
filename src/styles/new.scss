@@ -78,6 +78,7 @@ body {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            z-index: 100000;
 
             button {
                 width: fit-content;
@@ -1154,7 +1155,7 @@ body {
             column-gap: 2rem;
             text-align: justify;
 
-            @media (max-height : 1000px) {
+            @media (max-width : 1000px) {
                 column-count: 1;
                 width: 90%;
                 margin: 1rem auto;
