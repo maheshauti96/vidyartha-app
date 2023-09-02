@@ -2,6 +2,7 @@ import { Box, LinearProgress, Slide, Slider ,linearProgressClasses } from '@mate
 import React, { useState } from 'react'
 import styled from '@material-ui/core'
 import CarouselComponent from './CarouselComponent'
+import Link from 'next/link'
 
 const FundraiserComponent = () => {
     let carouselList = [1,2,3,4,5,6,7,8,9,]
@@ -41,7 +42,7 @@ const FundraiserComponent = () => {
                                 </Box>
                             </div>
                         </div>
-                        <button className='donate-btn'>Donate</button>
+                        <Link href='/new-funds-page/c' className='donate-btn'>Donate</Link>
                     </div>
                 ))
             }
