@@ -1,19 +1,19 @@
 import React from "react";
-import Header from "../src/components/new/Header";
-import Footer from "../src/components/new/Footer";
+import Header from "../../src/components/new/Header";
+import Footer from "../../src/components/new/Footer";
 
 const AboutUs = () => {
   const purpose = [
     {
-      img: "./new-assets/purpose-1.svg",
+      img: "/new-assets/purpose-1.svg",
       text: "Raise funds for making spiritual wisdom literature available in  school/college libraries",
     },
     {
-      img: "./new-assets/purpose-2.svg",
+      img: "/new-assets/purpose-2.svg",
       text: "Build a strong foundation of moral values, the ability to handle emotionally turbulent situations, strong  determination, and healthy habits.",
     },
     {
-      img: "./new-assets/purpose-3.svg",
+      img: "/new-assets/purpose-3.svg",
       text: "Encourage spiritual literature and",
     },
   ];
@@ -25,13 +25,13 @@ const AboutUs = () => {
           We at Vidyartha are trying to build a moral and good habitual
           foundation in children by donating spiritual wisdom literature
         </h1>
-        <img className="main-img" src="./PVG_School.jpg" />
+        <img className="main-img" src="/PVG_School.jpg" />
 
         <div className="purpose">
           <h2>What is the purpose of Vidyartha</h2>
           <div className="purpose-container">
             {purpose.map(({ img, text }) => (
-              <div className="purpose-item">
+              <div key = {img} className="purpose-item">
                 <img src={img} />
                 <p>{text}</p>
               </div>
