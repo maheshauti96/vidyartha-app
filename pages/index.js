@@ -27,6 +27,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from '../src/components/Footer';
 import FAQ from '../src/components/FAQ';
+import FundraiserComponent from '../src/components/new/FundraiserCarousel';
 
 export default function Home() {
 
@@ -156,7 +157,6 @@ export default function Home() {
     }
     else {
       setText(e.target.value);
-      console.log("HEREEEEEEEEEEEE")
       fetchSchoolsAutoComplete();
     }
 
@@ -327,7 +327,7 @@ export default function Home() {
         </Grid>
       </Grid>
       </div>
-
+      <FundraiserComponent/>
       <div className="step-wrap gifting-slider">
       <Slider dots={true} autoplay={false} speed={2000}>
       <div className="slide1" style={{ textAlign: '-webkit-center' }}>
