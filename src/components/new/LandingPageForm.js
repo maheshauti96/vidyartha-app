@@ -29,16 +29,15 @@ const LandingPageForm = () => {
     }
     else {
       setText(e.target.value);
-      console.log("HEREEEEEEEEEEEE")
       fetchSchoolsAutoComplete();
     }
 
   }
   const fetchSchoolsAutoComplete = (() => {
 
-    var service = new google.maps.places.AutocompleteService();
+    var service = new window.google.maps.places.AutocompleteService();
 
-    var pyrmont = new google.maps.LatLng(latitude, longitude);
+    var pyrmont = new window.google.maps.LatLng(latitude, longitude);
 
     var request = {
       input: text,
@@ -51,7 +50,8 @@ const LandingPageForm = () => {
 
     service.getPlacePredictions(request,
       function (predictions, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+        console.log(prediction , status)
+        if (status == window.google.maps.places.PlacesServiceStatus.OK) {
 
           setCardVisibility("block")
 
@@ -65,7 +65,6 @@ const LandingPageForm = () => {
 
           }
           console.table(predictions);
-          // console.table(schoolsArr);
           setSchools(() => { return schoolsArr.map((item) => item) });
         }
 
@@ -75,7 +74,6 @@ const LandingPageForm = () => {
   function selectedValue(event, value) {
 
     if (value) {
-      console.log(value)
       setFinalPlace(value)
       setText(value.name)
       localStorage.setItem('placeInfo', JSON.stringify(value));
@@ -84,7 +82,6 @@ const LandingPageForm = () => {
   useEffect(() => {
 
     let autoComplete = new window.google.maps.places.Autocomplete(
-
       autoCompleteRef.current,
       { types: ["(cities)"], componentRestrictions: { country: "in" } }
     );
@@ -96,6 +93,7 @@ const LandingPageForm = () => {
       setLatitude(place.geometry.location.lat())
       setLongitude(place.geometry.location.lng())
       setCity(place.name)
+      console.log(place)
     }
 
     );
@@ -111,7 +109,7 @@ const LandingPageForm = () => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLAaadQJ2iA8m6Nq2KGAQXwL9B6CwVvZ8&libraries=places&callback=Function.prototype"></script>
         <meta
           property="title"
           content="Vidyartha | Help Us To Donate Books For Your School Library!"
@@ -132,6 +130,8 @@ const LandingPageForm = () => {
           content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically."
         />
         <meta property="og:image" content="/banner-bg-original.png" />
+        
+
       </Head>
       <div className="landingpage-form">
         <h2 className="landing-heading">
@@ -151,7 +151,6 @@ const LandingPageForm = () => {
               noOptionsText={'No Options'}
               width={'346px'}
               options={schools}
-              multiline="true" 
               // open={true}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
@@ -170,7 +169,7 @@ const LandingPageForm = () => {
               onClick={() => {
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
-                  router.push(`/new-funds-page/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
+                  router.push(`/new/funds/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
                 } else {
                   alert('Please Select the school')
                 }
