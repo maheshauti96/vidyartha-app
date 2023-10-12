@@ -129,7 +129,7 @@ export async function fetchAnalytics() {
   }
 }
 
-const BASE_URL = 'https://shastradaan.ap-south-1.elasticbeanstalk.com'
+const BASE_URL = 'https://api.vidyartha.org'
 
 export async function createComment({ name, email, rating, comment, place }) {
   const placeRating = {
@@ -180,7 +180,7 @@ export async function getComments(place) {
 export async function fetchTopFundraisers(){
   try {
     const response = await fetch(
-      `${BASE_URL}/shastradaan/place/`
+      `https://api.vidyartha.org/shastradaan/place/`
     )
 
     const data = await response.json()

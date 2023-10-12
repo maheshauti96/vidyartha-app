@@ -10,20 +10,10 @@ import Footer from '../../../src/components/new/Footer'
 const Fundraisers = () => {
     let carouselList = [1,2,3,4,5,6,7,8,9,]
     const router = useRouter()
-    async function getResultsForCampaigns(){
-      try {
-        let response = await fetch('https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/place/?offset=10&paged=true&pageNumber=2 &pageSize=15&sort.sorted=true')
-        let data = await response.json()
-        console.log(data)
-      }catch(err){
-        console.log(err)
-      }
-    }
   return (
     <div style={{fontFamily  :"Inter"}}>
         <Header/>
         <div className='fundraisers-page' style={{marginTop : '7rem'}}>
-            <button onClick={getResultsForCampaigns}>CHECK RESULTS</button>
             <LandingPageForm/>
             <FundraiserComponent/>
             
