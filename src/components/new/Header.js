@@ -12,23 +12,23 @@ const Header = () => {
         <div className="header-links">
           <div
             className={`${
-              router.pathname === "/new-landing-page" ? "active" : ""
+              router.pathname === "/new" ? "active" : ""
             }`}
           >
-            <Link href="/new-landing-page">Homepage</Link>
+            <Link href="/new">Homepage</Link>
           </div>
-          <div className={`${router.pathname.includes('new-funds-page') ? "active" : ""}`}>
-            <Link href="/new-funds-page">Funds</Link>
+          <div className={`${router.pathname.includes('/new/funds') ? "active" : ""}`}>
+            <Link href="/new/funds">Funds</Link>
           </div>
-          <div
+          {/* <div
             className={`${
               router.pathname.includes("/news-and-stories") ? "active" : ""
             }`}
           >
-            <Link href="/news-and-stories">News and Stories</Link>
-          </div>
-          <div className={`${router.pathname.includes("/new-about-us")  ? "active" : ""}`}>
-            <Link href="/new-about-us">About</Link>
+            <Link href="/new/news-and-stories">News and Stories</Link>
+          </div> */}
+          <div className={`${router.pathname.includes("/new/aboutus")  ? "active" : ""}`}>
+            <Link href="/new/aboutus">About</Link>
           </div>
         </div>
 
@@ -47,27 +47,27 @@ const Header = () => {
             <div className="link-list">
               <div
                 className={`${
-                  router.pathname === "/new-landing-page" ? "active" : ""
+                  router.pathname === "/new" ? "active" : ""
                 }`}
               >
-                <Link href="/new-landing-page">Homepage</Link>
+                <Link href="/new">Homepage</Link>
               </div>
               <div
-                className={`${router.pathname.includes('new-funds-page') ? "active" : ""}`}
+                className={`${router.pathname.includes('/new/funds') ? "active" : ""}`}
               >
-                <Link href="/new-funds-page">Funds</Link>
+                <Link href="/new/funds">Funds</Link>
               </div>
-              <div
+              {/* <div
                 className={`${
-                  router.pathname.includes("/news-and-stories") ? "active" : ""
+                  router.pathname.includes("/new/news-and-stories") ? "active" : ""
                 }`}
               >
-                <Link href="/news-and-stories">News and Stories</Link>
-              </div>
+                <Link href="/new/news-and-stories">News and Stories</Link>
+              </div> */}
               <div
-                className={`${router.pathname.includes("/new-about-us") ? "active" : ""}`}
+                className={`${router.pathname.includes("/new/aboutus") ? "active" : ""}`}
               >
-                <Link href="/new-about-us">About</Link>
+                <Link href="/new/aboutus">About</Link>
               </div>
             </div>
           </div>

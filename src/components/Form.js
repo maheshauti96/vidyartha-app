@@ -38,7 +38,6 @@ export default function Form() {
     };
     return (
         <div className="cont-wrap">
-            <h4>Contact Us</h4>
             <div className="form1-wrap">
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextField className="id1" label="Name" value={name} variant="outlined" onChange={(e) => {setName(e.target.value), setMessage("")}}
@@ -47,7 +46,7 @@ export default function Form() {
                 <TextField className="id1" label="Email" value={email} variant="outlined" onChange={(e) => {setEmail(e.target.value), setMessage("")}}
                 required />
                 <br />
-                <textarea className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" multiline rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
+                <textarea className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
                 required />
                 <br />
                 <Button className="btn1" variant="contained" type="submit" disabled={buttonLoader}>

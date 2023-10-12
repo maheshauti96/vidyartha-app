@@ -6,13 +6,13 @@ const CommentLike = () => {
 
   const [liked, setLiked] = useState(null)
   return (
-    <div>
+    
         <div className="comment-reaction">
             Was this comment helpful? <button onClick={() => setLiked(true)}>{ liked === true ? <ThumbUpAltRounded/> : <ThumbUpAltOutlined />}</button>{" "}
             <button onClick={() => setLiked(false)}>{ liked === false ? <ThumbDownAltRounded /> : <ThumbDownAltOutlined/>}</button>
             
           </div>
-    </div>
+    
   )
 }
 

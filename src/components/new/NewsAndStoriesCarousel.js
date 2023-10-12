@@ -11,14 +11,14 @@ const NewsAndStoriesCarousel = () => {
         {
                 carouselList.map((el , index) => (
                     <div key={el} className='news-carousel-item'>
-                            <img className='main-img' src='./new-assets/placeholder.png' />
+                            <img className='main-img' src='/new-assets/placeholder.png' />
                         <div style = {{width : '80%'}}>
                         <h3 className='name'>Lorem Ipsum {el}</h3>
                         <p>
                         Lorem ipsum dolor sit amet. Ut enim debitis sit porro quos aut delectus dolorem aut consequatur sapiente ut soluta libero. Rem enim vitae qui vero velit qui .....
                         </p>
                         </div>
-                        <Link href={'/news-and-stories/' + index} ><div className='read-more-btn' >Read more</div></Link>
+                        <Link href={'/new/news-and-stories/' + index} ><div className='read-more-btn' >Read more</div></Link>
                     </div>
                 ))
             }

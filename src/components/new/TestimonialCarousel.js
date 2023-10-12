@@ -9,8 +9,7 @@ const TestimonialCarousel = () => {
         <h3 className='section-title'>Testimonials</h3>
         <CarouselComponent>
             {carouselList.map( ({val , stars} , index) => (
-                <div key={`hello ${val} + ${stars} + ${index}`} className='testimonial-item'>
-                    {val + "" + stars}
+                <div key= {index} className='testimonial-item'> 
                     <div className='user-info'>
                         <img className='user-icon' src='./new-assets/testimonial-user.jpeg' />
                         <div className='user-desc'>

@@ -1,5 +1,6 @@
 import { TextareaAutosize } from '@material-ui/core'
 import React from 'react'
+import Form from '../Form'
 
 const Footer = () => {
   return (
@@ -29,13 +30,8 @@ const Footer = () => {
             </div>
         </div>
         <div className='contact-us'>
-            <h3 className='title' >Contact Us</h3>
-            <form className='contact-us-form' >
-                <input name='name' type='text' placeholder='Name' />
-                <input name='email' type= 'email'  placeholder='Email' />
-                <TextareaAutosize placeholder='Message' variant="outlined" size="lg" minRows={4}/>
-                <button>Submit</button>
-            </form>
+            <h4 className='title'>Contact Us</h4>
+            <Form/>
         </div>
     </footer>
   )

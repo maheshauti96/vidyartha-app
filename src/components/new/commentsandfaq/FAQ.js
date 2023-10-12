@@ -41,7 +41,7 @@ const FAQ = () => {
             <div className="container" >
             {
                 FAQs.map(({question , answer}) => (
-                    <Accordion className="">
+                    <Accordion key={question} className="">
                         <AccordionSummary
                             expandIcon={<ExpandMore />}
                             aria-controls="panel1a-content"

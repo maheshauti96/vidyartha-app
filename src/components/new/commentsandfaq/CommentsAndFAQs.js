@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Comments from './Comments'
 import FAQ from './FAQ'
 
-const CommentsAndFAQs = () => {
+const CommentsAndFAQs = ({setShowModal , place ,comments , setComments}) => {
     const [index, setIndex] = useState('0')
     return (
         <div className='comments-faqs'>
@@ -19,7 +19,7 @@ const CommentsAndFAQs = () => {
                 </TabList>
                 
                 <TabPanel className='tab-panel' value='0' >
-                    <Comments/>
+                    {place && <Comments setComments={setComments} comments = {comments} place = {place} setShowModal = {setShowModal}/>}
                 </TabPanel>
                 <TabPanel className='tab-panel' value='1' >
                     <FAQ/>
