@@ -24,7 +24,7 @@ const FundraiserComponent = () => {
 
   return (
     <>
-      {content.length > 0 && (
+      {content && content.length > 0 && (
         <div className="fundraiser-component">
           <h3 className="section-title">Our Top Fundraisers</h3>
           <CarouselComponent>
