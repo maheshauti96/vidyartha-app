@@ -39,37 +39,14 @@ const FundraiserComponent = () => {
                 <div style={{ width: "80%" }}>
                   <h3 className="name">{name}</h3>
                   <p className="address">{address}</p>
+                  
                 </div>
                 <div className="progress" style={{ width: "80%" }}>
                   <div>
-                    <p>Total collected : {collected}</p>
-                    {/* <Box sx={{ width: "80%" }}>
-                      <LinearProgress
-                        style={{
-                          height: "12px",
-                          borderRadius: "6px",
-                          backgroundColor: "#fff",
-                          outline: "1px solid black",
-                        }}
-                        variant="determinate"
-                        value={70}
-                      />
-                    </Box> */}
+                    <p>Total Funds : {collected/100} Rs</p>
                   </div>
                   <div>
                     <p>Total Donors : {donorCount}</p>
-                    {/* <Box sx={{ width: "80%" }}>
-                      <LinearProgress
-                        style={{
-                          height: "12px",
-                          borderRadius: "6px",
-                          backgroundColor: "#fff",
-                          outline: "1px solid black",
-                        }}
-                        variant="determinate"
-                        value={70}
-                      />
-                    </Box> */}
                   </div>
                 </div>
                 <div className="donate-btn">
