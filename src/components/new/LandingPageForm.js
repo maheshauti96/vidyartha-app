@@ -149,7 +149,6 @@ const LandingPageForm = () => {
         />
         <Autocomplete
             disablePortal
-            noOptionsText={'No Options'}
             width={'346px'}
             options={schools}
             // open={true}
