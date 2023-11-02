@@ -133,50 +133,52 @@ const LandingPageForm = () => {
         
 
       </Head>
-      <div className="landingpage-form">
-        <h2 className="landing-heading">
-          Help us to donate books to your school library
-        </h2>
-        <form className="landing-form">
-          <TextField
-            type="text"
-            variant="outlined"
-            label="Find your city"
-            required
-
-            inputRef={autoCompleteRef}
-          />
-          <Autocomplete
-              disablePortal
-              noOptionsText={'No Options'}
-              width={'346px'}
-              options={schools}
-              // open={true}
-              onChange={(event, value) => selectedValue(event, value)}
-              getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
-              renderOption={(option) => {
-                return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px" }}>{option.structured_formatting.main_text}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.structured_formatting.secondary_text}</p></div>;
-              }}
-              sx={{ width: 346 }}
-              renderInput={(params) => {
-               return <TextField {...params} label="Find your school"
-                onChange={handleInput} variant="outlined"
-              />
-              } }
+    <div className="landingpage-form">
+      <div className = "landingpage-form-container">
+      <h2 className="landing-heading">
+        Help us to donate books to your school library
+      </h2>
+      <form className="landing-form">
+        <TextField
+          type="text"
+          variant="outlined"
+          label="Find your city"
+          required
+          
+          inputRef={autoCompleteRef}
+        />
+        <Autocomplete
+            disablePortal
+            noOptionsText={'No Options'}
+            width={'346px'}
+            options={schools}
+            // open={true}
+            onChange={(event, value) => selectedValue(event, value)}
+            getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
+            renderOption={(option) => {
+              return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px" }}>{option.structured_formatting.main_text}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.structured_formatting.secondary_text}</p></div>;
+            }}
+            sx={{ width: 346 }}
+            renderInput={(params) => {
+              return <TextField {...params} label="Find your school"
+              onChange={handleInput} variant="outlined" sx = {{fontSize : '2rem'}}
             />
-          <button
-              className="submit-btn"
-              onClick={() => {
-                if (finalPlace) {
-                  localStorage.setItem("visited", true);
-                  router.push(`/new/funds/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
-                } else {
-                  alert('Please Select the school')
-                }
-              }}
-            >Donate Now <ArrowForwardIos/></button>
-        </form>
+            } }
+          />
+        <button
+            className="submit-btn"
+            onClick={() => {
+              if (finalPlace) {
+                localStorage.setItem("visited", true);
+                router.push(`/new/funds/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
+              } else {
+                alert('Please Select the school')
+              }
+            }}
+          >Donate Now <ArrowForwardIos/></button>
+      </form>
       </div>
+    </div>
     </>
   );
 };

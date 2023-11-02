@@ -129,7 +129,7 @@ export async function fetchAnalytics() {
   }
 }
 
-const BASE_URL = 'https://api.vidyartha.org'
+const BASE_URL = "https://api.vidyartha.org";
 
 export async function createComment({ name, email, rating, comment, place }) {
   const placeRating = {
@@ -141,18 +141,15 @@ export async function createComment({ name, email, rating, comment, place }) {
     timestamp: new Date(Date.now()),
   };
   try {
-    const response = await fetch(
-      `${BASE_URL}/shastradaan/place/rating`,
-      {
-        body: JSON.stringify(placeRating),
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL}/shastradaan/place/rating`, {
+      body: JSON.stringify(placeRating),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const data = await response.text();
-    return data
+    return data;
   } catch (err) {
     console.log(err);
     return err;
@@ -177,17 +174,136 @@ export async function getComments(place) {
   }
 }
 
-export async function fetchTopFundraisers(){
+export async function fetchTopFundraisers() {
   try {
     const response = await fetch(
       `https://api.vidyartha.org/shastradaan/place/`
-    )
+    );
 
-    const data = await response.json()
+    const data = await response.json();
 
     return data;
-  } catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
     return err;
+  }
+}
+
+export function formatDate(inputDateString) {
+  let date = new Date(inputDateString);
+  if (isNaN(date)) {
+    return inputDateString;
+  }
+
+  let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  let dayOfWeek = daysOfWeek[date.getUTCDay()];
+  let month = months[date.getUTCMonth()];
+  let day = date.getUTCDate();
+  let year = date.getUTCFullYear();
+  let hours = date.getUTCHours();
+  let minutes = date.getUTCMinutes();
+  let seconds = date.getUTCSeconds();
+
+  let formattedDate = `${dayOfWeek} ${month} ${day} ${year} ${hours}:${minutes}:${seconds}`;
+
+  return formattedDate;
+}
+
+export async function getBooks(setBooks , size =1000){
+  try {
+    const response = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/book?size=${size}`)
+    const data = await response.json()
+    setBooks(data['content'])
+  } catch(err){
+    setBooks({...err , errorOccured : true})
+  }
+}
+
+export async function getBooksByCode(setBooks , code){
+  try {
+    const response = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/book/findByCode/${code}?size=1000`)
+    const data = await response.json()
+    setBooks(data['content'])
+  } catch(err){
+    return setBooks({...err , errorOccured : true})
+  }
+}
+
+export async function getBooksByName(setBooks , name){
+  try {
+    const response = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/book/findByDescription/${name}?size=1000`)
+    const data = await response.json()
+    setBooks(data['content'])
+  } catch(err){
+    return setBooks({...err , errorOccured : true})
+  }
+}
+
+export async function getDeliveries(setDeliveryList){
+  try {
+    const response = await fetch('https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/delivery')
+    const data = await response.json()
+    setDeliveryList({...data , errorOccured : false})
+
+  }catch(error){
+    setDeliveryList({errorOccured : false , error})
+  }
+}
+
+export async function createDelivery(setResponse , data){
+  try {
+    const {books , totalAmount , placeAddress , placeId , description } = data
+    const bodyBooks = books.reduce((acc , curr) => {
+      console.log(curr)
+      acc[curr.code] = curr.quantity
+      return acc
+  }, {})
+    const deliveryObj = {
+      "id": 1,
+      "place": placeId,
+      "org": "NVCCPUN",
+      "books": bodyBooks,
+      "description": description,
+      "shippingService": "string",
+      "trackingId": "string",
+      "deliveryOwner": "Karthik",
+      "toAddress": placeAddress,
+      "fromAddress": "string",
+      "totalAmount": totalAmount,
+      "shippingAmount": 0,
+      "itemsCost": 0,
+      "taxAmount": 0,
+      "createdAt": new Date(),
+      "modifiedAt": new Date()
+    }
+
+    const response = await fetch('https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/delivery/create', {
+      method : 'POST',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(deliveryObj)
+    })
+    console.log({response})
+    setResponse(response)
+  }catch(error){
+    console.log(error)
+    setResponse(error)
   }
 }
