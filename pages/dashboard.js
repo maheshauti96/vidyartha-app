@@ -2,6 +2,9 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SchoolDashboard from "../src/components/SchoolDashboard";
+import BooksDisplay from "../src/components/dashboard/BooksDisplay";
+import DeliveryDisplay from "../src/components/dashboard/DeliveryDisplay";
+import CreateDeliveryForm from "../src/components/dashboard/CreateDeliveryForm";
 
 const MODES = {
   ALL_SCHOOLS: "ALL_SCHOOLS",
@@ -18,6 +21,7 @@ const Dashboard = () => {
   const [showFilteredMsg, setShowFilteredMsg] = useState(false);
   const [mode, setMode] = useState(MODES.ALL_SCHOOLS);
   const [selectedSchool, setSelectedSchool] = useState();
+  const [deliverySchool , setDeliverySchool] = useState({showModal : false})
   const [totalFundsCollected, setTotalFundsCollected] = useState(0);
   const [totalDonors, setTotalDonors] = useState(0);
   const allDataRef = useRef();
@@ -39,7 +43,6 @@ const Dashboard = () => {
       );
 
       const data = await res.json();
-      console.log(data)
 
       return data;
     }
@@ -117,9 +120,8 @@ const Dashboard = () => {
     setShowFilteredMsg(true);
     setTimeout(() => setShowFilteredMsg(false), 3000);
   }
-
+  console.log(selectedSchool)
   const rows = data;
-
   const columns = [
     {
       field: "placeId",
@@ -160,6 +162,16 @@ const Dashboard = () => {
       },
     },
     { field: "placeAddress", headerName: "Place Address", width: 450 },
+    {
+      field : 'createDelivery' ,
+      headerName : 'Create Delivery' , 
+      width : 200,
+      renderCell : params => (
+        <button onClick={() => setDeliverySchool({data : params.row , showModal : true})}>
+          Create Delivery
+        </button>
+      )
+    }
   ];
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
@@ -218,7 +230,11 @@ const Dashboard = () => {
           goToAllSchools={() => setMode(MODES.ALL_SCHOOLS)}
         />
       )}
+      <BooksDisplay/>
+      <DeliveryDisplay/>
+      {deliverySchool.showModal && <CreateDeliveryForm setDeliverySchool = {setDeliverySchool} schoolData={deliverySchool}/>}
     </div>
+
   );
 };
 

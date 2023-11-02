@@ -18,7 +18,7 @@ const newLandingPage = () => {
         <div>
           <Header />
         </div>
-        <img className="landingpage-banner-image" src="/header-image.svg" />
+        <img className="landingpage-banner-image" src="/banner-bg-original.png" />
         <LandingPageForm />
         <Analytics />
         <FundraiserComponent />
