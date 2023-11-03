@@ -124,9 +124,9 @@ const Dashboard = () => {
   const rows = data;
   const columns = [
     {
-      field: "placeId",
+      field: "placeId" ,
       headerName: "View School Dashboard",
-      width: 250,
+      width: 300,
       disableExport: true,
       renderCell: (params) => (
         <button
