@@ -139,7 +139,7 @@ const LandingPageForm = () => {
               disablePortal
               sx = {{width : '346px'}}
               options={schools}
-              noOptionsText="I like mangoes"
+              noOptionsText=""
               // open={true}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) =>
