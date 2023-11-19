@@ -258,7 +258,7 @@ export async function getDeliveries(setDeliveryList){
   try {
     const response = await fetch('https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/delivery')
     const data = await response.json()
-    setDeliveryList({...data , errorOccured : false})
+    setDeliveryList({data , errorOccured : false})
 
   }catch(error){
     setDeliveryList({errorOccured : false , error})

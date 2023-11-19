@@ -8,7 +8,6 @@ import {
 } from "../../services/service";
 import { TextField } from "@material-ui/core";
 import { debounce } from "lodash";
-import FindSchoolInput from "./FindSchoolInput";
 import { CloseOutlined, DeleteOutlineRounded } from "@material-ui/icons";
 
 const CreateDeliveryForm = ({ schoolData, setDeliverySchool }) => {
