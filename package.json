@@ -12,6 +12,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/x-data-grid": "^4.0.2",
     "@next/react-refresh-utils": "^12.0.10",
+    "amazon-cognito-identity-js": "^6.3.7",
     "bootstrap": "^5.1.3",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",
