@@ -12,13 +12,13 @@ const Header = () => {
         <div className="header-links">
           <div
             className={`${
-              router.pathname === "/new" ? "active" : ""
+              router.pathname === "/" ? "active" : ""
             }`}
           >
-            <Link href="/new">Homepage</Link>
+            <Link href="/">Homepage</Link>
           </div>
-          <div className={`${router.pathname.includes('/new/funds') ? "active" : ""}`}>
-            <Link href="/new/funds">Funds</Link>
+          <div className={`${router.pathname.includes('/funds') ? "active" : ""}`}>
+            <Link href="/funds">Funds</Link>
           </div>
           {/* <div
             className={`${
@@ -27,8 +27,8 @@ const Header = () => {
           >
             <Link href="/new/news-and-stories">News and Stories</Link>
           </div> */}
-          <div className={`${router.pathname.includes("/new/aboutus")  ? "active" : ""}`}>
-            <Link href="/new/aboutus">About</Link>
+          <div className={`${router.pathname.includes("/aboutus")  ? "active" : ""}`}>
+            <Link href="/aboutus">About</Link>
           </div>
         </div>
 

@@ -6,81 +6,73 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
 
-
 const LandingPageForm = () => {
-  let autoCompleteRef = useRef(null)
-  const router = useRouter()
+  let autoCompleteRef = useRef(null);
+  const router = useRouter();
   const [text, setText] = useState("");
   const [schools, setSchools] = useState([]);
   const [city, setCity] = useState("");
   const [finalPlace, setFinalPlace] = useState();
-  const [cardVisibility, setCardVisibility] = useState("none") //visible
-  const [latitude, setLatitude] = useState(7.798000);
+  const [cardVisibility, setCardVisibility] = useState("none"); //visible
+  const [latitude, setLatitude] = useState(7.798);
   const [longitude, setLongitude] = useState(68.14712);
 
   function handleInput(e) {
-
     // console.log("The event value received is : ", e.target.value);
 
-
     if (e.target.value === "") {
-      setSchools([])
+      setSchools([]);
       setText(e.target.value);
-    }
-    else {
+    } else {
       setText(e.target.value);
       fetchSchoolsAutoComplete();
     }
-
   }
-  const fetchSchoolsAutoComplete = (() => {
-
+  const fetchSchoolsAutoComplete = () => {
     var service = new window.google.maps.places.AutocompleteService();
 
     var pyrmont = new window.google.maps.LatLng(latitude, longitude);
 
     var request = {
       input: text,
-      types: ['establishment'],
-      componentRestrictions: { country: 'in' },
+      types: ["establishment"],
+      componentRestrictions: { country: "in" },
       location: pyrmont,
-      radius: '500',
-    }
+      radius: "500",
+    };
 
+    service.getPlacePredictions(request, function (predictions, status) {
+      console.log(prediction, status);
+      if (status == window.google.maps.places.PlacesServiceStatus.OK) {
+        setCardVisibility("block");
 
-    service.getPlacePredictions(request,
-      function (predictions, status) {
-        console.log(prediction , status)
-        if (status == window.google.maps.places.PlacesServiceStatus.OK) {
+        let schoolsArr = [];
 
-          setCardVisibility("block")
-
-          let schoolsArr = []
-
-          for (var i = 0, prediction; prediction = predictions[i]; i++) {
-            if (prediction.types.includes("school") || prediction.types.includes("university")) {
-              schoolsArr.push(prediction)
-              // console.log(prediction.description)
-            }
-
+        for (var i = 0, prediction; (prediction = predictions[i]); i++) {
+          if (
+            prediction.types.includes("school") ||
+            prediction.types.includes("university")
+          ) {
+            schoolsArr.push(prediction);
+            // console.log(prediction.description)
           }
-          console.table(predictions);
-          setSchools(() => { return schoolsArr.map((item) => item) });
         }
-
-      });
-  });
+        console.table(predictions);
+        setSchools(() => {
+          return schoolsArr.map((item) => item);
+        });
+      }
+    });
+  };
 
   function selectedValue(event, value) {
-
     if (value) {
-      setFinalPlace(value)
-      setText(value.name)
-      localStorage.setItem('placeInfo', JSON.stringify(value));
+      setFinalPlace(value);
+      setText(value.name);
+      localStorage.setItem("placeInfo", JSON.stringify(value));
     }
   }
   useEffect(() => {
-
     let autoComplete = new window.google.maps.places.Autocomplete(
       autoCompleteRef.current,
       { types: ["(cities)"], componentRestrictions: { country: "in" } }
@@ -90,17 +82,15 @@ const LandingPageForm = () => {
 
     autoComplete.addListener("place_changed", () => {
       const place = autoComplete.getPlace();
-      setLatitude(place.geometry.location.lat())
-      setLongitude(place.geometry.location.lng())
-      setCity(place.name)
-      console.log(place)
-    }
-
-    );
+      setLatitude(place.geometry.location.lat());
+      setLongitude(place.geometry.location.lng());
+      setCity(place.name);
+      console.log(place);
+    });
 
     setText("");
     setCardVisibility("none");
-  }, [])
+  }, []);
 
   return (
     <>
@@ -130,54 +120,87 @@ const LandingPageForm = () => {
           content="In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically. In order to make our students ready for a globalised world and create an opportunity for them to learn about other nations and culture, we have developed partnerships with schools around the world. The function of education is to teach one to think intensively and to think critically."
         />
         <meta property="og:image" content="/banner-bg-original.png" />
-        
-
       </Head>
-    <div className="landingpage-form">
-      <div className = "landingpage-form-container">
-      <h2 className="landing-heading">
-        Help us to donate books to your school library
-      </h2>
-      <form className="landing-form">
-        <TextField
-          type="text"
-          variant="outlined"
-          label="Find your city"
-          required
-          
-          inputRef={autoCompleteRef}
-        />
-        <Autocomplete
-            disablePortal
-            width={'346px'}
-            options={schools}
-            // open={true}
-            onChange={(event, value) => selectedValue(event, value)}
-            getOptionLabel={(option) => option.structured_formatting.main_text.toString()}
-            renderOption={(option) => {
-              return <div style={{ textAlign: "left", fontSize: "1.1rem" }}><p style={{ margin: "0px" }}>{option.structured_formatting.main_text}</p><p style={{ color: "grey", margin: "0px", fontSize: "0.9rem" }}> {option.structured_formatting.secondary_text}</p></div>;
-            }}
-            sx={{ width: 346 }}
-            renderInput={(params) => {
-              return <TextField {...params} label="Find your school"
-              onChange={handleInput} variant="outlined" sx = {{fontSize : '2rem'}}
+      <div className="landingpage-form">
+        <div className="landingpage-form-container">
+          <h2 className="landing-heading">
+            Help us to donate books to your school library
+          </h2>
+          <form className="landing-form">
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Find your city"
+              required
+              inputRef={autoCompleteRef}
             />
-            } }
-          />
-        <button
-            className="submit-btn"
-            onClick={() => {
-              if (finalPlace) {
-                localStorage.setItem("visited", true);
-                router.push(`/new/funds/${finalPlace.place_id}?name=${finalPlace.structured_formatting.main_text.replaceAll(" ", "-")}`);
-              } else {
-                alert('Please Select the school')
+            <div>
+            <Autocomplete
+              disablePortal
+              sx = {{width : '346px'}}
+              options={schools}
+              noOptionsText="I like mangoes"
+              // open={true}
+              onChange={(event, value) => selectedValue(event, value)}
+              getOptionLabel={(option) =>
+                option.structured_formatting.main_text.toString()
               }
-            }}
-          >Donate Now <ArrowForwardIos/></button>
-      </form>
+              renderOption={(option) => {
+                return (
+                  <div style={{ textAlign: "left", fontSize: "1.1rem" }}>
+                    <p style={{ margin: "0px" }}>
+                      {option.structured_formatting.main_text}
+                    </p>
+                    <p
+                      style={{
+                        margin :"0px",
+                        color: "grey",
+                        fontSize: "0.9rem",
+                      }}
+                    >
+                      {" "}
+                      {option.structured_formatting.secondary_text}
+                    </p>
+                  </div>
+                );
+              }}
+              
+              renderInput={(params) => {
+                return (
+                  <TextField
+                    {...params}
+                    label="Find your school"
+                    onChange={handleInput}
+                    variant="outlined"
+                    sx={{ fontSize: "2rem" }}
+                  />
+                );
+              }}
+            />
+            </div>
+            <button
+              className="submit-btn"
+              onClick={() => {
+                if (finalPlace) {
+                  localStorage.setItem("visited", true);
+                  router.push(
+                    `/funds/${
+                      finalPlace.place_id
+                    }?name=${finalPlace.structured_formatting.main_text.replaceAll(
+                      " ",
+                      "-"
+                    )}`
+                  );
+                } else {
+                  alert("Please Select the school");
+                }
+              }}
+            >
+              Donate Now <ArrowForwardIos />
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     </>
   );
 };

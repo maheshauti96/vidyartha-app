@@ -1,18 +1,18 @@
 import React from 'react'
-import Header from '../../../src/components/new/Header'
-import Footer from '../../../src/components/new/Footer'
-import ImageGallery from '../../../src/components/new/ImageGallery'
-import FundInfo from '../../../src/components/new/FundInfo'
-import CommentsAndFAQs from '../../../src/components/new/commentsandfaq/CommentsAndFAQs'
-import TopDonors from '../../../src/components/new/TopDonors'
+import Header from '../../src/components/new/Header'
+import Footer from '../../src/components/new/Footer'
+import ImageGallery from '../../src/components/new/ImageGallery'
+import FundInfo from '../../src/components/new/FundInfo'
+import CommentsAndFAQs from '../../src/components/new/commentsandfaq/CommentsAndFAQs'
+import TopDonors from '../../src/components/new/TopDonors'
 import { TextField } from '@material-ui/core'
 import { useEffect, useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import Head from 'next/head'
 import _ from 'lodash';
 import { useRouter } from 'next/router'
-import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../../src/services/service";
-import CommentModal from '../../../src/components/new/commentsandfaq/CommentModal'
+import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
+import CommentModal from '../../src/components/new/commentsandfaq/CommentModal'
 
 
 const FundsPage = () => {
@@ -188,8 +188,8 @@ const FundsPage = () => {
           <FundInfo placeid={placeid} schoolInformation = {{schoolName , schoolAdress , schoolInfo , schoolId}} raisedAmount = {raisedAmount} requiredAmount = {requiredAmount} progress = {progress} />
         </div>
         <div className='section-2' >
-          <CommentsAndFAQs place={placeid} setShowModal = {setShowModal} setComments = {setComments} comments = {comments} />
-          <CommentModal showModal = {showModal} setShowModal = {setShowModal} setComments = {setComments} place = {placeid}/>
+          {/* <CommentsAndFAQs place={placeid} setShowModal = {setShowModal} setComments = {setComments} comments = {comments} />
+          <CommentModal showModal = {showModal} setShowModal = {setShowModal} setComments = {setComments} place = {placeid}/> */}
           <TopDonors topDonors = {topDonors} />
         </div>
         <div style={{ visibility: 'hidden' }} id="map"></div>

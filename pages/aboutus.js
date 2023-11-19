@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../../src/components/new/Header";
-import Footer from "../../src/components/new/Footer";
+import Header from "/src/components/new/Header";
+import Footer from "/src/components/new/Footer";
 
 const AboutUs = () => {
   const purpose = [
