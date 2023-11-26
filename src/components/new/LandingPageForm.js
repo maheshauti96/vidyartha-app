@@ -57,7 +57,6 @@ const LandingPageForm = () => {
             // console.log(prediction.description)
           }
         }
-        console.table(predictions);
         setSchools(() => {
           return schoolsArr.map((item) => item);
         });
@@ -180,6 +179,7 @@ const LandingPageForm = () => {
             </div>
             <button
               className="submit-btn"
+              disabled = {!(finalPlace && finalPlace.place_id)}
               onClick={() => {
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
