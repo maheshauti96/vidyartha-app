@@ -64,7 +64,6 @@ const FundsPage = () => {
         setLoading(false);
       });
     } catch (error) {
-      console.log('fetchSchoolDetails failed', error);
       setLoading(false);
     }
   }
@@ -106,7 +105,6 @@ const FundsPage = () => {
         console.log('placename and id not defined', { placeAddress, placeName, schoolId });
       }
     } catch (error) {
-      console.log('getPlaceInfo Error', error);
       return false;
     }
   }

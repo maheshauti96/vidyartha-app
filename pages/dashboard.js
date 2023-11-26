@@ -120,7 +120,6 @@ const Dashboard = () => {
     setShowFilteredMsg(true);
     setTimeout(() => setShowFilteredMsg(false), 3000);
   }
-  console.log(selectedSchool)
   const rows = data;
   const columns = [
     {
