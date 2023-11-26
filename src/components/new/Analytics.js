@@ -40,7 +40,7 @@ const Analytics = () => {
           <div>
             <img src="./new-assets/money-raised-icon.svg" />
             <p className="analytics-title">Money raised</p>
-            <p className="analytics-num">Rs. {analytics.totalDonationAmount}</p>
+            <p className="analytics-num">Rs. {analytics.totalDonationAmount / 100}</p>
           </div>
           <div>
             <img src="./new-assets/books-donated-icon.svg" />
