@@ -180,17 +180,25 @@ const LandingPageForm = () => {
             <button
               className="submit-btn"
               disabled = {!(finalPlace && finalPlace.place_id)}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
-                  router.push(
-                    `/funds/${
+                  router.push(`/campaigns/${
+                    finalPlace.place_id
+                  }?name=${finalPlace.structured_formatting.main_text.replaceAll(
+                    " ",
+                    "-"
+                  )}`)
+                  console.log(
+                    `/campaigns/${
                       finalPlace.place_id
                     }?name=${finalPlace.structured_formatting.main_text.replaceAll(
                       " ",
                       "-"
                     )}`
-                  );
+                  )
+                  
                 } else {
                   alert("Please Select the school");
                 }

@@ -8,7 +8,9 @@ const Header = () => {
   return (
     <div className="header-container">
       <header className="header">
-        <img className="landingpage-banner-img" src="/vidyartha-logo.svg" alt="vidyartha-logo" />
+        <Link href='/' >
+          <img className="landingpage-banner-img" src="/vidyartha-logo.svg" alt="vidyartha-logo" />
+        </Link>
         <div className="header-links">
           <div
             className={`${
@@ -17,8 +19,8 @@ const Header = () => {
           >
             <Link href="/">Homepage</Link>
           </div>
-          <div className={`${router.pathname.includes('/funds') ? "active" : ""}`}>
-            <Link href="/funds">Funds</Link>
+          <div className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}>
+            <Link href="/campaigns">Campaigns</Link>
           </div>
           {/* <div
             className={`${
@@ -47,27 +49,27 @@ const Header = () => {
             <div className="link-list">
               <div
                 className={`${
-                  router.pathname === "/new" ? "active" : ""
+                  router.pathname === "/" ? "active" : ""
                 }`}
               >
-                <Link href="/new">Homepage</Link>
+                <Link href="/">Homepage</Link>
               </div>
               <div
-                className={`${router.pathname.includes('/new/funds') ? "active" : ""}`}
+                className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}
               >
-                <Link href="/new/funds">Funds</Link>
+                <Link href="/campaigns">Campaigns</Link>
               </div>
               {/* <div
                 className={`${
-                  router.pathname.includes("/new/news-and-stories") ? "active" : ""
+                  router.pathname.includes("/news-and-stories") ? "active" : ""
                 }`}
               >
-                <Link href="/new/news-and-stories">News and Stories</Link>
+                <Link href="/news-and-stories">News and Stories</Link>
               </div> */}
               <div
-                className={`${router.pathname.includes("/new/aboutus") ? "active" : ""}`}
+                className={`${router.pathname.includes("/aboutus") ? "active" : ""}`}
               >
-                <Link href="/new/aboutus">About</Link>
+                <Link href="/aboutus">About</Link>
               </div>
             </div>
           </div>

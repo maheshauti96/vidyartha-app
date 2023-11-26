@@ -50,7 +50,7 @@ const FundraiserComponent = () => {
                   </div>
                 </div>
                 <div className="donate-btn">
-                  <Link href={`/new/funds/${id}`}>Donate</Link>
+                  <Link href={`/new/campaigns/${id}`}>Donate</Link>
                 </div>
               </div>
             ))}
