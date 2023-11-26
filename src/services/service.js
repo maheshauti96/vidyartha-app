@@ -27,11 +27,14 @@ export async function getSchoolInfo(placeid, placeName, address = "") {
   return schoolInfo;
 }
 
-export async function createRazorpayOrder(amount, placeId) {
+export async function createRazorpayOrder(amount, placeId, orgCode) {
   let orderObj = {
     amount,
     placeId,
   };
+  if (orgCode) {
+    orderObj["org"] = orgCode;
+  }
 
   let schoolInfo = await fetch("/api/order/order", {
     method: "post",

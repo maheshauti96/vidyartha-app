@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
 
-const LandingPageForm = () => {
+const LandingPageForm = ({ orgCode }) => {
   let autoCompleteRef = useRef(null);
   const router = useRouter();
   const [text, setText] = useState("");
@@ -16,7 +16,7 @@ const LandingPageForm = () => {
   const [cardVisibility, setCardVisibility] = useState("none"); //visible
   const [latitude, setLatitude] = useState(7.798);
   const [longitude, setLongitude] = useState(68.14712);
-
+  const orgPath = orgCode || ''
   function handleInput(e) {
     // console.log("The event value received is : ", e.target.value);
 
@@ -184,14 +184,14 @@ const LandingPageForm = () => {
                 e.preventDefault()
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
-                  router.push(`/campaigns/${
+                  router.push(`${orgPath}/campaigns/${
                     finalPlace.place_id
                   }?name=${finalPlace.structured_formatting.main_text.replaceAll(
                     " ",
                     "-"
                   )}`)
                   console.log(
-                    `/campaigns/${
+                    `${orgPath}/campaigns/${
                       finalPlace.place_id
                     }?name=${finalPlace.structured_formatting.main_text.replaceAll(
                       " ",

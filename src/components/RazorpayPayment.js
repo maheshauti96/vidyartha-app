@@ -13,7 +13,7 @@ import BasicModal from './BasicModal';
 
 
 
-const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, placeId,setUpdateRaisedAmount}) => {
+const RazorpayPayment = ({ name, email, amount, orgCode, setName,setEmail,setAmount, placeId,setUpdateRaisedAmount}) => {
 
     const [success, setSucess] = useState(false);
     const [failure, setFailure] = useState(false);
@@ -31,7 +31,7 @@ const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, plac
             setSucess(false);
             setFailure(false);
             setButtonLoader(true);
-            const data = await createRazorpayOrder(parseInt(amount), placeId)
+            const data = await createRazorpayOrder(parseInt(amount), placeId, orgCode)
 
             var options = {
                 "key":RAZORPAY_PAYMENT_KEY_ID ,

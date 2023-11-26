@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Input, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../RazorpayPayment";
 
-const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress , placeid }) => {
+const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, orgCode, href, placeid }) => {
   
   const {schoolName , schoolAdress} = schoolInformation
   const [name, setName] = useState("");
@@ -19,15 +19,17 @@ const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress , 
           <a>
             <img src="/new-assets/share-icon.svg" />
           </a>
-          <a>
-            <img src="/whatsapp.png" />
-          </a>
-          <a>
-            <img src="/facebook.png" />
-          </a>
-          <a>
-            <img src="/instagram.png" />
-          </a>
+          <a href={`whatsapp://send?text=Help me to Support this campaign ${href}`} data-action="share/whatsapp/share">
+                <img src='/whatsapp.png' />
+            </a>
+            <a href={`instagram://send?text=Help me to Support this campaign ${href}`}
+                                data-action="share/instagram/share">
+                                    <img src="/instagram.png" alt="instagram" />
+                                </a>                                
+
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
+                                    <img src="/facebook.png" alt="facebook" />
+                                </a>
         </div>
       </div>
       <p className="address">{schoolAdress}</p>
@@ -110,6 +112,7 @@ const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress , 
           setAmount={setAmount}
           placeId={placeid}
           setUpdateRaisedAmount={setUpdateRaisedAmount}
+          orgCode={orgCode}
         ></RazorpayPayment>
       </form>
     </div>

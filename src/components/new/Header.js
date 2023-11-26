@@ -2,13 +2,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const Header = () => {
+const Header = ({ orgCode }) => {
   const [expand, setExpand] = useState(false);
   const router = useRouter();
+  const orgPath = orgCode || ''
   return (
     <div className="header-container">
       <header className="header">
-        <Link href='/' >
+        <Link href={`${orgPath}/`} >
           <img className="landingpage-banner-img" src="/vidyartha-logo.svg" alt="vidyartha-logo" />
         </Link>
         <div className="header-links">
@@ -17,10 +18,10 @@ const Header = () => {
               router.pathname === "/" ? "active" : ""
             }`}
           >
-            <Link href="/">Homepage</Link>
+            <Link href={`${orgPath}/`}>Homepage</Link>
           </div>
           <div className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}>
-            <Link href="/campaigns">Campaigns</Link>
+            <Link href={`${orgPath}/campaigns`}>Campaigns</Link>
           </div>
           {/* <div
             className={`${
@@ -30,7 +31,7 @@ const Header = () => {
             <Link href="/new/news-and-stories">News and Stories</Link>
           </div> */}
           <div className={`${router.pathname.includes("/aboutus")  ? "active" : ""}`}>
-            <Link href="/aboutus">About</Link>
+            <Link href={`${orgPath}/aboutus`}>About</Link>
           </div>
         </div>
 
@@ -52,12 +53,12 @@ const Header = () => {
                   router.pathname === "/" ? "active" : ""
                 }`}
               >
-                <Link href="/">Homepage</Link>
+                <Link href={`${orgPath}/`}>Homepage</Link>
               </div>
               <div
                 className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}
               >
-                <Link href="/campaigns">Campaigns</Link>
+                <Link href={`${orgPath}/campaigns`}>Campaigns</Link>
               </div>
               {/* <div
                 className={`${
@@ -69,7 +70,7 @@ const Header = () => {
               <div
                 className={`${router.pathname.includes("/aboutus") ? "active" : ""}`}
               >
-                <Link href="/aboutus">About</Link>
+                <Link href={`${orgPath}/aboutus`}>About</Link>
               </div>
             </div>
           </div>

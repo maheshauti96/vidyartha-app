@@ -11,7 +11,7 @@ import CarouselComponent from "./CarouselComponent";
 import Link from "next/link";
 import { fetchTopFundraisers } from "../../services/service";
 
-const FundraiserComponent = () => {
+const FundraiserComponent = ({ orgCode }) => {
   let carouselList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [content, setContent] = useState([]);
   async function setFundraisers(){
@@ -21,6 +21,7 @@ const FundraiserComponent = () => {
   useEffect(() => {
     setFundraisers()
   }, []);
+  const orgPath = orgCode || ''
 
   return (
     <>
@@ -50,7 +51,7 @@ const FundraiserComponent = () => {
                   </div>
                 </div>
                 <div className="donate-btn">
-                  <Link href={`/new/campaigns/${id}`}>Donate</Link>
+                  <Link href={`${orgPath}/new/campaigns/${id}`}>Donate</Link>
                 </div>
               </div>
             ))}
