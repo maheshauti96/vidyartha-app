@@ -17,13 +17,13 @@ import CommentModal from '../../../src/components/new/commentsandfaq/CommentModa
 
 const FundsPage = () => {
   const { register, handleSubmit, getValues, formState: { errors } } = useForm();
-  const router = useRouter()
   const [schoolInfo, setSchoolInfo] = useState({
     schoolInfo: {
       name: 'Loading...',
       id: '',
     }
   });
+  const router = useRouter()
   let { placeid, orgCode } = router.query;
   console.log("orgCode==>", orgCode)
   const [raisedAmount, setRaisedAmount] = useState(0);
@@ -181,7 +181,7 @@ const FundsPage = () => {
         <meta property="og:image" content={schoolInfo.placeImage} />
       </Head>
       <div style={{ fontFamily: 'Inter' }}>
-        <Header />
+        <Header orgCode={orgCode} />
         <div className='section-1'>
           <ImageGallery schoolSrc = {schoolInfo.placeImage} />
           <FundInfo orgCode={orgCode} href={href} placeid={placeid} schoolInformation = {{schoolName , schoolAdress , schoolInfo , schoolId}} raisedAmount = {raisedAmount} requiredAmount = {requiredAmount} progress = {progress} />

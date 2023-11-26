@@ -10,9 +10,11 @@ import Footer from '../../../src/components/new/Footer'
 const Fundraisers = () => {
     let carouselList = [1,2,3,4,5,6,7,8,9,]
     const router = useRouter()
+  let { orgCode } = router.query;
+
   return (
     <div style={{fontFamily  :"Inter"}}>
-        <Header/>
+        <Header orgCode={orgCode}/>
         <div className='fundraisers-page' style={{marginTop : '7rem'}}>
             <LandingPageForm/>
             <FundraiserComponent/>

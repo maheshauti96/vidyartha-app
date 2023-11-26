@@ -9,7 +9,7 @@ const Header = ({ orgCode }) => {
   return (
     <div className="header-container">
       <header className="header">
-        <Link href={`${orgPath}/`} >
+        <Link href={`/${orgPath}`} >
           <img className="landingpage-banner-img" src="/vidyartha-logo.svg" alt="vidyartha-logo" />
         </Link>
         <div className="header-links">
@@ -18,7 +18,7 @@ const Header = ({ orgCode }) => {
               router.pathname === "/" ? "active" : ""
             }`}
           >
-            <Link href={`${orgPath}/`}>Homepage</Link>
+            <Link href={`/${orgPath}`}>Homepage</Link>
           </div>
           <div className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}>
             <Link href={`${orgPath}/campaigns`}>Campaigns</Link>
@@ -53,7 +53,7 @@ const Header = ({ orgCode }) => {
                   router.pathname === "/" ? "active" : ""
                 }`}
               >
-                <Link href={`${orgPath}/`}>Homepage</Link>
+                <Link href={`/${orgPath}`}>Homepage</Link>
               </div>
               <div
                 className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}

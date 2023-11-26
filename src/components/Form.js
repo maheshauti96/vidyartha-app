@@ -40,13 +40,13 @@ export default function Form() {
         <div className="cont-wrap">
             <div className="form1-wrap">
             <form onSubmit={(e) => handleSubmit(e)}>
-                <TextField className="id1" label="Name" value={name} variant="outlined" onChange={(e) => {setName(e.target.value), setMessage("")}}
+                <TextField className="id1" label="Name" value={name} variant="filled" onChange={(e) => {setName(e.target.value), setMessage("")}}
                 required />
                 <br />
-                <TextField className="id1" label="Email" value={email} variant="outlined" onChange={(e) => {setEmail(e.target.value), setMessage("")}}
+                <TextField className="id1" label="Email" value={email} variant="filled" onChange={(e) => {setEmail(e.target.value), setMessage("")}}
                 required />
                 <br />
-                <textarea style={{padding : '1rem'}} className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
+                <textarea style={{padding : '1rem'}} className="id1" value={feedback} variant="filled" placeholder="Message" cols="auto" rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
                 required />
                 <br />
                 <Button className="btn1" variant="contained" type="submit" disabled={buttonLoader}>

@@ -2,10 +2,12 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/font-awesome/css/font-awesome.min.css"
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Footer from "../src/components/new/Footer";
+import Footer from "../../src/components/new/Footer";
+import { useRouter } from "next/router";
 
 export default function Shipping() {
-
+    const router = useRouter()
+    let { orgCode } = router.query;
 
     return (<div>
         <div className=" public-wrap container text-center ab p-5">
@@ -14,6 +16,6 @@ export default function Shipping() {
         <h3><strong>8262002275 or reachtovidyartha@gmail.com</strong></h3>
     </div>
 
-    <Footer />
+    <Footer orgCode={orgCode} />
     </div>)
 }

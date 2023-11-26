@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../src/components/new/Header";
 import Footer from "../../src/components/new/Footer";
+import { useRouter } from "next/router";
 
 const AboutUs = () => {
   const purpose = [
@@ -17,9 +18,11 @@ const AboutUs = () => {
       text: "Encourage spiritual literature and",
     },
   ];
+  const router = useRouter()
+  let { orgCode } = router.query;
   return (
     <div className="about-us-page">
-      <Header />
+      <Header orgCode={orgCode} />
       <div className="about-us" style={{ marginTop: "7rem" }}>
         <h1>
           We at Vidyartha are trying to build a moral and good habitual
@@ -47,7 +50,7 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
-      <Footer/>
+      <Footer orgCode={orgCode} />
     </div>
   );
 };

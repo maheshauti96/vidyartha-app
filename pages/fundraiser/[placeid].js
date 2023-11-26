@@ -27,7 +27,7 @@ import Link from 'next/link';
 import PlaceSearch from '../../src/components/PlaceSearch';
 import Popup from "../../src/components/Popup";
 import SendIcon from "@material-ui/icons/Search";
-import Footer from "../../src/components/Footer";
+import Footer from "../../src/components/new/Footer";
 import FAQ from "../../src/components/FAQ";
 import DonorsTable from "../../src/components/DonorsTable";
 

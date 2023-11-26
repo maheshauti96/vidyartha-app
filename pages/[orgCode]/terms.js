@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import { Grid } from "@material-ui/core";
 import { useEffect } from 'react';
-import Footer from '../src/components/new/Footer';
+import Footer from '../../src/components/new/Footer';
+import { useRouter } from 'next/router';
 
 const Terms = () => {
+    const router = useRouter()
+    let { orgCode } = router.query;
     return (
         <div>
             <div className="public-wrap p-tb-20">
@@ -89,7 +92,7 @@ const Terms = () => {
 
 
             </div>
-    <Footer />
+    <Footer orgCode={orgCode} />
             
         </div>
     )

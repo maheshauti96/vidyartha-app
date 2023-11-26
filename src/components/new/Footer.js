@@ -16,11 +16,11 @@ const Footer = ({ orgCode }) => {
                 <p className='logo-title'>Vidyartha</p>
             </span>
             <div className='links' >
-                <a href={`${orgPath}/returnpolicy`}>Return Policy</a>
-                <a href={`${orgPath}/terms`}>Terms and Conditions</a>
-                <a href={`${orgPath}/Shippingpolicy`}>Shipping Policy</a>
-                <a href={`${orgPath}/aboutus`}>About us</a>
-                <a href={`${orgPath}/privacypolicy`}>Privacy Policy</a>
+                <a href={`/${orgPath}/returnpolicy`}>Return Policy</a>
+                <a href={`/${orgPath}/terms`}>Terms and Conditions</a>
+                <a href={`/${orgPath}/Shippingpolicy`}>Shipping Policy</a>
+                <a href={`/${orgPath}/aboutus`}>About us</a>
+                <a href={`/${orgPath}/privacypolicy`}>Privacy Policy</a>
             </div>
             <div className='socials' >
             <a href={`whatsapp://send?text=Help me to Support this campaign ${href}`} data-action="share/whatsapp/share">
