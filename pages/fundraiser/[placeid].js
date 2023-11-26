@@ -110,6 +110,7 @@ export default function FundraiserPlace() {
                     placeAddress
                 );
                 setSchoolInfo({ schoolInfo, placeImage })
+                console.log(schoolInfo)
 
                 let raisedAmount = +schoolInfo.collected / 100;
 

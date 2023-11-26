@@ -33,8 +33,6 @@ const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, plac
             setButtonLoader(true);
             const data = await createRazorpayOrder(parseInt(amount), placeId)
 
-            console.log(data)
-
             var options = {
                 "key":RAZORPAY_PAYMENT_KEY_ID ,
                 currency: data.currency,
@@ -44,7 +42,6 @@ const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, plac
                 "email": email,
                 "image": "https://i.ibb.co/tKRjzCz/logoketto.png",
                 "handler": function (response) {
-                    console.log("payment successful from handler", response);
                     setSucess(true);
                     setFailure(false);
                     setButtonLoader(false);
@@ -77,7 +74,6 @@ const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, plac
 
             var rzp1 = new window.Razorpay(options);
             rzp1.on('payment.failed', function (response) {
-                console.log("payment failure", response);
                 setSucess(false);
                 setFailure(true);
                 setButtonLoader(false);
@@ -98,19 +94,25 @@ const RazorpayPayment = ({ name, email, amount, setName,setEmail,setAmount, plac
 
 
     return (
-        <div className="App">
-            <div className="form">
+        <div className="App" style = {{width : "80%"}}>
+            <div className="form" >
                 <Button
-                    className="primary-button"
+                    style={
+                        {height : '2rem' ,
+                        fontFamily : "Inter , san-serif" , 
+                        width : "100%",
+                        padding : '1.5rem',
+                        maxWidth : '600px',
+                        margin : "auto",
+
+                    }}
                     // className="App-link"
                     disabled={buttonLoader}
                     onClick={displayRazorPay}
                     target="_blank"
                     rel="noopener noreferrer">
                     <div>
-                        <div>
-                    Donate now
-                    </div>
+                    Donate
                     {buttonLoader ?
                     <Box sx={{ width: '100%' }}>
                         <LinearProgress style={{ marginLeft: '10px' }} size="small" />

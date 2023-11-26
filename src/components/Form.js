@@ -1,4 +1,4 @@
-import { Accordion, AccordionSummary, Box, Button, TextField, Typography, AccordionDetails,Slide, Snackbar, LinearProgress } from "@material-ui/core";
+import { Accordion, AccordionSummary, Box, Button, TextField, Typography, AccordionDetails,Slide, Snackbar, LinearProgress, IconButton } from "@material-ui/core";
 import { Alert } from '@material-ui/lab';
 import { useState, useRef, useEffect } from 'react';
 import { postFeedback, isValidEmail } from "../services/service";
@@ -38,7 +38,6 @@ export default function Form() {
     };
     return (
         <div className="cont-wrap">
-            <h4>Contact Us</h4>
             <div className="form1-wrap">
             <form onSubmit={(e) => handleSubmit(e)}>
                 <TextField className="id1" label="Name" value={name} variant="outlined" onChange={(e) => {setName(e.target.value), setMessage("")}}
@@ -47,7 +46,7 @@ export default function Form() {
                 <TextField className="id1" label="Email" value={email} variant="outlined" onChange={(e) => {setEmail(e.target.value), setMessage("")}}
                 required />
                 <br />
-                <textarea className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" multiline rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
+                <textarea style={{padding : '1rem'}} className="id1" value={feedback} variant="outlined" placeholder="Message" cols="auto" rows="10" onChange={(e) => {setFeedback(e.target.value), setMessage("")}}
                 required />
                 <br />
                 <Button className="btn1" variant="contained" type="submit" disabled={buttonLoader}>
@@ -65,12 +64,28 @@ export default function Form() {
                 <div className="message">{message ? <p>{message}</p> : null}</div>
                 
                 <Snackbar
-                    autoHideDuration={6000}
+                    autoHideDuration={2000}
                     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                     open={showSnackBar}
                     TransitionComponent={(props) => <Slide {...props} direction="left" />}
                 >
-                    <Alert variant="filled" severity="success">
+                    <Alert 
+                        variant="filled" 
+                        severity="success"
+                        action={
+                            <IconButton
+                              aria-label="close"
+                              color="inherit"
+                              size="small"
+                              onClick={() => {
+                                setShowSnackBar(false);
+                              }}
+                            >
+                              X
+                            </IconButton>
+                          }
+                          
+                    >
                      Feedback sent successfully!  
                     </Alert>
                 </Snackbar>
