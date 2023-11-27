@@ -2,7 +2,7 @@ export default async function handler(req, res) {
     
     let placeid = req.query.id;
 
-    let topDonors = await fetch(`https://api.vidyartha.org/shastradaan/donors/${placeid}/`)
+    let topDonors = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/donors/${placeid}/`)
     .then(response => {
         if (response.ok) {
             return response.json();

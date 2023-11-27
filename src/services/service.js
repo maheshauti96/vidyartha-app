@@ -60,12 +60,14 @@ export async function getTopDonors() {
 
 // get top donors by school
 export async function getTopDonorsBySchool(placeId) {
-  let topDonors = await fetch(`/api/donors/${placeId}`)
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((error) => console.log(error));
-
-  return topDonors;
+  try {
+    let topDonors = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/donors/${placeId}`)
+    let data = await topDonors.json()
+    return data.content
+    
+  } catch(error){
+    console.log(error)
+  }
 }
 
 export async function postFeedback(name, email, feedback) {

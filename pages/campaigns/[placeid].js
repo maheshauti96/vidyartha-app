@@ -188,7 +188,7 @@ const FundsPage = () => {
         <div className='section-2' >
           {/* <CommentsAndFAQs place={placeid} setShowModal = {setShowModal} setComments = {setComments} comments = {comments} />
           <CommentModal showModal = {showModal} setShowModal = {setShowModal} setComments = {setComments} place = {placeid}/> */}
-          <TopDonors topDonors = {topDonors} />
+          <TopDonors topDonors = {topDonors} placeId = {schoolId} />
         </div>
         <div style={{ visibility: 'hidden' }} id="map"></div>
         <Footer />
