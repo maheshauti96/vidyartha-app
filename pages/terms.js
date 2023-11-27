@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Grid } from "@material-ui/core";
 import { useEffect } from 'react';
-import Footer from '../src/components/Footer';
+import Footer from '../src/components/new/Footer';
 
 const Terms = () => {
     return (
