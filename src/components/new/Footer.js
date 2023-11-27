@@ -11,22 +11,11 @@ const Footer = () => {
                 <p className='logo-title'>Vidyartha</p>
             </span>
             <div className='links' >
-                <a href='/new-landing-page'>Return Policy</a>
-                <a href='/new-landing-page'>Terms and Conditions</a>
-                <a href='/new-landing-page'>Shipping Policy</a>
-                <a href='/new-landing-page'>About us</a>
-                <a href='/new-landing-page'>Privacy Policy</a>
-            </div>
-            <div className='socials' >
-            <a href='/new-landing-page'>
-                <img src='/whatsapp.png' />
-            </a>
-            <a href='/new-landing-page'>
-                <img src='/facebook.png' />
-            </a>
-            <a href='/new-landing-page'>
-                <img src='/instagram.png' />
-            </a>
+                <a href='/returnpolicy'>Return Policy</a>
+                <a href='/terms'>Terms and Conditions</a>
+                <a href='/Shippingpolicy'>Shipping Policy</a>
+                <a href='/aboutus'>About us</a>
+                <a href='/privacypolicy'>Privacy Policy</a>
             </div>
         </div>
         <div className='contact-us'>
