@@ -1,5 +1,16 @@
 import { EmojiEventsOutlined } from "@material-ui/icons";
 import React, { useState } from "react";
+import Avatar from '@material-ui/core/Avatar';
+
+export const formatCurrency = (amount) => {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0, // No decimal places
+    maximumFractionDigits: 0, // No decimal places
+  }).format(amount);
+};
+
 
 const TopDonors = ({ topDonors }) => {
   const [showAll, setShowAll] = useState(false); // state to toggle between show more and show less
@@ -18,13 +29,14 @@ const TopDonors = ({ topDonors }) => {
             {displayedDonors.map((donor, index) =>
               donor ? (
                 <div key={index} className="donors"> {/* Added key for list rendering */}
-                  <img
-                    className="donor-img"
-                    src="/new-assets/testimonial-user.jpeg"
-                    alt="Donor"
+                 <Avatar
+                    // className="donor-img"
+                    src="/test-user.jpeg"
+                    style={{zIndex: '-1'}}
+                    // alt={donor.name}
                   />
                   <div>
-                    <p className="amount"> {donor.amount} </p>
+                  <p className="amount"> {formatCurrency(donor.amount / 100)} </p>
                     <p className="user"> {donor.name}</p>
                   </div>
                 </div>

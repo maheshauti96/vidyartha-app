@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Input, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../RazorpayPayment";
+import { formatCurrency } from "./TopDonors";
 
 const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, orgCode, href, placeid }) => {
   
@@ -36,7 +37,7 @@ const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, o
       <div className="progress-container">
         <div className="fund-progress">
           <p style={{textAlign : 'center'}}>
-            Rs. {raisedAmount} raised out of Rs. {requiredAmount}
+             {formatCurrency(raisedAmount)} raised out of  {formatCurrency(requiredAmount)}
           </p>
           <Box sx={{ width: "80%" , margin : 'auto'}}>
             <LinearProgress
@@ -82,21 +83,21 @@ const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, o
               setAmount(1000);
             }}
           >
-            Rs. 1000
+            {formatCurrency(1000)}
           </span>
           <span
             onClick={() => {
               setAmount(1500);
             }}
           >
-            Rs. 1500
+            {formatCurrency(1500)}
           </span>
           <span
             onClick={() => {
               setAmount(2000);
             }}
           >
-            Rs. 2000
+            {formatCurrency(2000)}
           </span>
         </div>
         <div className="textfield">
