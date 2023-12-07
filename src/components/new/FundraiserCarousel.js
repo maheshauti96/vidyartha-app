@@ -10,6 +10,7 @@ import styled from "@material-ui/core";
 import CarouselComponent from "./CarouselComponent";
 import Link from "next/link";
 import { fetchTopFundraisers } from "../../services/service";
+import { formatCurrency } from "./TopDonors";
 
 const FundraiserComponent = ({ orgCode }) => {
   let carouselList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -44,14 +45,14 @@ const FundraiserComponent = ({ orgCode }) => {
                 </div>
                 <div className="progress" style={{ width: "80%" }}>
                   <div>
-                    <p>Total Funds : {collected/100} Rs</p>
+                    <p>Total Funds : {formatCurrency(collected/100)}</p>
                   </div>
                   <div>
                     <p>Total Donors : {donorCount}</p>
                   </div>
                 </div>
                 <div className="donate-btn">
-                  <Link href={`${orgPath}/new/campaigns/${id}`}>Donate</Link>
+                  <Link href={`${orgPath}/${orgCode ? `${orgCode}/` : ''}campaigns/${id}`}>Donate</Link>
                 </div>
               </div>
             ))}

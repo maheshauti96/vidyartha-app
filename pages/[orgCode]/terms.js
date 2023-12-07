@@ -9,7 +9,7 @@ const Terms = () => {
     let { orgCode } = router.query;
     return (
         <div>
-            <div className="public-wrap p-tb-20">
+            <div className="public-wrap p-20">
               <h2>Terms & Conditions</h2>
             <p>
             <strong>OVERVIEW</strong>

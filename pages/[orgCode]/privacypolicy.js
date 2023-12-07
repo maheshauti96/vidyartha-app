@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
     let { orgCode } = router.query;
     return (
         <div>
-            <div className="public-wrap p-tb-20 h-100">
+            <div className="public-wrap p-20 h-100">
             <h2>Privacy Policy</h2>
             <div>
             
