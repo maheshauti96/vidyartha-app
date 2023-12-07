@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { formatCurrency } from "./TopDonors";
 
 const Analytics = () => {
   const [analytics, setAnalytics] = useState();
@@ -40,7 +41,7 @@ const Analytics = () => {
           <div>
             <img src="./new-assets/money-raised-icon.svg" />
             <p className="analytics-title">Money raised</p>
-            <p className="analytics-num">Rs. {analytics.totalDonationAmount / 100}</p>
+            <p className="analytics-num">{formatCurrency(analytics.totalDonationAmount / 100)}</p>
           </div>
           <div>
             <img src="./new-assets/books-donated-icon.svg" />

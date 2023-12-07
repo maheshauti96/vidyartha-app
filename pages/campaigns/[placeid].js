@@ -40,6 +40,7 @@ const FundsPage = () => {
   const [comments , setComments] = useState([])
   const [showModal , setShowModal] = useState(false)
   function fetchSchoolDetails(placeid) {
+    // from google
     const pyrmont = new google.maps.LatLng(7.798, 68.14712);
 
     setLoading(true);
@@ -149,15 +150,16 @@ const FundsPage = () => {
       fetchSchoolDetails(schoolId);
       fetchTopDonors(schoolId);
     }
-    if ((schoolId && placeInfo) || updateRaiseAmount) {
 
+  }, [placeid, placeInfo, updateRaiseAmount, schoolId])
+  useEffect(() => {
+
+    if ((schoolId && placeInfo) || updateRaiseAmount) {
+      console.log("in useEffect getPlaceInfo");
       fetchTopDonors(schoolId);
       getPlaceInfo(placeInfo)
     }
-    // setPlaceInfo(localStorage.getItem('placeInfo') ? JSON.parse(localStorage.getItem('placeInfo')) : null);
-
-
-  }, [placeid, placeInfo, updateRaiseAmount, schoolId])
+  }, [schoolId, placeInfo, updateRaiseAmount ])
 
   useEffect(() => {
     if (placeid !== schoolId) {
