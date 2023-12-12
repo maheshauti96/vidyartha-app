@@ -18,7 +18,7 @@ const Header = ({ orgCode }) => {
               router.pathname === "/" ? "active" : ""
             }`}
           >
-            <Link href={`/${orgPath}`}>Homepage</Link>
+            <a href={`/${orgPath}`}>Homepage</a>
           </div>
           <div className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}>
             <Link href={`${orgPath}/campaigns`}>Campaigns</Link>
@@ -53,7 +53,7 @@ const Header = ({ orgCode }) => {
                   router.pathname === "/" ? "active" : ""
                 }`}
               >
-                <Link href={`/${orgPath}`}>Homepage</Link>
+                <a href={`/${orgPath}`}>Homepage</a>
               </div>
               <div
                 className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}
