@@ -4,16 +4,6 @@ import { formatCurrency } from "./TopDonors";
 const Analytics = () => {
   const [analytics, setAnalytics] = useState();
 
-  async function trialFunction(){
-    try {
-      const response = await fetch("/api/analytics/analytics")
-      const data = await response.json()
-      console.log(data)
-    }catch(error){
-      console.log(error)
-    }
-  }
-
   async function fetchAnalytics() {
     try {
       const response = await fetch(
@@ -32,7 +22,7 @@ const Analytics = () => {
   return (
     <>
       {analytics && (
-        <div className="analytics" onClick={() => console.log(analytics)}>
+        <div className="analytics">
           <div>
             <img src="./new-assets/fundraiser-icon-1.svg" />
             <p className="analytics-title">Current Fundraisers</p>

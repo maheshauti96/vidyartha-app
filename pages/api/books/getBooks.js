@@ -5,8 +5,7 @@ export default async function handler(req , res){
 
         res.status(200).json({
             books : data,
-            errorOccured : false,
-            hello : "World"
+            errorOccured : false
         })
     }catch(error){
         res.json({
