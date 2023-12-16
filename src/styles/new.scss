@@ -825,7 +825,7 @@ body {
     }
 
     @media (max-width : 1080px) {
-        flex-direction: column-reverse;
+        flex-direction: column;
         align-items: center;
         gap: 2rem;
 
@@ -846,6 +846,10 @@ body {
                 margin: 1rem auto;
                 width: 100%;
             }
+        }
+
+        .image-gallery {
+            width: 75%;
         }
     }
 }
