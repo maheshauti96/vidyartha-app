@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Input, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../RazorpayPayment";
 import { formatCurrency } from "./TopDonors";
+import { useRouter } from "next/router";
 
 const FundInfo = ({
   schoolInformation,
@@ -17,29 +18,30 @@ const FundInfo = ({
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState();
   const [updateRaiseAmount, setUpdateRaisedAmount] = useState(false);
+  const router = useRouter()
   return (
     <div className="fund-info">
       <div className="fund-title new-classname-for-funds">
         <h1 style={{ textAlign: "center" }} className="fund-name">
-          {schoolName}
+          {schoolName} hello
         </h1>
         <div className="fund-links">
           
           <a
-            href={`whatsapp://send?text=Help me to Support this campaign ${window.location.href.replace('http://localhost:3000' , 'https://vidyartha.org')}`}
+            href={`whatsapp://send?text=Help me to Support this campaign ${"https://vidyartha.org"}${router.pathname.replace('[placeid]' , placeid).replace('[orgCode]' , orgCode)}`}
             data-action="share/whatsapp/share"
           >
             <img src="/whatsapp.png" />
           </a>
           <a
-            href={`instagram://send?text=Help me to Support this campaign ${window.location.href.replace('http://localhost:3000' , 'https://vidyartha.org')}`}
+            href={`instagram://send?text=Help me to Support this campaign ${"https://vidyartha.org"}${router.pathname.replace('[placeid]' , placeid).replace('[orgCode]' , orgCode)}`}
             data-action="share/instagram/share"
           >
             <img src="/instagram.png" alt="instagram" />
           </a>
 
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href.replace('http://localhost:3000' , 'https://vidyartha.org')}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${"https://vidyartha.org"}${router.pathname.replace('[placeid]' , placeid).replace('[orgCode]' , orgCode)}`}
             rel="noopener noreferrer"
             target="_blank"
           >
