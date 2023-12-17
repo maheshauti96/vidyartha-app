@@ -2,44 +2,61 @@ import React, { useState } from "react";
 import { Box, Input, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../RazorpayPayment";
 import { formatCurrency } from "./TopDonors";
+import { useRouter } from "next/router";
 
-const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, orgCode, href, placeid }) => {
-  
-  const {schoolName , schoolAdress} = schoolInformation
+const FundInfo = ({
+  schoolInformation,
+  raisedAmount,
+  requiredAmount,
+  progress,
+  orgCode,
+  href,
+  placeid,
+}) => {
+  const { schoolName, schoolAdress } = schoolInformation;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState();
-  const [updateRaiseAmount,setUpdateRaisedAmount] = useState(false)
+  const [updateRaiseAmount, setUpdateRaisedAmount] = useState(false);
+  const router = useRouter()
   return (
     <div className="fund-info">
       <div className="fund-title new-classname-for-funds">
-        <h1 style={{ textAlign: "center" }} className="fund-name">
+        <h1  style={{ textAlign: "center" }} className="fund-name">
           {schoolName}
         </h1>
         <div className="fund-links">
-          <a>
-            <img src="/new-assets/share-icon.svg" />
+          
+          <a
+            href= {href}
+            data-action="share/whatsapp/share"
+          >
+            <img src="/whatsapp.png" />
+          </a> 
+          <a
+            href={href}
+            data-action="share/instagram/share"
+          >
+            <img src="/instagram.png" alt="instagram" />
           </a>
-          <a href={`whatsapp://send?text=Help me to Support this campaign ${href}`} data-action="share/whatsapp/share">
-                <img src='/whatsapp.png' />
-            </a>
-            <a href={`instagram://send?text=Help me to Support this campaign ${href}`}
-                                data-action="share/instagram/share">
-                                    <img src="/instagram.png" alt="instagram" />
-                                </a>                                
 
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${href}`} rel="noopener noreferrer" target="_blank">
-                                    <img src="/facebook.png" alt="facebook" />
-                                </a>
+          <a
+            href={href}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img src="/facebook.png" alt="facebook" />
+          </a>
         </div>
       </div>
       <p className="address">{schoolAdress}</p>
       <div className="progress-container">
         <div className="fund-progress">
-          <p style={{textAlign : 'center'}}>
-             {formatCurrency(raisedAmount)} raised out of  {formatCurrency(requiredAmount)}
+          <p style={{ textAlign: "center" }}>
+            {formatCurrency(raisedAmount)} raised out of{" "}
+            {formatCurrency(requiredAmount)}
           </p>
-          <Box sx={{ width: "80%" , margin : 'auto'}}>
+          <Box sx={{ width: "80%", margin: "auto" }}>
             <LinearProgress
               style={{
                 height: "12px",
@@ -70,11 +87,19 @@ const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, o
       </div>
       <form className="donate-form">
         <div className="textfield">
-          <input onChange={(e) => setName(e.target.value)} placeholder="" type="text" />
+          <input
+            onChange={(e) => setName(e.target.value)}
+            placeholder=""
+            type="text"
+          />
           <label>Name</label>
         </div>
         <div className="textfield">
-          <input onChange={(e) => setEmail(e.target.value)} placeholder="" type="text" />
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder=""
+            type="text"
+          />
           <label>Email Address</label>
         </div>
         <div className="amount-options">
@@ -101,7 +126,12 @@ const FundInfo = ({ schoolInformation, raisedAmount, requiredAmount, progress, o
           </span>
         </div>
         <div className="textfield">
-          <input onChange={e => setAmount(e.target.value)} value = {amount} placeholder="" type="number" />
+          <input
+            onChange={(e) => setAmount(e.target.value)}
+            value={amount}
+            placeholder=""
+            type="number"
+          />
           <label>Amount</label>
         </div>
         <RazorpayPayment

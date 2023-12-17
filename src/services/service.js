@@ -303,7 +303,6 @@ export async function createDelivery(setResponse , data){
       },
       body: JSON.stringify(deliveryObj)
     })
-    console.log({response})
     setResponse(response)
   }catch(error){
     console.log(error)

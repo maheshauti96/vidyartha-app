@@ -18,7 +18,6 @@ const LandingPageForm = ({ orgCode }) => {
   const [longitude, setLongitude] = useState(68.14712);
   const orgPath = orgCode || ''
   function handleInput(e) {
-    // console.log("The event value received is : ", e.target.value);
 
     if (e.target.value === "") {
       setSchools([]);
@@ -42,7 +41,6 @@ const LandingPageForm = ({ orgCode }) => {
     };
 
     service.getPlacePredictions(request, function (predictions, status) {
-      console.log(prediction, status);
       if (status == window.google.maps.places.PlacesServiceStatus.OK) {
         setCardVisibility("block");
 
@@ -54,7 +52,6 @@ const LandingPageForm = ({ orgCode }) => {
             prediction.types.includes("university")
           ) {
             schoolsArr.push(prediction);
-            // console.log(prediction.description)
           }
         }
         setSchools(() => {
@@ -84,7 +81,6 @@ const LandingPageForm = ({ orgCode }) => {
       setLatitude(place.geometry.location.lat());
       setLongitude(place.geometry.location.lng());
       setCity(place.name);
-      console.log(place);
     });
 
     setText("");
@@ -190,14 +186,6 @@ const LandingPageForm = ({ orgCode }) => {
                     " ",
                     "-"
                   )}`)
-                  console.log(
-                    `${orgPath}/campaigns/${
-                      finalPlace.place_id
-                    }?name=${finalPlace.structured_formatting.main_text.replaceAll(
-                      " ",
-                      "-"
-                    )}`
-                  )
                   
                 } else {
                   alert("Please Select the school");

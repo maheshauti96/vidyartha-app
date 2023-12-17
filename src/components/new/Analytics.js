@@ -7,7 +7,7 @@ const Analytics = () => {
   async function fetchAnalytics() {
     try {
       const response = await fetch(
-        "https://api.vidyartha.org/shastradaan/dashboard/"
+        "https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/dashboard/"
       );
       const data = await response.json();
       setAnalytics(data);

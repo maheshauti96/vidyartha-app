@@ -34,7 +34,7 @@ import DonorsTable from "../../src/components/DonorsTable";
 
 export default function FundraiserPlace() {
     const { register, handleSubmit, getValues, formState: { errors } } = useForm();
-    console.log('getValues', getValues());
+    
     const router = useRouter()
     const [schoolInfo, setSchoolInfo] = useState({
         schoolInfo: {
@@ -43,7 +43,6 @@ export default function FundraiserPlace() {
         }
     });
     let { placeid } = router.query;
-    console.log('placeid', placeid);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [amount, setAmount] = useState();
@@ -63,7 +62,6 @@ export default function FundraiserPlace() {
     const amountInputRef = useRef(null);
 
     function fetchSchoolDetails(placeid) {
-        console.log('in fetchSchoolDetails')
         const pyrmont = new google.maps.LatLng(7.798, 68.14712);
         
         setLoading(true);
@@ -80,10 +78,8 @@ export default function FundraiserPlace() {
             const service = new google.maps.places.PlacesService(map);
 
             service.getDetails(request, (place, status) => {
-                console.log({ status });
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     setPlaceInfo(place);
-                    console.log('place-->', place);
                     setSchoolName(place.name);
                     setSchoolAddress([place.formatted_address]);
                 }
@@ -110,7 +106,6 @@ export default function FundraiserPlace() {
                     placeAddress
                 );
                 setSchoolInfo({ schoolInfo, placeImage })
-                console.log(schoolInfo)
 
                 let raisedAmount = +schoolInfo.collected / 100;
 
@@ -129,8 +124,6 @@ export default function FundraiserPlace() {
                 setProgress(progress) 
                 
                 return true;
-            } else {
-                console.log('sry bro', { placeAddress, placeName, schoolId });
             }
         } catch (error) {
             console.log('getPlaceInfo Error', error);
@@ -161,18 +154,11 @@ export default function FundraiserPlace() {
     }, [router])
 
     useEffect(() => {
-        // if (!placeInfo && !placeid) {
-        //     console.log('bye bye');
-        //     router.push('/');
-        // }
-        console.log('placeInfo**', placeInfo);
         if (schoolId && !placeInfo) {
             fetchSchoolDetails(schoolId);
             fetchTopDonors(schoolId);
         }
         if ((schoolId && placeInfo) || updateRaiseAmount) {
-
-            console.log('got the placeinfo');
             fetchTopDonors(schoolId);
             getPlaceInfo(placeInfo)
         }
@@ -182,7 +168,6 @@ export default function FundraiserPlace() {
     }, [placeid, placeInfo,updateRaiseAmount, schoolId])
 
     useEffect(() => {
-        console.log("NEW", placeid, schoolId);
         if (placeid !== schoolId) {
             placeid = schoolId;
         }

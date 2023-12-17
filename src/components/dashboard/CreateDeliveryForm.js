@@ -58,11 +58,9 @@ const CreateDeliveryForm = ({ schoolData, setDeliverySchool }) => {
         })
         setSelectedBooks(newArr)
     }
-    console.log(response)
     useEffect(() => {
         getBooks(setBooks, 10);
     }, []);
-    console.log(selectedBooks)
     return (
         <div className="delivery-form-container">
             {schoolData && <div className="delivery-form">

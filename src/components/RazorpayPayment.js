@@ -80,7 +80,6 @@ const RazorpayPayment = ({ name, email, amount, orgCode, setName,setEmail,setAmo
 
             });
             rzp1.on('payment.paid', function (response) {
-                console.log("payment sucessful from event", response);
                 setSucess(true)
                 setButtonLoader(false);
                 setUpdateRaisedAmount(true)

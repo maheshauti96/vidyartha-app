@@ -37,7 +37,6 @@ const SchoolDashboard = ({ placeId, data, goToAllSchools }) => {
           donorContact: `No: ${el.donorContact}`,
         }));
       setSchoolData(schoolDonors);
-      console.log(Object.keys(schoolDonors[0]));
     }
 
     function init() {
