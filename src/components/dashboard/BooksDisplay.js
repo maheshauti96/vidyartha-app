@@ -204,14 +204,9 @@ const BooksDisplay = () => {
   ];
 
   function selectedRowHandler(ids) {
-    console.log(ids)
     setPrevList(ids);
 
     if (prevList.length === ids.length - 1) {
-      console.log(
-        "newly added",
-        ids.filter((id) => !prevList.includes(id))
-      );
       let addedRow = ids.filter((id) => !prevList.includes(id))
       const newArr = selectedRows
       newArr.push(...addedRow)
@@ -219,16 +214,11 @@ const BooksDisplay = () => {
       
     }
     if (prevList.length === ids.length+1) {
-      console.log(
-        "removed item",
-        
-      );
       let removedItem = prevList.filter((id) => !ids.includes(id))
       const newArr = selectedRows.filter(id => id !== removedItem[0])
       setSelectedRows(newArr)
     }
   }
-  console.log(selectedRows)
   function setByCode() {
     getBooksByCode(setBooks, codeParam);
   }

@@ -155,7 +155,6 @@ const FundsPage = () => {
   useEffect(() => {
 
     if ((schoolId && placeInfo) || updateRaiseAmount) {
-      console.log("in useEffect getPlaceInfo");
       fetchTopDonors(schoolId);
       getPlaceInfo(placeInfo)
     }

@@ -6,7 +6,6 @@ const DeliveryDisplay = () => {
     useEffect(() => {
         getDeliveries(setDeliveryList)
     } , [])
-    console.log(deliveryList)
 
     let columns = [
         {

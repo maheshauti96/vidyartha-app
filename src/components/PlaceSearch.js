@@ -84,8 +84,6 @@ export default function PlaceSearch({setSchoolId, setPlaceInfo}) {
   
     function handleInput(e) {
   
-      console.log("The event value received is : ", e.target.value);
-  
       setLoading(true);
   
       if (e.target.value === "") {
@@ -141,7 +139,6 @@ export default function PlaceSearch({setSchoolId, setPlaceInfo}) {
               open={true}
               sx={{ width: 346 }}
               renderInput={(params) => {
-                // console.log('params...',params)
                return <TextField {...params} label="Find your school"
                 onChange={handleInput} variant="outlined"
                 />

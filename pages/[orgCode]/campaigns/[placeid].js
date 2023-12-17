@@ -25,7 +25,6 @@ const FundsPage = () => {
   });
   const router = useRouter()
   let { placeid, orgCode } = router.query;
-  console.log("orgCode==>", orgCode)
   const [raisedAmount, setRaisedAmount] = useState(0);
   const [requiredAmount, setRequiredAmount] = useState(0);
   const [progress, setProgress] = useState(0);
