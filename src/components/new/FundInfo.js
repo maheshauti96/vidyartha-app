@@ -22,26 +22,26 @@ const FundInfo = ({
   return (
     <div className="fund-info">
       <div className="fund-title new-classname-for-funds">
-        <h1 style={{ textAlign: "center" }} className="fund-name">
-          {schoolName} hello
+        <h1  style={{ textAlign: "center" }} className="fund-name">
+          {schoolName}
         </h1>
         <div className="fund-links">
           
           <a
-            href={`whatsapp://send?text=Help me to Support this campaign ${"https://vidyartha.org"}${router.pathname.replace('[placeid]' , placeid).replace('[orgCode]' , orgCode)}`}
+            href= {href}
             data-action="share/whatsapp/share"
           >
             <img src="/whatsapp.png" />
-          </a>
+          </a> 
           <a
-            href={`instagram://send?text=Help me to Support this campaign ${"https://vidyartha.org"}${router.pathname.replace('[placeid]' , placeid).replace('[orgCode]' , orgCode)}`}
+            href={href}
             data-action="share/instagram/share"
           >
             <img src="/instagram.png" alt="instagram" />
           </a>
 
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${"https://vidyartha.org"}${router.pathname.replace('[placeid]' , placeid).replace('[orgCode]' , orgCode)}`}
+            href={href}
             rel="noopener noreferrer"
             target="_blank"
           >
