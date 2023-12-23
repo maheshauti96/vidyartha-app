@@ -3,6 +3,7 @@ import { Box, Input, LinearProgress, TextField } from "@material-ui/core";
 import RazorpayPayment from "../RazorpayPayment";
 import { formatCurrency } from "./TopDonors";
 import { useRouter } from "next/router";
+import { copyUrlToClipboard } from "../../services/service";
 
 const FundInfo = ({
   schoolInformation,
@@ -28,25 +29,30 @@ const FundInfo = ({
         <div className="fund-links">
           
           <a
-            href= {href}
+            href={`whatsapp://send?text=Help me to Support this campaign ${href}`}
             data-action="share/whatsapp/share"
           >
             <img src="/whatsapp.png" />
           </a> 
           <a
-            href={href}
+            href={`instagram://send?text=Help me to Support this campaign ${href}`}
             data-action="share/instagram/share"
           >
             <img src="/instagram.png" alt="instagram" />
           </a>
 
           <a
-            href={href}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${href}`}
             rel="noopener noreferrer"
             target="_blank"
           >
             <img src="/facebook.png" alt="facebook" />
           </a>
+          <img height="30px" width="30px"  src="/new-assets/share-icon.svg" onClick={() => { 
+                        copyUrlToClipboard(window.location.href)
+                        alert('link is copied!');
+                    }
+                    } alt="share" title="Copy Link"></img>
         </div>
       </div>
       <p className="address">{schoolAdress}</p>

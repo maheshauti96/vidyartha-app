@@ -122,7 +122,7 @@ export default function PlaceSearch({setSchoolId, setPlaceInfo}) {
       autoCompleteRef.current.value = "";
       setCardVisibility("none");
     }, [])
-
+    console.log("autoCompleteRef.current.value==>", autoCompleteRef?.current?.value)
     return (<div>
             <div>
             <TextField label="Find your city" inputRef={autoCompleteRef} variant="outlined" />

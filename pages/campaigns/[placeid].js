@@ -184,7 +184,7 @@ const FundsPage = () => {
         <Header />
         <div className='section-1'>
           <ImageGallery schoolSrc = {schoolInfo.placeImage} />
-          <FundInfo placeid={placeid} schoolInformation = {{schoolName , schoolAdress , schoolInfo , schoolId}} raisedAmount = {raisedAmount} requiredAmount = {requiredAmount} progress = {progress} />
+          <FundInfo placeid={placeid} schoolInformation = {{schoolName , schoolAdress , schoolInfo , schoolId}} raisedAmount = {raisedAmount} requiredAmount = {requiredAmount} progress = {progress} href={href} />
         </div>
         <div className='section-2' >
           {/* <CommentsAndFAQs place={placeid} setShowModal = {setShowModal} setComments = {setComments} comments = {comments} />
