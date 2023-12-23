@@ -86,6 +86,7 @@ const LandingPageForm = ({ orgCode }) => {
     setText("");
     setCardVisibility("none");
   }, []);
+  console.log("autoCompleteRef.current.value==>", autoCompleteRef?.current?.value)
 
   return (
     <>
