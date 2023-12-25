@@ -9,9 +9,9 @@ const Header = ({ orgCode }) => {
   return (
     <div className="header-container">
       <header className="header">
-        <Link href={`/${orgPath}`} >
+        <a href={`/${orgPath}`} >
           <img className="landingpage-banner-img" src="/vidyartha-logo.svg" alt="vidyartha-logo" />
-        </Link>
+        </a>
         <div className="header-links">
           <div
             className={`${
