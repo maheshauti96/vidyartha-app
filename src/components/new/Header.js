@@ -9,7 +9,6 @@ const Header = ({ orgCode }) => {
   return (
     <div className="header-container">
       <header className="header">
-        <p> orgPath :  {orgPath}</p>
         <a href={`/${orgPath}`} >
           <img className="landingpage-banner-img" src="/vidyartha-logo.svg" alt="vidyartha-logo" />
         </a>
