@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 const Header = ({ orgCode }) => {
   const [expand, setExpand] = useState(false);
   const router = useRouter();
-  const orgPath = orgCode || ''
+  const orgPath = orgCode ? orgCode.toUpperCase() : "NVCCPUN"
   return (
     <div className="header-container">
       <header className="header">
