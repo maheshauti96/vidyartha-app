@@ -229,17 +229,19 @@ export function formatDate(inputDateString) {
 
 export async function getBooks(setBooks , size =1000){
   try {
-    const response = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/book?size=${size}`)
+    const response = await fetch(`https://api.vidyartha.org/shastradaan/admin/book?size=${size}`)
+    
     const data = await response.json()
+    
     setBooks(data['content'])
   } catch(err){
-    setBooks({...err , errorOccured : true})
+    setBooks({err , errorOccured : true})
   }
 }
 
 export async function getBooksByCode(setBooks , code){
   try {
-    const response = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/book/findByCode/${code}?size=1000`)
+    const response = await fetch(`https://api.vidyartha.org/shastradaan/admin/book/findByCode/${code}?size=1000`)
     const data = await response.json()
     setBooks(data['content'])
   } catch(err){
@@ -249,7 +251,7 @@ export async function getBooksByCode(setBooks , code){
 
 export async function getBooksByName(setBooks , name){
   try {
-    const response = await fetch(`https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/book/findByDescription/${name}?size=1000`)
+    const response = await fetch(`https://api.vidyartha.org/shastradaan/admin/book/findByDescription/${name}?size=1000`)
     const data = await response.json()
     setBooks(data['content'])
   } catch(err){
@@ -259,7 +261,7 @@ export async function getBooksByName(setBooks , name){
 
 export async function getDeliveries(setDeliveryList){
   try {
-    const response = await fetch('https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/delivery')
+    const response = await fetch('https://api.vidyartha.org/shastradaan/admin/delivery')
     const data = await response.json()
     setDeliveryList({data , errorOccured : false})
 
@@ -270,7 +272,7 @@ export async function getDeliveries(setDeliveryList){
 
 export async function createDelivery(setResponse , data){
   try {
-    const {books , totalAmount , placeAddress , placeId , description } = data
+    const {books , totalAmount , placeAddress , placeId , description , org } = data
     const bodyBooks = books.reduce((acc , curr) => {
       console.log(curr)
       acc[curr.code] = curr.quantity
@@ -279,7 +281,7 @@ export async function createDelivery(setResponse , data){
     const deliveryObj = {
       "id": 1,
       "place": placeId,
-      "org": "NVCCPUN",
+      "org": org,
       "books": bodyBooks,
       "description": description,
       "shippingService": "string",
@@ -295,7 +297,7 @@ export async function createDelivery(setResponse , data){
       "modifiedAt": new Date()
     }
 
-    const response = await fetch('https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/admin/delivery/create', {
+    const response = await fetch('https://api.vidyartha.org/shastradaan/admin/delivery/create', {
       method : 'POST',
       headers: {
         "Accept": "application/json",
