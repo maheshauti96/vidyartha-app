@@ -1,8 +1,9 @@
 export default async function handler(req, res) {
   let response = await fetch(
-    "https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/dashboard/"
+    "https://api.vidyartha.org/shastradaan/dashboard/"
   )
-  .then(response => res.status(200).json({ response, success: true }))
+  .then(res => res.json())
+  .then(data => res.status(200).json({ data, success: true }))
   .catch(error => res.json(error))
 //   res.status(200).json({hello : "World"})
   
