@@ -7,10 +7,10 @@ const Analytics = () => {
   async function fetchAnalytics() {
     try {
       const response = await fetch(
-        "https://shastradaan.ap-south-1.elasticbeanstalk.com/shastradaan/dashboard/"
+        "/api/analytics/analytics"
       );
       const data = await response.json();
-      setAnalytics(data);
+      setAnalytics(data.data);
     } catch (err) {
       console.log(err);
     }
@@ -21,7 +21,7 @@ const Analytics = () => {
   } , []);
   return (
     <>
-      {analytics && (
+      {analytics && Object.keys(analytics).length > 0 && (
         <div className="analytics">
           <div>
             <img src="./new-assets/fundraiser-icon-1.svg" />

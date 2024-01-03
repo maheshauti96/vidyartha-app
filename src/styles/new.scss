@@ -1489,6 +1489,7 @@ body {
 .delivery-create-form {
     height: 75vh;
 
+    
     .autocomplete-parent {
         display: flex;
         width: 90vw;
@@ -1529,6 +1530,10 @@ body {
 
     }
     .books-input {
+        .org-autocomplete {
+            margin: 1rem 0;
+        }
+
         .autocomplete-parent {
             display: flex;
             gap:1rem;
@@ -1573,6 +1578,11 @@ body {
     p {
         margin: 0;
         padding: 0;
+    }
+
+    .amount-error {
+        margin: 0.5rem auto;
+        color: red;
     }
 
     .button-display {

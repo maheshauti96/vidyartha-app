@@ -5,6 +5,7 @@ import SchoolDashboard from "../src/components/SchoolDashboard";
 import BooksDisplay from "../src/components/dashboard/BooksDisplay";
 import DeliveryDisplay from "../src/components/dashboard/DeliveryDisplay";
 import CreateDeliveryForm from "../src/components/dashboard/CreateDeliveryForm";
+import DisplayOrganisations from "../src/components/dashboard/DisplayOrganisations";
 
 const MODES = {
   ALL_SCHOOLS: "ALL_SCHOOLS",
@@ -22,6 +23,7 @@ const Dashboard = () => {
   const [mode, setMode] = useState(MODES.ALL_SCHOOLS);
   const [selectedSchool, setSelectedSchool] = useState();
   const [deliverySchool , setDeliverySchool] = useState({showModal : false})
+  const [organisations , setOrganisations] = useState()
   const [totalFundsCollected, setTotalFundsCollected] = useState(0);
   const [totalDonors, setTotalDonors] = useState(0);
   const allDataRef = useRef();
@@ -87,8 +89,25 @@ const Dashboard = () => {
       }
     }
 
+
+
     init();
   }, []);
+
+  useEffect(() => {
+    function getOrgs(){
+      fetch('/api/organisations/organisations')
+        .then(res => res.json())
+        .then(data => {
+            setOrganisations(data.data.content)
+        })
+        .catch(err => console.log(err))
+    }
+
+    getOrgs()
+  }, [])
+
+  
 
   function applyFilters() {
     setLoading(true);
@@ -231,7 +250,8 @@ const Dashboard = () => {
       )}
       <BooksDisplay/>
       <DeliveryDisplay/>
-      {deliverySchool.showModal && <CreateDeliveryForm setDeliverySchool = {setDeliverySchool} schoolData={deliverySchool}/>}
+      <DisplayOrganisations organisations = {organisations}/>
+      {deliverySchool.showModal && <CreateDeliveryForm organisations = {organisations} setDeliverySchool = {setDeliverySchool} schoolData={deliverySchool}/>}
     </div>
 
   );
