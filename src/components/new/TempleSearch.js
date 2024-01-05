@@ -17,7 +17,6 @@ const TempleSearch = ({ orgCode }) => {
   const [longitude, setLongitude] = useState(68.14712);
   const [templeId , setTempleId] = useState('')
   const [templeInfo , setTempleInfo] = useState()
-  console.log(templeInfo)
   function handleInput(e) {
 
     if (e.target.value === "") {
