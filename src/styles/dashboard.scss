@@ -1,0 +1,37 @@
+.temple-form-main {
+    font-family: 'Inter';
+    margin: 5rem 0;
+    .temple-form-container {
+        outline: 1px solid #cbd5e1;
+        width: 600px;
+        margin: auto;
+        padding: 2rem;
+
+        .temple-heading {
+            margin: auto;
+            text-align: center;
+            font-size: 2rem;
+            margin: 1rem 0;
+            display: block;
+        }
+
+        .temple-form {
+            display: flex;
+            flex-direction: column;
+            gap : 1rem
+        }
+    }
+}
+
+.temple-info {
+    font-family: "Inter";
+    padding: 2rem;
+    outline : 1px solid #cbd5e1;
+    border-radius: 1rem;
+    .temple-name {
+        text-align: center;
+    }
+    .temple-address {
+        text-align: center;
+    }
+}
