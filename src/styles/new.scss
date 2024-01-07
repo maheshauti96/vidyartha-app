@@ -428,41 +428,6 @@ body {
     margin: 2rem 0.5rem;
     font-size: 3rem;
 }
-
-.news-and-stories {
-    .news-carousel-item {
-        min-width: 30vw;
-        margin: 0.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 90%;
-        gap: 1.5rem;
-        padding: 1rem 0;
-        outline: 1px solid black;
-        border-radius: 24px;
-
-        .main-img {
-            width: 80%;
-        }
-
-
-        .read-more-btn {
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 0.5rem;
-            padding: 1rem 2rem;
-            color: white;
-            background: #1D4F5A;
-        }
-
-        @media (max-width : 1080px) {
-            min-width: 70vw;
-        }
-    }
-}
-
 .testimonial-component {
     .testimonial-item {
         min-width: 30vw;
