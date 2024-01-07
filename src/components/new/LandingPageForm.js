@@ -16,16 +16,13 @@ const LandingPageForm = ({ orgCode }) => {
   const [cardVisibility, setCardVisibility] = useState("none"); //visible
   const [latitude, setLatitude] = useState(7.798);
   const [longitude, setLongitude] = useState(68.14712);
-  const orgPath = orgCode || ''
+  console.log(schools)
   function handleInput(e) {
 
-    if (e.target.value === "") {
-      setSchools([]);
-      setText(e.target.value);
-    } else {
+    
       setText(e.target.value);
       fetchSchoolsAutoComplete();
-    }
+    
   }
   const fetchSchoolsAutoComplete = () => {
     var service = new window.google.maps.places.AutocompleteService();
@@ -33,7 +30,7 @@ const LandingPageForm = ({ orgCode }) => {
     var pyrmont = new window.google.maps.LatLng(latitude, longitude);
 
     var request = {
-      input: text,
+      input: text ? text : 'school',
       types: ["establishment"],
       componentRestrictions: { country: "in" },
       location: pyrmont,
@@ -61,6 +58,34 @@ const LandingPageForm = ({ orgCode }) => {
     });
   };
 
+  function fetchSchoolsBySelect(city) {
+    // from google
+    const pyrmont = new google.maps.LatLng(7.798, 68.14712);
+    try {
+      console.log('fetching by selected school')
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: pyrmont,
+        zoom: 15,
+      });
+      const service = new google.maps.places.PlacesService(map);
+
+      service.nearbySearch({
+        location : city.geometry.location,
+        radius : '500',
+        types : ['school' , 'university']
+
+      }, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          const filteredSchools = results.filter(school => (school.types.includes('school') || school.types.includes('university')))
+          console.log(filteredSchools)
+          setSchools(filteredSchools)
+        }
+      });
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   function selectedValue(event, value) {
     if (value) {
       setFinalPlace(value);
@@ -80,7 +105,8 @@ const LandingPageForm = ({ orgCode }) => {
       const place = autoComplete.getPlace();
       setLatitude(place.geometry.location.lat());
       setLongitude(place.geometry.location.lng());
-      setCity(place.name);
+      setCity(place);
+      fetchSchoolsBySelect(place)
     });
 
     setText("");
@@ -134,17 +160,18 @@ const LandingPageForm = ({ orgCode }) => {
               disablePortal
               sx = {{width : '346px'}}
               options={schools}
-              noOptionsText=""
+              
+              noOptionsText="No Schools"
               // open={true}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) =>
-                option.structured_formatting.main_text.toString()
+                option.structured_formatting ? option.structured_formatting.main_text.toString() : option.name
               }
               renderOption={(option) => {
                 return (
                   <div style={{ textAlign: "left", fontSize: "1.1rem" }}>
                     <p style={{ margin: "0px" }}>
-                      {option.structured_formatting.main_text}
+                      {option.structured_formatting ? option.structured_formatting.main_text : option.name}
                     </p>
                     <p
                       style={{
@@ -154,7 +181,7 @@ const LandingPageForm = ({ orgCode }) => {
                       }}
                     >
                       {" "}
-                      {option.structured_formatting.secondary_text}
+                      {option.structured_formatting ? option.structured_formatting.secondary_text : option.vicinity}
                     </p>
                   </div>
                 );
@@ -165,6 +192,7 @@ const LandingPageForm = ({ orgCode }) => {
                   <TextField
                     {...params}
                     label="Find your school"
+                    id = "school-autocomplete"
                     onChange={handleInput}
                     variant="outlined"
                     sx={{ fontSize: "2rem" }}
@@ -197,6 +225,7 @@ const LandingPageForm = ({ orgCode }) => {
           </form>
         </div>
       </div>
+      <div style={{ visibility: 'hidden' }} id="map"></div>
     </>
   );
 };

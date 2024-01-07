@@ -1,0 +1,62 @@
+.news-and-stories {
+    .name {
+        text-align: center;
+        color : #164e63;
+        font-size: 1.5rem;
+    }
+    .news-carousel-item {
+        min-width: 400px;
+        margin: 0.5rem;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        width: 90%;
+        gap: 1rem;
+        padding: 1rem 0;
+        outline: 1px solid black;
+        border-radius: 24px;
+
+        .main-img {
+            width: 80%;
+            object-fit: cover;
+        }
+
+
+        .read-more-btn {
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            color: white;
+            background: #1D4F5A;
+        }
+
+        @media (max-width : 1080px) {
+            min-width: 70vw;
+        }
+    }
+}
+
+.image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    img {
+        max-height: 500px;
+        box-shadow: 5px 5px 25px 5px rgba(0,0,0,0.05);
+        border-radius: 1rem;
+    }
+
+}
+
+.news-heading {
+    text-align: center;
+    color: #164e63;
+}
