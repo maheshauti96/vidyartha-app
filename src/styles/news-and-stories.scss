@@ -48,15 +48,26 @@
     align-items: center;
     margin: auto;
 
-    img {
-        max-height: 500px;
-        box-shadow: 5px 5px 25px 5px rgba(0,0,0,0.05);
-        border-radius: 1rem;
+    div {
+        
+        img {
+            max-width: 100%;
+            max-height: 500px;
+            margin: auto;
+            display: block;
+            box-shadow: 5px 5px 25px 5px rgba(0,0,0,0.05);
+            border-radius: 1rem;
+        }
     }
+
+
+
 
 }
 
 .news-heading {
     text-align: center;
     color: #164e63;
+    max-width: 80%;
+    margin: 1rem auto;
 }
