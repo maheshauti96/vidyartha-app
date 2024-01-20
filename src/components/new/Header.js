@@ -28,7 +28,7 @@ const Header = ({ orgCode }) => {
               router.pathname.includes("/news-and-stories") ? "active" : ""
             }`}
           >
-            <Link href="/news-and-stories">News and Stories</Link>
+            <Link href={`/${orgPath}/news-and-stories`}>News and Stories</Link>
           </div>
           <div className={`${router.pathname.includes("/aboutus")  ? "active" : ""}`}>
             <Link href={`/${orgPath}/aboutus`}>About</Link>
@@ -65,7 +65,7 @@ const Header = ({ orgCode }) => {
                   router.pathname.includes("/news-and-stories") ? "active" : ""
                 }`}
               >
-                <Link href="/news-and-stories">News and Stories</Link>
+                <Link href={`/${orgPath}/news-and-stories`}>News and Stories</Link>
               </div>
               <div
                 className={`${router.pathname.includes("/aboutus") ? "active" : ""}`}
