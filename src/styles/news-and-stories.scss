@@ -60,8 +60,33 @@
         }
     }
 
+}
 
+.display-all-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 
+.image-gallery-horizontal {
+    display: flex;
+    gap: 2rem;
+    width: 80vw;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+
+    div {
+        
+        img {
+            max-height: 300px;
+            margin: auto;
+            display: block;
+            box-shadow: 5px 5px 25px 5px rgba(0,0,0,0.05);
+            border-radius: 1rem;
+        }
+    }
 
 }
 
@@ -70,4 +95,8 @@
     color: #164e63;
     max-width: 80%;
     margin: 1rem auto;
+}
+
+.focus-image-container {
+    
 }
