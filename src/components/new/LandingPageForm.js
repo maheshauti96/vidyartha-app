@@ -5,6 +5,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { debounce } from "lodash";
+import Link from "next/link";
+import FindSchoolModal from "./FindSchoolModal";
 
 const LandingPageForm = ({ orgCode }) => {
   let autoCompleteRef = useRef(null);
@@ -13,10 +15,10 @@ const LandingPageForm = ({ orgCode }) => {
   const [schools, setSchools] = useState([]);
   const [city, setCity] = useState("");
   const [finalPlace, setFinalPlace] = useState();
-  const [cardVisibility, setCardVisibility] = useState("none"); //visible
+  const [modalVisibility, setModalVisibility] = useState(false); //visible
   const [latitude, setLatitude] = useState(7.798);
   const [longitude, setLongitude] = useState(68.14712);
-  console.log(schools)
+  console.log({city})
   function handleInput(e) {
 
     
@@ -39,7 +41,6 @@ const LandingPageForm = ({ orgCode }) => {
 
     service.getPlacePredictions(request, function (predictions, status) {
       if (status == window.google.maps.places.PlacesServiceStatus.OK) {
-        setCardVisibility("block");
 
         let schoolsArr = [];
 
@@ -62,7 +63,6 @@ const LandingPageForm = ({ orgCode }) => {
     // from google
     const pyrmont = new google.maps.LatLng(7.798, 68.14712);
     try {
-      console.log('fetching by selected school')
       const map = new google.maps.Map(document.getElementById("map"), {
         center: pyrmont,
         zoom: 15,
@@ -110,7 +110,6 @@ const LandingPageForm = ({ orgCode }) => {
     });
 
     setText("");
-    setCardVisibility("none");
   }, []);
 
   return (
@@ -152,15 +151,22 @@ const LandingPageForm = ({ orgCode }) => {
               type="text"
               variant="outlined"
               label="Find your city"
+              className="city-input"
               required
               inputRef={autoCompleteRef}
             />
             <div>
+              {city && schools.length > 0 && <div role = "button" className="find-school-btn" onClick={() => {
+                console.log(schools)
+                setModalVisibility(true)
+              }} >Don't remember your school? Find here!</div>}
+            
+            </div>
             <Autocomplete
               disablePortal
               sx = {{width : '346px'}}
               options={schools}
-              
+              className="school-input"
               noOptionsText="No Schools"
               // open={true}
               onChange={(event, value) => selectedValue(event, value)}
@@ -169,7 +175,7 @@ const LandingPageForm = ({ orgCode }) => {
               }
               renderOption={(option) => {
                 return (
-                  <div style={{ textAlign: "left", fontSize: "1.1rem" }}>
+                  <div style={{ textAlign: "left", fontSize: "1.1rem" , width : "100%" }}>
                     <p style={{ margin: "0px" }}>
                       {option.structured_formatting ? option.structured_formatting.main_text : option.name}
                     </p>
@@ -195,12 +201,12 @@ const LandingPageForm = ({ orgCode }) => {
                     id = "school-autocomplete"
                     onChange={handleInput}
                     variant="outlined"
+                    className="school-input"
                     sx={{ fontSize: "2rem" }}
                   />
                 );
               }}
             />
-            </div>
             <button
               className="submit-btn"
               disabled = {!(finalPlace && finalPlace.place_id)}
@@ -225,6 +231,7 @@ const LandingPageForm = ({ orgCode }) => {
           </form>
         </div>
       </div>
+      {modalVisibility && <FindSchoolModal setShow = {setModalVisibility} schools = {schools} orgCode = {orgCode}/>}
       <div style={{ visibility: 'hidden' }} id="map"></div>
     </>
   );
