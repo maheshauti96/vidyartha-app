@@ -71,7 +71,6 @@ export default function FundraiserPlace() {
                 setLoading(false);
             });
         } catch (error) {
-            console.log('fetchSchoolDetails failed', error);
             setLoading(false);
         }
     }
@@ -111,7 +110,6 @@ export default function FundraiserPlace() {
                 return true;
             }
         } catch (error) {
-            console.log('getPlaceInfo Error', error);
             return false;
         }
     }

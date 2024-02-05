@@ -13,7 +13,6 @@ const News = () => {
   const { news } = router.query;
 
   useEffect(() => {
-    console.log(data[news]);
     setSchool(data[news]);
   }, [router]);
   return (

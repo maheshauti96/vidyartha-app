@@ -101,9 +101,7 @@ const FundsPage = () => {
         setProgress(progress)
 
         return true;
-      } else {
-        console.log('placename and id not defined', { placeAddress, placeName, schoolId });
-      }
+      } 
     } catch (error) {
       return false;
     }

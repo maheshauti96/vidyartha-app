@@ -12,7 +12,6 @@ const FindSchoolModal = ({
   showLoadMore,
   onLoadMore,
 }) => {
-    console.log(schools[0])
     const componentRef = useRef(null);
 
   useEffect(() => {

@@ -21,7 +21,6 @@ const LandingPageForm = ({ orgCode }) => {
   const [pageToken , setPageToken] = useState(0);
   const [showLoadMore, setShowLoadMore] = useState(false);
   const paginationRef = useRef(null);
-  console.log({city})
   function handleInput(e) {
 
     
@@ -79,10 +78,8 @@ const LandingPageForm = ({ orgCode }) => {
         pagetoken : pageToken
 
       }, (results, status, pagination) => {
-        console.log({results , status, pagination})
 
           if(pagination.hasNextPage) {
-            console.log(">>> next page")
             paginationRef.current = pagination;
             setShowLoadMore(true);
           } else {
@@ -174,7 +171,6 @@ const LandingPageForm = ({ orgCode }) => {
             />
             <div>
               {city && schools.length > 0 && <div role = "button" className="find-school-btn" onClick={() => {
-                console.log(schools)
                 setModalVisibility(true)
               }} >Don't remember your school? Find here!</div>}
             

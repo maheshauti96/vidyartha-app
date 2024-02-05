@@ -3,7 +3,6 @@ import CarouselComponent from './CarouselComponent'
 import Link from 'next/link'
 
 const NewsAndStoriesCarousel = ({data}) => {
-    console.log(Object.keys(data))
   return (
     <div className='news-and-stories'>
         <h3 className='section-title'>News And Stories</h3>
