@@ -18,6 +18,9 @@ const LandingPageForm = ({ orgCode }) => {
   const [modalVisibility, setModalVisibility] = useState(false); //visible
   const [latitude, setLatitude] = useState(7.798);
   const [longitude, setLongitude] = useState(68.14712);
+  const [pageToken , setPageToken] = useState(0);
+  const [showLoadMore, setShowLoadMore] = useState(false);
+  const paginationRef = useRef(null);
   console.log({city})
   function handleInput(e) {
 
@@ -68,24 +71,38 @@ const LandingPageForm = ({ orgCode }) => {
         zoom: 15,
       });
       const service = new google.maps.places.PlacesService(map);
-
+      
       service.nearbySearch({
         location : city.geometry.location,
         radius : '500',
-        types : ['school' , 'university']
+        types : ['school' , 'university'],
+        pagetoken : pageToken
 
-      }, (results, status) => {
+      }, (results, status, pagination) => {
+        console.log({results , status, pagination})
+
+          if(pagination.hasNextPage) {
+            console.log(">>> next page")
+            paginationRef.current = pagination;
+            setShowLoadMore(true);
+          } else {
+            paginationRef.current = null;
+            setShowLoadMore(false);
+          }
+        
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          const filteredSchools = results.filter(school => (school.types.includes('school') || school.types.includes('university')))
-          console.log(filteredSchools)
-          setSchools(filteredSchools)
+          let filteredSchools = results.filter(school => (school.types.includes('school') || school.types.includes('university')) && !schools.includes(school))
+          
+          setSchools(prev => [...prev ,...filteredSchools])
         }
       });
     } catch (error) {
       console.log(error.message)
     }
   }
-
+  // useEffect(() => {
+  //   fetchSchoolsBySelect(city)
+  // } , [pageToken])
   function selectedValue(event, value) {
     if (value) {
       setFinalPlace(value);
@@ -231,7 +248,17 @@ const LandingPageForm = ({ orgCode }) => {
           </form>
         </div>
       </div>
-      {modalVisibility && <FindSchoolModal setShow = {setModalVisibility} schools = {schools} orgCode = {orgCode}/>}
+      {modalVisibility && <FindSchoolModal 
+      pageToken = {pageToken} 
+      setPageToken = {setPageToken} 
+      setShow = {setModalVisibility} 
+      schools = {schools} 
+      orgCode = {orgCode}
+      showLoadMore={showLoadMore}
+      onLoadMore={() => {
+        paginationRef.current?.nextPage();
+      }}
+      />}
       <div style={{ visibility: 'hidden' }} id="map"></div>
     </>
   );

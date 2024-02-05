@@ -3,7 +3,15 @@ import { CloseSharp } from '@material-ui/icons';
 import Link from 'next/link';
 import React , {useRef , useEffect} from 'react'
 
-const FindSchoolModal = ({setShow , schools , orgCode}) => {
+const FindSchoolModal = ({
+  setShow , 
+  schools , 
+  orgCode , 
+  setPageToken , 
+  pageToken,
+  showLoadMore,
+  onLoadMore,
+}) => {
     console.log(schools[0])
     const componentRef = useRef(null);
 
@@ -22,10 +30,10 @@ const FindSchoolModal = ({setShow , schools , orgCode}) => {
   return (
     <div className='find-school-modal'>
         <div>
-        <button onClick={() => setShow(false)} className='close-button'><CloseSharp/></button>
+        
         <div ref={componentRef} className='find-school-main'>
             <h2 className='find-school-title'>Here are the schools we could find</h2>
-            
+            <button onClick={() => setShow(false)} className='close-button'><CloseSharp/></button>
             <ul>
             {
                 schools.map(({name , place_id}) => <li>
@@ -34,7 +42,9 @@ const FindSchoolModal = ({setShow , schools , orgCode}) => {
                   }`} >{name}</Link>
                 </li>)
             }
+            <li>{pageToken}</li>
             </ul>
+            {showLoadMore && <button className='load-more-button' type='button' onClick={onLoadMore}>Load More</button>}
         </div>
         </div>
     </div>

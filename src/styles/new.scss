@@ -246,23 +246,25 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    .close-button {
-        position: absolute;
-        right: 10%;
-        border: none;
-        background: none;
-    }
+    
     .find-school-main {
         width: 80vw;
         max-height: 80%;
         background-color: white;
         padding: 1rem 0;
-
-        
-
+        position: relative;
+        .close-button {
+            position: absolute;
+            right: 0.25rem;
+            border: none;
+            background: none;
+            top: 0.25rem;
+            cursor: pointer;
+        }
         .find-school-title {
             text-align: center;
             color : #075985;
+            margin-top: 2.5rem;
         }
 
         ul {
@@ -300,6 +302,22 @@ body {
 
 
             }
+        }
+
+        .load-more-button {
+            display: block;
+            margin: auto;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            color: white;
+            background-color: #075985;
+        }
+
+        @media (max-width : 1080px) {
+            width: 100vw;
+            height: 100dvh;
         }
     }
 }
