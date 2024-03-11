@@ -18,15 +18,12 @@ const LandingPageForm = ({ orgCode }) => {
   const [modalVisibility, setModalVisibility] = useState(false); //visible
   const [latitude, setLatitude] = useState(7.798);
   const [longitude, setLongitude] = useState(68.14712);
-  const [pageToken , setPageToken] = useState(0);
+  const [pageToken, setPageToken] = useState(0);
   const [showLoadMore, setShowLoadMore] = useState(false);
   const paginationRef = useRef(null);
   function handleInput(e) {
-
-    
-      setText(e.target.value);
-      fetchSchoolsAutoComplete();
-    
+    setText(e.target.value);
+    fetchSchoolsAutoComplete();
   }
   const fetchSchoolsAutoComplete = () => {
     var service = new window.google.maps.places.AutocompleteService();
@@ -34,7 +31,7 @@ const LandingPageForm = ({ orgCode }) => {
     var pyrmont = new window.google.maps.LatLng(latitude, longitude);
 
     var request = {
-      input: text ? text : 'school',
+      input: text ? text : "school",
       types: ["establishment"],
       componentRestrictions: { country: "in" },
       location: pyrmont,
@@ -43,13 +40,13 @@ const LandingPageForm = ({ orgCode }) => {
 
     service.getPlacePredictions(request, function (predictions, status) {
       if (status == window.google.maps.places.PlacesServiceStatus.OK) {
-
         let schoolsArr = [];
 
         for (var i = 0, prediction; (prediction = predictions[i]); i++) {
           if (
             prediction.types.includes("school") ||
-            prediction.types.includes("university")
+            prediction.types.includes("university") ||
+            prediction.types.includes("hindu_temple")
           ) {
             schoolsArr.push(prediction);
           }
@@ -70,31 +67,34 @@ const LandingPageForm = ({ orgCode }) => {
         zoom: 15,
       });
       const service = new google.maps.places.PlacesService(map);
-      
-      service.nearbySearch({
-        location : city.geometry.location,
-        radius : '500',
-        types : ['school' , 'university'],
-        pagetoken : pageToken
 
-      }, (results, status, pagination) => {
-
-          if(pagination.hasNextPage) {
+      service.nearbySearch(
+        {
+          location: city.geometry.location,
+          radius: "500",
+          types: ["school", "university", "hindu_temple"],
+          pagetoken: pageToken,
+        },
+        (results, status, pagination) => {
+          if (pagination.hasNextPage) {
             paginationRef.current = pagination;
             setShowLoadMore(true);
           } else {
             paginationRef.current = null;
             setShowLoadMore(false);
           }
-        
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          let filteredSchools = results.filter(school => (school.types.includes('school') || school.types.includes('university')) && !schools.includes(school))
-          
-          setSchools(prev => [...prev ,...filteredSchools])
+
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            let filteredSchools = results.filter(
+              (school) => !schools.includes(school)
+            );
+
+            setSchools((prev) => [...prev, ...filteredSchools]);
+          }
         }
-      });
+      );
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
   // useEffect(() => {
@@ -120,7 +120,7 @@ const LandingPageForm = ({ orgCode }) => {
       setLatitude(place.geometry.location.lat());
       setLongitude(place.geometry.location.lng());
       setCity(place);
-      fetchSchoolsBySelect(place)
+      fetchSchoolsBySelect(place);
     });
 
     setText("");
@@ -169,49 +169,54 @@ const LandingPageForm = ({ orgCode }) => {
               required
               inputRef={autoCompleteRef}
             />
-            <div>
-              {city && schools.length > 0 && <div role = "button" className="find-school-btn" onClick={() => {
-                setModalVisibility(true)
-              }} >Don't remember your school? Find here!</div>}
-            
-            </div>
+
             <Autocomplete
-              disablePortal
-              sx = {{width : '346px'}}
+              sx={{ width: "346px" }}
               options={schools}
               className="school-input"
               noOptionsText="No Schools"
               // open={true}
               onChange={(event, value) => selectedValue(event, value)}
               getOptionLabel={(option) =>
-                option.structured_formatting ? option.structured_formatting.main_text.toString() : option.name
+                option.structured_formatting
+                  ? option.structured_formatting.main_text.toString()
+                  : option.name
               }
               renderOption={(option) => {
                 return (
-                  <div style={{ textAlign: "left", fontSize: "1.1rem" , width : "100%" }}>
+                  <div
+                    style={{
+                      textAlign: "left",
+                      fontSize: "1.1rem",
+                      width: "100%",
+                    }}
+                  >
                     <p style={{ margin: "0px" }}>
-                      {option.structured_formatting ? option.structured_formatting.main_text : option.name}
+                      {option.structured_formatting
+                        ? option.structured_formatting.main_text
+                        : option.name}
                     </p>
                     <p
                       style={{
-                        margin :"0px",
+                        margin: "0px",
                         color: "grey",
                         fontSize: "0.9rem",
                       }}
                     >
                       {" "}
-                      {option.structured_formatting ? option.structured_formatting.secondary_text : option.vicinity}
+                      {option.structured_formatting
+                        ? option.structured_formatting.secondary_text
+                        : option.vicinity}
                     </p>
                   </div>
                 );
               }}
-              
               renderInput={(params) => {
                 return (
                   <TextField
                     {...params}
                     label="Find your school"
-                    id = "school-autocomplete"
+                    id="school-autocomplete"
                     onChange={handleInput}
                     variant="outlined"
                     className="school-input"
@@ -220,20 +225,34 @@ const LandingPageForm = ({ orgCode }) => {
                 );
               }}
             />
+            <div>
+              {city && schools.length > 0 && (
+                <div
+                  role="button"
+                  className="find-school-btn"
+                  onClick={() => {
+                    setModalVisibility(true);
+                  }}
+                >
+                  Don't remember your school? Find here!
+                </div>
+              )}
+            </div>
             <button
               className="submit-btn"
-              disabled = {!(finalPlace && finalPlace.place_id)}
+              disabled={!(finalPlace && finalPlace.place_id)}
               onClick={(e) => {
-                e.preventDefault()
+                e.preventDefault();
                 if (finalPlace) {
                   localStorage.setItem("visited", true);
-                  router.push(`${orgPath}/campaigns/${
-                    finalPlace.place_id
-                  }?name=${finalPlace.structured_formatting.main_text.replaceAll(
-                    " ",
-                    "-"
-                  )}`)
-                  
+                  router.push(
+                    `${orgPath}/campaigns/${
+                      finalPlace.place_id
+                    }?name=${finalPlace.structured_formatting.main_text.replaceAll(
+                      " ",
+                      "-"
+                    )}`
+                  );
                 } else {
                   alert("Please Select the school");
                 }
@@ -244,18 +263,20 @@ const LandingPageForm = ({ orgCode }) => {
           </form>
         </div>
       </div>
-      {modalVisibility && <FindSchoolModal 
-      pageToken = {pageToken} 
-      setPageToken = {setPageToken} 
-      setShow = {setModalVisibility} 
-      schools = {schools} 
-      orgCode = {orgCode}
-      showLoadMore={showLoadMore}
-      onLoadMore={() => {
-        paginationRef.current?.nextPage();
-      }}
-      />}
-      <div style={{ visibility: 'hidden' }} id="map"></div>
+      {modalVisibility && (
+        <FindSchoolModal
+          pageToken={pageToken}
+          setPageToken={setPageToken}
+          setShow={setModalVisibility}
+          schools={schools}
+          orgCode={orgCode}
+          showLoadMore={showLoadMore}
+          onLoadMore={() => {
+            paginationRef.current?.nextPage();
+          }}
+        />
+      )}
+      <div style={{ visibility: "hidden" }} id="map"></div>
     </>
   );
 };
