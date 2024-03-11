@@ -16,7 +16,6 @@ const CreateDeliveryForm = ({ schoolData, setDeliverySchool , organisations }) =
   const [amount, setAmount] = useState();
   const [desc, setDesc] = useState("");
   const [response, setResponse] = useState();
-  console.log(response)
   const [searchByCode, setSearchByCode] = useState(true)
   const [org , setOrg] = useState('')
   const searchBooks = debounce((value) => {

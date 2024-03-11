@@ -1,0 +1,22 @@
+{
+    "jaihind-highschool" : {
+        "name" : "Jaihind Highscool",
+        "images" : ["1.jpg"]
+    },
+    "kevada-school" :{
+        "name" : "Kevada School",
+        "images" : ["1.jpeg","2.jpeg"]
+    } ,
+    "saraswathi-shishu-mandir" :{
+        "name" : "Saraswathi Shishu Mandir",
+        "images" : ["1.jpeg","2.jpeg","3.jpeg","4.jpeg","5.jpeg","6.jpeg","7.jpeg","8.jpeg"]
+    } ,
+    "vidyabharti-virwade" : {
+        "name" : "Vidyabharti Medium Highschool",
+        "images" : ["1.jpg"]
+    },
+    "virwade-highschool" : {
+        "name" : "Virwade Highschool, Virwade, Chopda",
+        "images" : ["1.jpeg"]
+    }
+}

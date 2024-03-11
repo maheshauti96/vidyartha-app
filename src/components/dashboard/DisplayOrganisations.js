@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { formatDate } from '../../services/service';
 
 const DisplayOrganisations = ({organisations}) => {
-    console.log(organisations)
     
     function formatDateString(dateString) {
         const dateObject = new Date(dateString);
@@ -13,7 +12,6 @@ const DisplayOrganisations = ({organisations}) => {
         return dateObject.toLocaleString(undefined, options);
     }
 
-    console.log()
     let columns = [
         {
           field: "id",
