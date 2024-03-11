@@ -13,7 +13,7 @@ const FindSchoolModal = ({
   onLoadMore,
 }) => {
     const componentRef = useRef(null);
-
+    console.log(schools)
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (componentRef.current && !componentRef.current.contains(event.target)) {
@@ -41,7 +41,6 @@ const FindSchoolModal = ({
                   }`} >{name}</Link>
                 </li>)
             }
-            <li>{pageToken}</li>
             </ul>
             {showLoadMore && <button className='load-more-button' type='button' onClick={onLoadMore}>Load More</button>}
         </div>
