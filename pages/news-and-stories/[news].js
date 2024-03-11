@@ -24,7 +24,7 @@ const News = () => {
         </Link>
         <div>
           <h1 className="news-heading">{school.name}</h1>
-          
+            
             <div className="image-gallery">
                 {school.images.map((imageSrc) => (
                 <div key ={imageSrc}>
@@ -32,7 +32,7 @@ const News = () => {
                 </div>
                 ))}
             </div>
-          
+            <p>Successfully Donated books to {school.name}</p>
         </div>
       </div>}
       <Footer />
