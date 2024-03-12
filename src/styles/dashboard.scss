@@ -4,7 +4,7 @@
 
     .temple-form-container {
         outline: 1px solid #cbd5e1;
-        width: 600px;
+        max-width: 600px;
         margin: auto;
         padding: 2rem;
 
@@ -40,11 +40,13 @@
 }
 
 .create-organisation {
-    outline: 1px solid;
+    outline: 1px solid #e5e5e5;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 2rem 0;
+    padding: 2rem 0;
+    border-radius: 0.5rem;
 
     form {
         width: 100%;
@@ -65,6 +67,7 @@
                 color: gray
             }
         }
+
     }
 
     .error-msg {
@@ -73,5 +76,11 @@
 
     .success-msg {
         color: green
+    }
+
+    @media (max-width : 1080px) {
+        form {
+            width: 80%;
+        }
     }
 }

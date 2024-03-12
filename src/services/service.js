@@ -313,10 +313,11 @@ export async function createDelivery(setResponse, data) {
         },
         body: JSON.stringify(deliveryObj),
       }
-    );
-    setResponse(response);
+    )
+      .then((res) => res.text())
+      .then((data) => setResponse({ errorOccured: false, data }));
   } catch (error) {
     console.log(error);
-    setResponse(error);
+    setResponse({ errorOccured: true, msg: error.message });
   }
 }
