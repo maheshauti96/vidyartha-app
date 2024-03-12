@@ -15,14 +15,14 @@ import { formatCurrency } from "./TopDonors";
 const FundraiserComponent = ({ orgCode }) => {
   let carouselList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [content, setContent] = useState([]);
-  async function setFundraisers(){
+  async function setFundraisers() {
     let response = await fetchTopFundraisers();
-    setContent(response.content)
+    setContent(response.content);
   }
   useEffect(() => {
-    setFundraisers()
+    setFundraisers();
   }, []);
-  const orgPath = orgCode || ''
+  const orgPath = orgCode || "";
 
   return (
     <>
@@ -30,32 +30,41 @@ const FundraiserComponent = ({ orgCode }) => {
         <div className="fundraiser-component">
           <h3 className="section-title">Our Top Fundraisers</h3>
           <CarouselComponent>
-            {content.map(({id , name , address , collected , donorCount}, index) => (
-              <div key={id} className="fundraiser-carousel-item">
-                {/* <div className="images">
+            {content.map(
+              ({ id, name, address, collected, donorCount }, index) => (
+                <div key={id} className="fundraiser-carousel-item">
+                  {/* <div className="images">
                   <img
                     className="main-img"
                     src="./new-assets/placeholder.png"
                   />
                 </div> */}
-                <div style={{ width: "80%" }}>
-                  <h3 className="name">{name}</h3>
-                  <p className="address">{address}</p>
-                  
-                </div>
-                <div className="progress" style={{ width: "80%" }}>
-                  <div>
-                    <p>Total Funds : {formatCurrency(collected/100)}</p>
+                  <div style={{ width: "80%" }}>
+                    <h3 className="name">{name}</h3>
+                    <p className="address">{address}</p>
                   </div>
-                  <div>
-                    <p>Total Donors : {donorCount}</p>
+                  <div className="progress" style={{ width: "80%" }}>
+                    <div>
+                      <p>Total Funds : {formatCurrency(collected / 100)}</p>
+                    </div>
+                    <div>
+                      <p>Total Donors : {donorCount}</p>
+                    </div>
+                  </div>
+                  <div className="donate-btn">
+                    <Link
+                      href={
+                        orgCode
+                          ? `/${orgCode}/campaigns/${id}`
+                          : `/campaigns/${id}`
+                      }
+                    >
+                      Donate
+                    </Link>
                   </div>
                 </div>
-                <div className="donate-btn">
-                  <Link href={`${orgPath}/${orgCode ? `${orgCode}/` : ''}campaigns/${id}`}>Donate</Link>
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </CarouselComponent>
         </div>
       )}

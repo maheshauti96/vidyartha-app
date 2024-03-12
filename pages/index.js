@@ -12,8 +12,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const newLandingPage = () => {
-  let router = useRouter()
-  console.log(router.query)
+  let router = useRouter();
   return (
     <>
       <Head>
@@ -47,7 +46,10 @@ const newLandingPage = () => {
         <div>
           <Header />
         </div>
-        <img className="landingpage-banner-image" src="/banner-bg-original.png" />
+        <img
+          className="landingpage-banner-image"
+          src="/banner-bg-original.png"
+        />
         <LandingPageForm />
         <Analytics />
         <FundraiserComponent />
