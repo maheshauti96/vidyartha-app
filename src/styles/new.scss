@@ -144,12 +144,13 @@ body {
     align-items: center;
     height: 100vh;
 
-    
-    .find-school-btn{
+
+    .find-school-btn {
         text-align: center;
         cursor: pointer;
         color: #1e3a8a;
     }
+
     .landingpage-form-container {
         display: flex;
         flex-direction: column;
@@ -158,24 +159,26 @@ body {
         width: 50%;
         padding: 2.5rem;
         border-radius: 1rem;
-        
+
         @media (max-width : 1080px) {
             width: 80%;
         }
     }
+
     h2 {
         margin: 0;
     }
+
     .landing-heading {
         font-size: 3rem;
         color: white;
         text-align: center;
-        font-family: "Inter" , sans-serif;
+        font-family: "Inter", sans-serif;
 
         @media(max-width : 1080px) {
             width: 100%;
             font-size: 2.25rem;
-            color : #1D4F5A;
+            color: #1D4F5A;
         }
     }
 
@@ -185,7 +188,7 @@ body {
         gap: 1rem;
         margin-top: 1.5rem;
         width: 60%;
-        background-color: rgba(255,255,255,0.75);
+        background-color: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(5px);
         padding: 2rem;
         border-radius: 1.5rem;
@@ -196,6 +199,7 @@ body {
             width: 80%;
             gap: 16px;
         }
+
         a {
             text-decoration: none;
             color: darkblue;
@@ -205,7 +209,7 @@ body {
                 border-bottom: 1.5px solid darkblue;
             }
         }
-        
+
         .city-input,
         .school-input {
             width: 100%;
@@ -225,7 +229,7 @@ body {
             cursor: pointer;
         }
 
-        
+
 
 
     }
@@ -235,6 +239,7 @@ body {
     }
 
 }
+
 .find-school-modal {
     position: fixed;
     width: 100vw;
@@ -242,17 +247,18 @@ body {
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .find-school-main {
         width: 80vw;
         max-height: 80%;
         background-color: white;
         padding: 1rem 0;
         position: relative;
+
         .close-button {
             position: absolute;
             right: 0.25rem;
@@ -261,9 +267,10 @@ body {
             top: 0.25rem;
             cursor: pointer;
         }
+
         .find-school-title {
             text-align: center;
-            color : #075985;
+            color: #075985;
             margin-top: 2.5rem;
         }
 
@@ -271,7 +278,7 @@ body {
             padding-left: 0;
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(auto-fit , minmax(300px , 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             justify-items: center;
             max-height: 75vh;
             gap: 1rem;
@@ -289,6 +296,7 @@ body {
                 justify-content: center;
                 height: 2rem;
                 cursor: pointer;
+
                 a {
                     text-decoration: none;
                     display: block;
@@ -321,6 +329,7 @@ body {
         }
     }
 }
+
 .analytics {
     background-color: #1D4F5A;
     color: white;
@@ -539,6 +548,7 @@ body {
     margin: 2rem 0.5rem;
     font-size: 3rem;
 }
+
 .testimonial-component {
     .testimonial-item {
         min-width: 30vw;
@@ -1034,6 +1044,7 @@ body {
 
             .comment-info {
                 margin-top: 1rem;
+
                 .comment-name {
                     font-size: 1.5rem;
                     margin: 0;
@@ -1042,7 +1053,7 @@ body {
             }
 
             .comment-reaction {
-                
+
                 display: flex;
                 gap: 1rem;
                 margin-top: 1rem;
@@ -1077,6 +1088,7 @@ body {
             top: 0;
             left: 0;
         }
+
         .comment-modal {
             display: flex;
             flex-direction: column;
@@ -1098,6 +1110,7 @@ body {
                     cursor: pointer;
                 }
             }
+
             h2 {
                 text-align: center;
                 font-size: 2rem;
@@ -1111,7 +1124,7 @@ body {
                 border-radius: 0.25rem;
             }
 
-            
+
 
             .comment-textarea {
                 textarea {
@@ -1130,6 +1143,7 @@ body {
                     text-align: center;
                     font-size: 1.25rem;
                 }
+
                 .rating-stars {
                     width: 80%;
                     margin: auto;
@@ -1139,7 +1153,8 @@ body {
                     img {
                         width: 30px;
                     }
-                    .hovered:not(.rated)  {
+
+                    .hovered:not(.rated) {
                         opacity: 0.5;
                     }
                 }
@@ -1152,12 +1167,12 @@ body {
                 height: 1.5rem;
                 margin: 0;
 
-                
+
             }
 
             .error {
-                color : red;
-            } 
+                color: red;
+            }
 
             .success {
                 color: green;
@@ -1388,8 +1403,9 @@ body {
 
     .landingpage-form {
         height: 80vh;
+
         h2 {
-            color: #436D76!important;
+            color: #436D76 !important;
         }
     }
 
@@ -1424,7 +1440,7 @@ body {
 
         .fundraiser-carousel-item {
             max-width: 25vw;
-            min-width:600px;
+            min-width: 600px;
         }
 
         @media (max-width : 1080px) {
@@ -1521,29 +1537,32 @@ body {
 }
 
 .primary-button-new {
-    
-        padding: 4rem;
+
+    padding: 4rem;
     outline: 1px solid;
 }
 
 .dashboard-books {
-    font-family: 'Inter' , sans-serif;
+    font-family: 'Inter', sans-serif;
 
     .input-component {
         margin: 1rem 0;
         display: flex;
         align-items: center;
         gap: 1rem;
+
         label {
             display: flex;
             gap: 1rem;
             align-items: center;
+
             input {
                 padding: 0.25rem 0.5rem;
                 width: 250px;
                 font-size: 1.1rem;
             }
         }
+
         .search-btn {
             outline: 1px solid black;
             border-radius: 0.25rem;
@@ -1553,19 +1572,19 @@ body {
             cursor: pointer;
 
             &:disabled {
-                color : #94a3b8;
+                color: #94a3b8;
                 cursor: not-allowed;
             }
         }
 
-        
+
     }
 }
 
 .delivery-create-form {
     height: 75vh;
 
-    
+
     .autocomplete-parent {
         display: flex;
         width: 90vw;
@@ -1575,36 +1594,40 @@ body {
         gap: 1rem;
     }
 
-    
+
 }
 
-.delivery-form-container{
+.delivery-form-container {
     position: fixed;
-    top : 0;
-    left : 0;
+    top: 0;
+    left: 0;
     z-index: 300;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.1);
-    font-family: 'Inter' , sans-serif;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+    overflow-y: scroll;
 
     h2 {
         text-align: center;
     }
 
     .delivery-form {
+        position: relative;
         min-width: 50vw;
-        min-height:50%;
+        height: 80%;
         background-color: white;
         display: flex;
         flex-direction: column;
+        margin: 2rem;
+        overflow-y: scroll;
         gap: 1rem;
         padding: 2rem;
-
     }
+
     .books-input {
         .org-autocomplete {
             margin: 1rem 0;
@@ -1612,7 +1635,7 @@ body {
 
         .autocomplete-parent {
             display: flex;
-            gap:1rem;
+            gap: 1rem;
         }
 
         .selected-books-display {
@@ -1622,6 +1645,7 @@ body {
                 font-size: 1.2rem;
                 margin: 0;
             }
+
             .books-display {
                 display: flex;
                 gap: 1rem;
@@ -1629,20 +1653,22 @@ body {
                 padding: 0.5rem;
                 align-items: center;
                 justify-content: space-between;
+
                 input {
                     width: 3rem;
                     padding: 0.25rem 0.5rem;
                 }
-                &:nth-child(even){
+
+                &:nth-child(even) {
                     background-color: #cbd5e1;
                 }
-    
+
                 .delete-button {
                     background: none;
                     border: none;
                     cursor: pointer;
                 }
-    
+
                 .input-container {
                     display: flex;
                     align-items: center;
@@ -1651,6 +1677,7 @@ body {
             }
         }
     }
+
     p {
         margin: 0;
         padding: 0;
@@ -1661,9 +1688,10 @@ body {
         color: red;
     }
 
-    .button-display {
-        display: flex;
-        justify-content: end;
+    .close-button-display {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
 
         button {
             background: none;
@@ -1679,17 +1707,24 @@ body {
         background-color: white;
         outline: 2px solid black;
         border: none;
-        max-width: 300px ;
+        max-width: 300px;
         border-radius: 0.25rem;
         margin: auto;
         cursor: pointer;
+
         &:hover {
             background-color: #cbd5e1;
         }
 
         &:disabled {
-            cursor : not-allowed;
+            cursor: not-allowed;
             color: #475569;
+        }
+    }
+
+    @media (max-width : 1080px) {
+        .delivery-form {
+            height: 80%;
         }
     }
 }
