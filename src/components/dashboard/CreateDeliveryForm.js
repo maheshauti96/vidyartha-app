@@ -10,21 +10,17 @@ import { InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
 import { debounce } from "lodash";
 import { CloseOutlined, DeleteOutlineRounded } from "@material-ui/icons";
 
-const CreateDeliveryForm = ({
-  schoolData,
-  setDeliverySchool,
-  organisations,
-}) => {
+const CreateDeliveryForm = ({ schoolData, setDeliverySchool , organisations }) => {
   const [books, setBooks] = useState([]);
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [amount, setAmount] = useState();
   const [desc, setDesc] = useState("");
   const [response, setResponse] = useState();
-  const [searchByCode, setSearchByCode] = useState(true);
-  const [org, setOrg] = useState("");
+  const [searchByCode, setSearchByCode] = useState(true)
+  const [org , setOrg] = useState('')
   const searchBooks = debounce((value) => {
     if (value) {
-      if (searchByCode) {
+      if(searchByCode){
         getBooksByCode(setBooks, value);
       } else {
         getBooksByName(setBooks, value);
@@ -66,22 +62,11 @@ const CreateDeliveryForm = ({
   useEffect(() => {
     getBooks(setBooks, 10);
   }, []);
-
-  useEffect(() => {
-    let timeout;
-    if (response && !response.errorOccured) {
-      timeout = setTimeout(() => {
-        setDeliverySchool({ showModal: false });
-      }, 2000);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [response]);
   return (
     <div className="delivery-form-container">
       {schoolData && (
         <div className="delivery-form">
-          <div className="close-button-display">
+          <div className="button-display">
             <button onClick={() => setDeliverySchool({ showModal: false })}>
               <CloseOutlined />
             </button>
@@ -94,32 +79,29 @@ const CreateDeliveryForm = ({
           {!books.errorOccured && (
             <div className="books-input">
               <div className="org-autocomplete">
-                {organisations && (
-                  <Autocomplete
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="outlined"
-                        label={"Search Organisations"}
-                      />
-                    )}
-                    options={organisations}
-                    getOptionLabel={(option) => option.name}
-                    onChange={(e, value) => {
-                      setOrg(value?.id ? value.id : "");
-                    }}
-                  />
-                )}
+                {organisations && <Autocomplete
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label={"Search Organisations"}
+                    />
+                  )}
+                  options={organisations}
+                  getOptionLabel={option => option.name}
+                  onChange={(e, value) => {
+                    setOrg(value?.id ? value.id : '')
+                  }}
+                />}
               </div>
               <div className="autocomplete-parent">
+                
                 <Autocomplete
                   renderInput={(params) => (
                     <TextField
                       {...params}
                       variant="outlined"
-                      label={
-                        searchByCode ? "Search Book Code" : "Search Book Name"
-                      }
+                      label={searchByCode ? "Search Book Code" : "Search Book Name"}
                     />
                   )}
                   options={books}
@@ -139,16 +121,17 @@ const CreateDeliveryForm = ({
                   }}
                 />
                 <div>
-                  <Select
-                    value={searchByCode}
-                    onChange={(e) => {
-                      setSearchByCode(e.target.value);
-                    }}
-                    variant="outlined"
-                  >
-                    <MenuItem value={true}>Code</MenuItem>
-                    <MenuItem value={false}>Name</MenuItem>
-                  </Select>
+                    <Select 
+                        value={searchByCode}
+                        onChange={(e) => {
+                            setSearchByCode(e.target.value)
+                        }}
+                        variant="outlined"
+                    >
+                        <MenuItem value = {true}>Code</MenuItem>
+                        <MenuItem value = {false}>Name</MenuItem>
+
+                    </Select>
                 </div>
               </div>
               <div className="selected-books-display">
@@ -195,12 +178,9 @@ const CreateDeliveryForm = ({
             label="Total Amount"
             variant="outlined"
           />
-          {amount > schoolData.data.sum && (
-            <p className="amount-error">
-              Books are out of budget
-              {`(Sum available : ${schoolData.data.sum})`}
-            </p>
-          )}
+          {
+            amount > schoolData.data.sum && <p className="amount-error">Books are out of budget{`(Sum available : ${schoolData.data.sum})`}</p>
+          }
           <button
             onClick={() => {
               createDelivery(setResponse, {
@@ -209,25 +189,14 @@ const CreateDeliveryForm = ({
                 placeAddress: schoolData.data.placeAddress,
                 placeId: schoolData.data.placeId,
                 description: desc,
-                org: org,
+                org : org
               });
             }}
-            disabled={
-              selectedBooks.length <= 0 ||
-              !amount ||
-              !org ||
-              amount > schoolData.data.sum
-            }
+            disabled={selectedBooks.length <= 0 || !amount || !org || amount > schoolData.data.sum}
             className="delivery-submit-btn"
           >
             Process Delivery
           </button>
-          {response && response.errorOccured && (
-            <p style={{ color: "red", margin: "auto" }}>Error Occured!</p>
-          )}
-          {response && !response.errorOccured && (
-            <p style={{ color: "green", margin: "auto" }}>Delivery Created!</p>
-          )}
         </div>
       )}
     </div>
