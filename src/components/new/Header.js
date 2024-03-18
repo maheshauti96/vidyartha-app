@@ -23,13 +23,13 @@ const Header = ({ orgCode }) => {
           <div className={`${router.pathname.includes('/campaigns') ? "active" : ""}`}>
             <Link href={`/${orgPath}/campaigns`}>Campaigns</Link>
           </div>
-          <div
+          {/* <div
             className={`${
               router.pathname.includes("/news-and-stories") ? "active" : ""
             }`}
           >
-            <Link href={`/${orgPath}/news-and-stories`}>News and Stories</Link>
-          </div>
+            <Link href="/new/news-and-stories">News and Stories</Link>
+          </div> */}
           <div className={`${router.pathname.includes("/aboutus")  ? "active" : ""}`}>
             <Link href={`/${orgPath}/aboutus`}>About</Link>
           </div>
@@ -60,13 +60,13 @@ const Header = ({ orgCode }) => {
               >
                 <Link href={`/${orgPath}/campaigns`}>Campaigns</Link>
               </div>
-              <div
+              {/* <div
                 className={`${
                   router.pathname.includes("/news-and-stories") ? "active" : ""
                 }`}
               >
-                <Link href={`/${orgPath}/news-and-stories`}>News and Stories</Link>
-              </div>
+                <Link href="/news-and-stories">News and Stories</Link>
+              </div> */}
               <div
                 className={`${router.pathname.includes("/aboutus") ? "active" : ""}`}
               >

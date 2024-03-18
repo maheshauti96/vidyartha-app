@@ -6,7 +6,6 @@ import BooksDisplay from "../src/components/dashboard/BooksDisplay";
 import DeliveryDisplay from "../src/components/dashboard/DeliveryDisplay";
 import CreateDeliveryForm from "../src/components/dashboard/CreateDeliveryForm";
 import DisplayOrganisations from "../src/components/dashboard/DisplayOrganisations";
-import TempleSearch from "../src/components/new/TempleSearch";
 
 const MODES = {
   ALL_SCHOOLS: "ALL_SCHOOLS",
@@ -251,9 +250,7 @@ const Dashboard = () => {
       )}
       <BooksDisplay/>
       <DeliveryDisplay/>
-      <TempleSearch/>
       <DisplayOrganisations organisations = {organisations}/>
-      
       {deliverySchool.showModal && <CreateDeliveryForm organisations = {organisations} setDeliverySchool = {setDeliverySchool} schoolData={deliverySchool}/>}
     </div>
 
