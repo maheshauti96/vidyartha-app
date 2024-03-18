@@ -2,14 +2,29 @@ import React, { useEffect, useState, useRef } from "react";
 import Head from 'next/head';
 import _ from 'lodash';
 import { useRouter } from 'next/router'
+import { useFetch } from "use-http";
 import ShareIcon from '@material-ui/icons/Share';
 import { useForm } from 'react-hook-form';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import FacebookIcon from '@material-ui/icons/Facebook';
 import { copyUrlToClipboard, getSchoolInfo, isValidEmail, getTopDonorsBySchool } from "../../src/services/service";
 import { Skeleton } from "@material-ui/lab";
-import { Button, Grid, LinearProgress, TextField} from "@material-ui/core";
+import { Button, Dialog, DialogContent, DialogTitle, Grid, LinearProgress, TextField} from "@material-ui/core";
 import RazorpayPayment from "../../src/components/RazorpayPayment";
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Link from 'next/link';
+import PlaceSearch from '../../src/components/PlaceSearch';
 import Popup from "../../src/components/Popup";
 import SendIcon from "@material-ui/icons/Search";
 import Footer from "../../src/components/new/Footer";
@@ -71,6 +86,7 @@ export default function FundraiserPlace() {
                 setLoading(false);
             });
         } catch (error) {
+            console.log('fetchSchoolDetails failed', error);
             setLoading(false);
         }
     }
@@ -110,6 +126,7 @@ export default function FundraiserPlace() {
                 return true;
             }
         } catch (error) {
+            console.log('getPlaceInfo Error', error);
             return false;
         }
     }
