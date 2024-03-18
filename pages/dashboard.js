@@ -7,7 +7,6 @@ import DeliveryDisplay from "../src/components/dashboard/DeliveryDisplay";
 import CreateDeliveryForm from "../src/components/dashboard/CreateDeliveryForm";
 import DisplayOrganisations from "../src/components/dashboard/DisplayOrganisations";
 import TempleSearch from "../src/components/new/TempleSearch";
-import CreateOrganisation from "../src/components/dashboard/CreateOrganisation";
 
 const MODES = {
   ALL_SCHOOLS: "ALL_SCHOOLS",
@@ -24,8 +23,8 @@ const Dashboard = () => {
   const [showFilteredMsg, setShowFilteredMsg] = useState(false);
   const [mode, setMode] = useState(MODES.ALL_SCHOOLS);
   const [selectedSchool, setSelectedSchool] = useState();
-  const [deliverySchool, setDeliverySchool] = useState({ showModal: false });
-  const [organisations, setOrganisations] = useState();
+  const [deliverySchool , setDeliverySchool] = useState({showModal : false})
+  const [organisations , setOrganisations] = useState()
   const [totalFundsCollected, setTotalFundsCollected] = useState(0);
   const [totalDonors, setTotalDonors] = useState(0);
   const allDataRef = useRef();
@@ -64,9 +63,10 @@ const Dashboard = () => {
             placeUrl: `https://vidyartha.org/fundraiser/${d.placeId}`,
             donorContact: `No: ${d.donorContact}`,
             amount: d.amount / 100,
-            schoolId: d.placeId,
+            schoolId: d.placeId
           }))
           .reduce((acc, curr) => {
+
             totalFunds += curr.amount;
 
             const elFound = acc.filter((el) => el.placeId === curr.placeId)[0];
@@ -80,31 +80,35 @@ const Dashboard = () => {
 
             return [...acc];
           }, []);
-        allDataRef.current = donationsData.content;
+        allDataRef.current = donationsData.content
         dataRef.current = sum;
         setData(sum);
-        setTotalFundsCollected(totalFunds);
+        setTotalFundsCollected(totalFunds)
         setLoading(false);
       } catch (err) {
         console.log({ err });
       }
     }
 
+
+
     init();
   }, []);
 
   useEffect(() => {
-    function getOrgs() {
-      fetch("/api/organisations/organisations")
-        .then((res) => res.json())
-        .then((data) => {
-          setOrganisations(data.data.content);
+    function getOrgs(){
+      fetch('/api/organisations/organisations')
+        .then(res => res.json())
+        .then(data => {
+            setOrganisations(data.data.content)
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     }
 
-    getOrgs();
-  }, []);
+    getOrgs()
+  }, [])
+
+  
 
   function applyFilters() {
     setLoading(true);
@@ -139,7 +143,7 @@ const Dashboard = () => {
   const rows = data;
   const columns = [
     {
-      field: "placeId",
+      field: "placeId" ,
       headerName: "View School Dashboard",
       width: 300,
       disableExport: true,
@@ -160,9 +164,7 @@ const Dashboard = () => {
       headerName: "School Link",
       width: 450,
       renderCell: (params) => (
-        <Link
-          href={`https://vidyartha.org/fundraiser/${params.value}`}
-        >{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
+        <Link href={`https://vidyartha.org/fundraiser/${params.value}`}>{`https://vidyartha.org/fundraiser/${params.value}`}</Link>
       ),
     },
     {
@@ -180,19 +182,15 @@ const Dashboard = () => {
     },
     { field: "placeAddress", headerName: "Place Address", width: 450 },
     {
-      field: "createDelivery",
-      headerName: "Create Delivery",
-      width: 200,
-      renderCell: (params) => (
-        <button
-          onClick={() =>
-            setDeliverySchool({ data: params.row, showModal: true })
-          }
-        >
+      field : 'createDelivery' ,
+      headerName : 'Create Delivery' , 
+      width : 200,
+      renderCell : params => (
+        <button onClick={() => setDeliverySchool({data : params.row , showModal : true})}>
           Create Delivery
         </button>
-      ),
-    },
+      )
+    }
   ];
   return (
     <div style={{ width: "90vw", margin: "auto" }}>
@@ -201,41 +199,35 @@ const Dashboard = () => {
         <>
           {!loading && (
             <>
-              <p>
-                <b>Total Campaigns:</b> {dataRef.current.length}
-              </p>
-              <p>
-                <b>Total Funds Collected:</b> {totalFundsCollected}
-              </p>
-              <p>
-                <b>Total Donors:</b> {totalDonors}
-              </p>
-              <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
-                <div>
-                  <label>
-                    <span>Amount Range: </span>
-                    <select
-                      onChange={(e) =>
-                        setFilters((prev) => ({
-                          ...prev,
-                          amountRange: e.target.value,
-                        }))
-                      }
-                    >
-                      <option value="All">All</option>
-                      <option value="1-1999">1 to 1999</option>
-                      <option value="2k-4999">2k to 4999</option>
-                      <option value="5k-7999">5k to 7999</option>
-                      <option value="8k-9999">8k to 9999</option>
-                      <option value="10k-more">10k and more</option>
-                    </select>
-                  </label>
-                </div>
-                <div>
-                  <button onClick={applyFilters}>Apply Filters</button>
-                </div>
-                {showFilteredMsg && <span>Filters applied!</span>}
+            <p><b>Total Campaigns:</b> {dataRef.current.length}</p>
+            <p><b>Total Funds Collected:</b> {totalFundsCollected}</p>
+            <p><b>Total Donors:</b> {totalDonors}</p>
+            <div style={{ margin: "1rem", display: "flex", gap: "1rem" }}>
+              <div>
+                <label>
+                  <span>Amount Range: </span>
+                  <select
+                    onChange={(e) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        amountRange: e.target.value,
+                      }))
+                    }
+                  >
+                    <option value="All">All</option>
+                    <option value="1-1999">1 to 1999</option>
+                    <option value="2k-4999">2k to 4999</option>
+                    <option value="5k-7999">5k to 7999</option>
+                    <option value="8k-9999">8k to 9999</option>
+                    <option value="10k-more">10k and more</option>
+                  </select>
+                </label>
               </div>
+              <div>
+                <button onClick={applyFilters}>Apply Filters</button>
+              </div>
+              {showFilteredMsg && <span>Filters applied!</span>}
+            </div>
             </>
           )}
           {!loading && data && data.length > 0 && (
@@ -257,19 +249,14 @@ const Dashboard = () => {
           goToAllSchools={() => setMode(MODES.ALL_SCHOOLS)}
         />
       )}
-      <BooksDisplay />
-      <DeliveryDisplay />
-      <TempleSearch />
-      <DisplayOrganisations organisations={organisations} />
-      <CreateOrganisation />
-      {deliverySchool.showModal && (
-        <CreateDeliveryForm
-          organisations={organisations}
-          setDeliverySchool={setDeliverySchool}
-          schoolData={deliverySchool}
-        />
-      )}
+      <BooksDisplay/>
+      <DeliveryDisplay/>
+      <TempleSearch/>
+      <DisplayOrganisations organisations = {organisations}/>
+      
+      {deliverySchool.showModal && <CreateDeliveryForm organisations = {organisations} setDeliverySchool = {setDeliverySchool} schoolData={deliverySchool}/>}
     </div>
+
   );
 };
 

@@ -227,97 +227,87 @@ export function formatDate(inputDateString) {
   return formattedDate;
 }
 
-export async function getBooks(setBooks, size = 1000) {
+export async function getBooks(setBooks , size =1000){
   try {
-    const response = await fetch(
-      `https://api.vidyartha.org/shastradaan/admin/book?size=${size}`
-    );
-
-    const data = await response.json();
-
-    setBooks(data["content"]);
-  } catch (err) {
-    setBooks({ err, errorOccured: true });
+    const response = await fetch(`https://api.vidyartha.org/shastradaan/admin/book?size=${size}`)
+    
+    const data = await response.json()
+    
+    setBooks(data['content'])
+  } catch(err){
+    setBooks({err , errorOccured : true})
   }
 }
 
-export async function getBooksByCode(setBooks, code) {
+export async function getBooksByCode(setBooks , code){
   try {
-    const response = await fetch(
-      `https://api.vidyartha.org/shastradaan/admin/book/findByCode/${code}?size=1000`
-    );
-    const data = await response.json();
-    setBooks(data["content"]);
-  } catch (err) {
-    return setBooks({ ...err, errorOccured: true });
+    const response = await fetch(`https://api.vidyartha.org/shastradaan/admin/book/findByCode/${code}?size=1000`)
+    const data = await response.json()
+    setBooks(data['content'])
+  } catch(err){
+    return setBooks({...err , errorOccured : true})
   }
 }
 
-export async function getBooksByName(setBooks, name) {
+export async function getBooksByName(setBooks , name){
   try {
-    const response = await fetch(
-      `https://api.vidyartha.org/shastradaan/admin/book/findByDescription/${name}?size=1000`
-    );
-    const data = await response.json();
-    setBooks(data["content"]);
-  } catch (err) {
-    return setBooks({ ...err, errorOccured: true });
+    const response = await fetch(`https://api.vidyartha.org/shastradaan/admin/book/findByDescription/${name}?size=1000`)
+    const data = await response.json()
+    setBooks(data['content'])
+  } catch(err){
+    return setBooks({...err , errorOccured : true})
   }
 }
 
-export async function getDeliveries(setDeliveryList) {
+export async function getDeliveries(setDeliveryList){
   try {
-    const response = await fetch("/api/deliveries/deliveries");
-    const data = await response.json();
-    setDeliveryList({ data, errorOccured: false });
-  } catch (error) {
-    setDeliveryList({ errorOccured: false, error });
+    const response = await fetch('https://api.vidyartha.org/shastradaan/admin/delivery')
+    const data = await response.json()
+    setDeliveryList({data , errorOccured : false})
+
+  }catch(error){
+    setDeliveryList({errorOccured : false , error})
   }
 }
 
-export async function createDelivery(setResponse, data) {
+export async function createDelivery(setResponse , data){
   try {
-    const { books, totalAmount, placeAddress, placeId, description, org } =
-      data;
-    const bodyBooks = books.reduce((acc, curr) => {
-      console.log(curr);
-      acc[curr.code] = curr.quantity;
-      return acc;
-    }, {});
+    const {books , totalAmount , placeAddress , placeId , description , org } = data
+    const bodyBooks = books.reduce((acc , curr) => {
+      console.log(curr)
+      acc[curr.code] = curr.quantity
+      return acc
+  }, {})
     const deliveryObj = {
-      id: 1,
-      place: placeId,
-      org: org,
-      books: bodyBooks,
-      description: description,
-      shippingService: "string",
-      trackingId: "string",
-      deliveryOwner: "Karthik",
-      toAddress: placeAddress,
-      fromAddress: "string",
-      totalAmount: totalAmount,
-      shippingAmount: 0,
-      itemsCost: 0,
-      taxAmount: 0,
-      createdAt: new Date(),
-      modifiedAt: new Date(),
-    };
+      "id": 1,
+      "place": placeId,
+      "org": org,
+      "books": bodyBooks,
+      "description": description,
+      "shippingService": "string",
+      "trackingId": "string",
+      "deliveryOwner": "Karthik",
+      "toAddress": placeAddress,
+      "fromAddress": "string",
+      "totalAmount": totalAmount,
+      "shippingAmount": 0,
+      "itemsCost": 0,
+      "taxAmount": 0,
+      "createdAt": new Date(),
+      "modifiedAt": new Date()
+    }
 
-    const response = await fetch(
-      "https://api.vidyartha.org/shastradaan/admin/delivery/create",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(deliveryObj),
-      }
-    )
-      .then((res) => res.text())
-      .then((data) => setResponse({ errorOccured: false, data }));
-  } catch (error) {
-    console.log(error);
-    setResponse({ errorOccured: true, msg: error.message });
+    const response = await fetch('https://api.vidyartha.org/shastradaan/admin/delivery/create', {
+      method : 'POST',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(deliveryObj)
+    })
+    setResponse(response)
+  }catch(error){
+    console.log(error)
+    setResponse(error)
   }
 }
